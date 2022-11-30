@@ -1,3 +1,8 @@
+a{
+    color: #100720;
+    text-decoration: none;
+}
+
 .landing_container {
   background-color: rgb(238, 239, 241);
 }
@@ -79,7 +84,7 @@
   justify-content: center;
   padding: 35px;
 }
-.L-register_btn span {
+.L-register_btn a {
   border-bottom: 1px solid #100720;
   cursor: pointer;
   color: #100720;

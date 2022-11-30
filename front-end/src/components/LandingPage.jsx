@@ -4,6 +4,8 @@ import { GiCheckMark } from "react-icons/gi";
 import { FaUserFriends } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 
+import {  Link } from "react-router-dom"
+
 function LandingPage() {
   return (
     <div className="landing_container">
@@ -11,8 +13,8 @@ function LandingPage() {
         <div className="L-header">
           <div className="logo">Stack Overflow_Lite</div>
           <div className="L-header_left">
-            <span className="login">Log in</span>
-            <span className="signup">Sign up</span>
+            <Link to="/login" className="login">Log in</Link>
+            <Link to="/signup" className="signup">Sign up</Link>
           </div>
         </div>
         <div className="hero">
@@ -68,7 +70,7 @@ function LandingPage() {
         </div>
         </div>
         <div className="L-register">
-            <span className="L-register_btn"> Dont have an account? <span>Sign up</span></span>
+            <span className="L-register_btn"> Dont have an account? <Link to='/login'>Sign up</Link></span>
         </div>
       </div>
     </div>
