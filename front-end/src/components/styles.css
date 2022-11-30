@@ -1,9 +1,10 @@
-a{
-    color: #100720;
-    text-decoration: none;
+a {
+  color: #100720;
+  text-decoration: none;
 }
 
-.landing_container {
+.landing_container,
+.signup_container {
   background-color: rgb(238, 239, 241);
 }
 .landing_wrapper {
@@ -90,4 +91,52 @@ a{
   color: #100720;
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+/******************************sign IN***********************************************/
+.signup_wrapper {
+  width: 60%;
+  margin: auto;
+  background-color: rgb(255, 255, 255);
+  min-height: 100vh;
+  padding: 20px;
+}
+.signup_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.signup_header_right a {
+  color: #100720;
+  font-weight: 600;
+}
+.signup_form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
+}
+.signup_form input{
+    padding: 7px;
+    outline: none;
+    border: none;
+    background-color: rgb(246,246,246);
+    border-radius: 8px;
+}
+.signup_form input:focus{
+    border: 1px solid #100720;
+}
+.signup_btn{
+margin: 10px;
+}
+.signup_btn button{
+    outline: none;
+    border: none;
+    background-color: #100720;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+
 }
