@@ -5,7 +5,8 @@ a {
 
 .landing_container,
 .signup_container,
-.login-container {
+.login-container,
+.layout-container {
   background-color: rgb(238, 239, 241);
   min-height: 100vh;
 }
@@ -197,9 +198,8 @@ a {
   animation: scaleup 2s;
   display: flex;
   gap: 5px;
-  
 }
-.login_alert >h3{
+.login_alert > h3 {
   color: "red";
   text-transform: "uppercase";
 }
@@ -211,3 +211,76 @@ a {
     transform: scale(1);
   }
 }
+/*********************QUESTIONS LAYOUT COMPONENT****************************/
+.layout_wrapper {
+  width: 80%;
+  margin: auto;
+  background-color: white;
+  min-height: fit-content;
+}
+.layout_header {
+  display: grid;
+  grid-template-columns: 40% 50% 10%;
+  align-items: center;
+
+  height: 90px;
+  background-color: rgba(245, 245, 245, 0.2);
+  padding: 0 30px;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+.search {
+  display: flex;
+  align-items: baseline;
+}
+
+.search {
+  border: 1px solid black;
+}
+.search_input {
+  width: 100%;
+}
+.search_input input {
+  padding: 10px;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1.2rem;
+}
+.search_btn {
+  background-color: #100720;
+  padding: 11px;
+  
+}
+.layout_logout {
+  text-align: right;
+}
+
+.layout_body {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+.layout_aside {
+  min-height: 80vh;
+  background-color: rgba(240, 248, 255, 0.6);
+  padding: 5px;
+}
+.layout_aside_inner {
+  position: sticky;
+  top: 0;
+  padding: 10px 0;
+  display: flex;
+  gap: 18px;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #100720;
+}
+
+.quiz_links {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-left: 10px;
+}
+
+/************************Question list design***************************/
