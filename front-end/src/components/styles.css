@@ -193,3 +193,21 @@ a {
   color: aliceblue;
   margin-top: 30px;
 }
+.login_alert {
+  animation: scaleup 2s;
+  display: flex;
+  gap: 5px;
+  
+}
+.login_alert >h3{
+  color: "red";
+  text-transform: "uppercase";
+}
+@keyframes scaleup {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
