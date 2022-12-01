@@ -1,25 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import questions from '../../utils/dummyQuestions'
+import { Link, useOutletContext  } from "react-router-dom";
+import questions1 from '../../utils/dummyQuestions'
 
 function QuestionsList() {
-  let tags = ["javascript", "reactjs", "web"];
+ 
+  const {questions} = useOutletContext()
+  console.log(questions);
   
   return (
     <div className="Qlist-container">
       <div className="list_wrapper">
-        {questions.map(question=>{
+        {questions.map(single_question=>{
+             let {question_id, user_id, title, question,tags, created_on, } = single_question
         return <div className="quiz_list">
+           
           <div className="quiz_list_left">
             <span>0 votes</span>
             <span>0 Answers</span>
           </div>
           <div className="list_middle">
-            <div className="quiz_title"><Link to="/questions/1">The title of the question</Link></div>
+            <div className="quiz_title"><Link to="/questions/1">{title}</Link></div>
             <div className="quiz_description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus
-              laborum hic maiores maxime illo rem fugiat vero facere enim eaque
-              soluta qui...
+              {question}
             </div>
             <div className="quiz_list_details">
               <div className="tags">

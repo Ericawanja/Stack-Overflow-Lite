@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/questions" element={<QuestionsLayoutPage />}>
-          <Route index element={<QuestionsPage />} />
+          <Route index element={<QuestionsList />} />
           <Route path=":question_id" element={<Question />} />
         </Route>
       </Routes>

@@ -1,9 +1,20 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import {IconContext} from 'react-icons'
 import {FaSearch} from 'react-icons/fa'
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAllQuestions } from "../../redux/thunks/question.thunks";
 
 function QuestionLayout() {
+  const dispatch = useDispatch()
+  const {questions }= useSelector(state=>state)
+  
+  useEffect(() => {
+    dispatch(fetchAllQuestions());
+  
+   
+  }, [])
+  
   return (
     <div className="layout-container">
       <div className="layout_wrapper">
@@ -29,9 +40,8 @@ function QuestionLayout() {
               <div className="quiz_links">
                 <span>Questions</span>
                 <div><NavLink>All</NavLink></div>
-                <div><NavLink>Recent</NavLink></div>
-                <div><NavLink>Answered</NavLink></div>
-                <div><NavLink>Unaswered</NavLink></div>
+                
+            
                 <div><NavLink>My questions</NavLink></div>
               </div>
               <div><NavLink>Tags</NavLink></div>
@@ -39,7 +49,7 @@ function QuestionLayout() {
             </div>
           </div>
           <div className="layout_main">
-            <Outlet />
+            <Outlet context={questions}/>
           </div>
         </div>
       </div>
