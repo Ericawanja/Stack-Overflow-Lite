@@ -323,6 +323,7 @@ a {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+  font-size: .8rem;
 }
 
 /******************QUESTION******************************/
@@ -337,8 +338,9 @@ a {
   font-weight: 600;
   line-height: 1.8;
 }
-.question_creation_details span{
+.question_creation_details div{
   padding: 10px;
+
 }
 .question_description, .answer_body{
   display: grid;
@@ -364,8 +366,32 @@ a {
 }
 
 /******Answer comment*******/
+.answer_comment_header{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+
+}
+.comment_header{
+  
+}
+.add_comment input{
+  padding: 10px;
+  width: 350px;
+}
 .add_comment{
   display: flex;
   justify-content: end;
-  margin-left: 10px;
+  
+  align-items: center;
+}
+.comment_btn{
+  color:white ;
+  background-color: #100720;
+  padding: 10px;
+}
+
+.commentsList ol{
+  padding: 30px 60px;
 }

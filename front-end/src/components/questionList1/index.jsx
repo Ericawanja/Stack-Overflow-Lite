@@ -11,17 +11,18 @@ function QuestionsList() {
     <div className="Qlist-container">
       <div className="list_wrapper">
         {questions.map(single_question=>{
-             let {question_id, user_id, title, question,tags, created_on, } = single_question
+             let {question_id, username, title, question,tags, created_on, votes} = single_question
+             let sub_string = question.slice(0, 130)
         return <div className="quiz_list">
            
           <div className="quiz_list_left">
-            <span>0 votes</span>
+            <span>{votes} votes</span>
             <span>0 Answers</span>
           </div>
           <div className="list_middle">
             <div className="quiz_title"><Link to="/questions/1">{title}</Link></div>
             <div className="quiz_description">
-              {question}
+              {sub_string}...
             </div>
             <div className="quiz_list_details">
               <div className="tags">
@@ -30,8 +31,8 @@ function QuestionsList() {
                 })}
               </div>
               <div className="quiz_creation_details">
-                <div className="author">Author name</div>
-                <div className="date_created">Created on:01/01/2022</div>
+                <span className="author">Asked by: {username}</span>
+                <span className="date_created">Created on: {created_on}</span>
               </div>
             </div>
           </div>
