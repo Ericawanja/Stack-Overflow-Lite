@@ -249,7 +249,6 @@ a {
 .search_btn {
   background-color: #100720;
   padding: 11px;
-  
 }
 .layout_logout {
   text-align: right;
@@ -284,3 +283,68 @@ a {
 }
 
 /************************Question list design***************************/
+
+.list_wrapper {
+}
+.quiz_list {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.quiz_list_left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+.quiz_list_details {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.quiz_title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.8;
+}
+.tags {
+  display: flex;
+  gap: 10px;
+}
+.tags span {
+  background-color: rgba(240, 248, 255, 0.6);
+  padding: 2px;
+}
+.quiz_creation_details {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/******************QUESTION******************************/
+
+.question_header {
+  padding: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+}
+.question_title{
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.8;
+}
+.question_creation_details span{
+  padding: 10px;
+}
+.question_description{
+  display: grid;
+  grid-template-columns: 10% 90%;
+
+}
+.question_description{
+  
+}
