@@ -1,0 +1,75 @@
+{
+  "users": [
+    {
+      "user_id": "dsd23t263vsda",
+      "username": "User One",
+      "email": "user1@gmail.com",
+     
+      "password": "76764576576"
+    },
+    {
+      "user_id": "dsd23t2",
+      "email": "user2@gmail.com",
+      "username": "User Two",
+      "password": "76764576576"
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "one",
+      "user_id": "dsd23t263vsda",
+      "title": "My Server Has Error 404",
+      "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit, ipsa placeat facilis?"
+    },
+    {
+      "question_id": "two",
+      "user_id": "dsd23t263vsda",
+      "title": "My Server Has Error 404",
+      "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit, ipsa placeat facilis?"
+    },
+    {
+      "question_id": "three",
+      "user_id": "dsd23t263vsda",
+      "title": "My Server Has Error 404",
+      "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit, ipsa placeat facilis?"
+    },
+    {
+      "question_id": "four",
+      "user_id": "dsd23t2",
+      "title": "My Server Has Error 404",
+      "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit, ipsa placeat facilis?"
+    },
+    {
+      "question_id": "five",
+      "user_id": "dsd23t2",
+      "title": "My Server Has Error 404",
+      "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit, ipsa placeat facilis?"
+    }
+  ],
+  "answers": [
+    {
+      "answer_id": "534563256233gf",
+      "user_id": "dsd23t263vsda",
+      "question_id": "five",
+      "answers": "dipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit"
+    },
+    {
+      "answer_id": "5345",
+      "user_id": "dsd23t263vsda",
+      "question_id": "five",
+      "answers": "dipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit"
+    }
+  ],
+  "comments": [
+    {
+      "answer_id": "534563256233gf",
+      "comment_id": "ddddd",
+      "comment": "the comment"
+    },
+    {
+      "answer_id": "534563256233gf",
+      "comment_id": "ddddds",
+      "comment": "the other comment"
+    }
+  ]
+}

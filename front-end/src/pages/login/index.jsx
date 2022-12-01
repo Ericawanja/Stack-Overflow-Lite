@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { validate } from "../utils/validateLogin";
+import { validate } from "../../utils/validateLogin";
 
 import { FiAlertTriangle } from "react-icons/fi";
 import { IconContext } from "react-icons";

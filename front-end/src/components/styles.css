@@ -340,11 +340,32 @@ a {
 .question_creation_details span{
   padding: 10px;
 }
-.question_description{
+.question_description, .answer_body{
   display: grid;
   grid-template-columns: 10% 90%;
 
 }
-.question_description{
-  
+.question_text, .answer_text{
+  padding: 10px;
+  margin: auto;
+}
+
+.question_votes, .answer_votes{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.answers_header{
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.8;
+  margin: 10px;
+
+}
+
+/******Answer comment*******/
+.add_comment{
+  display: flex;
+  justify-content: end;
+  margin-left: 10px;
 }
