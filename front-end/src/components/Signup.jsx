@@ -18,7 +18,7 @@ function Signup() {
     //set the state and dispatch sign in
     //navigate
    
-    navigate('/login')
+    navigate('/login', {replace: true})
 
 
   }
