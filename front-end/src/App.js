@@ -1,13 +1,14 @@
 import "./App.css";
-//import LandingPage from "./components/LandingPage";
-import "./components/styles.css";
 
 import { Route, Routes } from "react-router-dom";
-import{ QuestionsList }from "./components";
-import {QuestionsLayoutPage, QuestionsPage,QuestionPage,LandingPage,LoginPage, SignupPage } from "./pages";
-
-
-
+import {
+  LandingPage,
+  SignupPage,
+  LoginPage,
+  QuestionsLayoutPage,
+  QuestionsPage,
+  QuestionPage,
+} from "./pages";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/questions" element={<QuestionsLayoutPage />}>
-          <Route index element={<QuestionsList />} />
+          <Route index element={<QuestionsPage />} />
           <Route path=":question_id" element={<QuestionPage />} />
         </Route>
       </Routes>

@@ -5,3 +5,4 @@ function AddAnswer(){
         </div>
     )
 }
+export default AddAnswer
