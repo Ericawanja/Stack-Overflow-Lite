@@ -265,8 +265,10 @@ a {
   }
   .layout_aside {
     min-height: 80vh;
-    background-color: rgba(240, 248, 255, 0.6);
-    padding: 5px;
+    background-color: rgba(240, 248, 255, 0.3);
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
   }
   .layout_aside_inner {
     position: sticky;
@@ -399,4 +401,35 @@ a {
   
   .commentsList ol{
     padding: 30px 60px;
+  }
+  /**********ADD COMMENT*********/
+  .form_answer_container {
+    margin: 30px;
+  }
+  .form_answer_container h3{
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 2;
+  }
+  .answer_form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+  }
+  textarea{
+    width: 90%;
+    font-size: 1.3rem;
+    padding: 5px;
+  }
+  .answer_save_btn button{
+    outline: none;
+    border: none;
+    background-color: #100720;
+    padding: 15px;
+    color: aliceblue;
+    font-size: 1.2rem;
+    margin: 30px 50px;
+    cursor: pointer;
+
   }
