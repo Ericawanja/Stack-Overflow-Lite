@@ -3,7 +3,7 @@ export const validate = (login_details) => {
   let validRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-  let message = "";
+
 
   if (email.trim() === "") {
     return {message: 'The email field is empty'}

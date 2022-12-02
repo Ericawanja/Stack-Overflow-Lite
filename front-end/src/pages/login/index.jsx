@@ -2,8 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { validate } from "../../utils/validateLogin";
 
-import { FiAlertTriangle } from "react-icons/fi";
-import { IconContext } from "react-icons";
+import Alert from "../../components/common/alert/alert";
 
 function Login() {
   const navigate = useNavigate();
@@ -15,18 +14,16 @@ function Login() {
   const [alertMsg, setAlertMsg] = useState("");
   let { email, password } = login_details;
 
-  let inputRef = useRef()
-  
+  let inputRef = useRef();
+
   //handle input change
   const handle_login_change = (event) => {
     let name = event.target.name;
     let value = event.target.value;
     setLogin_details({ ...login_details, [name]: value });
-  
   };
 
   const handle_login = (event) => {
-   
     let { message } = validate(login_details);
     console.log(message);
     if (message === "valid") {
@@ -39,7 +36,6 @@ function Login() {
     }
   };
 
-  
   return (
     <div className="login-container">
       <div className="login-wrapper">
@@ -54,40 +50,25 @@ function Login() {
         <div className="login_form">
           <label htmlFor="login_email">Enter your Email</label>
           <input
-          ref={inputRef}
+            ref={inputRef}
             type="email"
             name="email"
             value={email}
             onChange={(e) => handle_login_change(e)}
-            onFocus={()=>setAlert(false)}
+            onFocus={() => setAlert(false)}
           />
 
           <label htmlFor="login_password">Enter your password</label>
           <input
-          ref={inputRef}
+            ref={inputRef}
             type="password"
             name="password"
             value={password}
             onChange={(e) => handle_login_change(e)}
-            onFocus={()=>setAlert(false)}
+            onFocus={() => setAlert(false)}
           />
 
-          {alert && (
-            <div>
-              <div className="login_alert">
-                <span>
-                  <IconContext.Provider value={{ size: "32px", color: "red" }}>
-                    <FiAlertTriangle />
-                  </IconContext.Provider>
-                </span>
-                <span>
-                  <h3 style={{ color: "red", textTransform: "uppercase" }}>
-                    {alertMsg}
-                  </h3>
-                </span>
-              </div>
-            </div>
-          )}
+          {alert && <Alert message={alertMsg} />}
 
           <div className="login_btn">
             <button onClick={(e) => handle_login(e)}>Log in</button>
