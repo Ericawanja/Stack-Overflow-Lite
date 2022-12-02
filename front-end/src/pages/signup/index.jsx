@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-import Alert from "../../components/common/alert/alert";
+import Alert from "../../components/common/alert";
 
 import { validate, validateRegister } from "../../utils/validateRegister";
 
@@ -27,10 +27,10 @@ function Signup() {
 
   const handle_signup = () => {
     //validation
-    let message = validateRegister(signup_details);
-    console.log(message);
+    let {message} = validateRegister(signup_details);
 
     //navigate
+    console.log(message);
     if (message === "valid") {
       navigate("/questions");
     } else {

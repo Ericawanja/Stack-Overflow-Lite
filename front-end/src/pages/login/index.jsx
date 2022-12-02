@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { validate } from "../../utils/validateLogin";
 
-import Alert from "../../components/common/alert/alert";
+import Alert from "../../components/common/alert";
 
 function Login() {
   const navigate = useNavigate();
