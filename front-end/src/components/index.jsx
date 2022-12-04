@@ -10,3 +10,7 @@ export {default as QuestionCard} from "./questions/questionCard"
 export {default as Question } from "./question/question"
 export {default as Answers } from "./question/answers"
 export {default as AddAnswer} from "./question/addAnswer"
+
+//ask question
+
+export {default as AskQuestionCard} from "./common/askQuestionCard"

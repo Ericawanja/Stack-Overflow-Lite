@@ -1,4 +1,4 @@
-// export { default as QuestionService } from "./question.service";
+export { default as QuestionService } from "./question.service";
 // export { default as UserService } from "./user.service";
 
 // export const awaitPromise = (time) => {

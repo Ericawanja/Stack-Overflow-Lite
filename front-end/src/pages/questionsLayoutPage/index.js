@@ -7,7 +7,8 @@ import { fetchAllQuestions } from "../../redux/thunks/question.thunks";
 
 function QuestionLayout() {
   const dispatch = useDispatch()
-  const {questions }= useSelector(state=>state)
+  
+  // console.log(questions, 'layout');
   
   useEffect(() => {
     dispatch(fetchAllQuestions());
@@ -49,7 +50,7 @@ function QuestionLayout() {
             </div>
           </div>
           <div className="layout_main">
-            <Outlet context={questions}/>
+            <Outlet />
           </div>
         </div>
       </div>

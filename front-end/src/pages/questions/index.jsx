@@ -1,20 +1,17 @@
 import React from "react";
-import { Link, useOutletContext } from "react-router-dom";
-
-import {QuestionCard} from "../../components"
+import { useSelector } from "react-redux";
+import { QuestionCard, AskQuestionCard } from "../../components";
 
 function QuestionsPage() {
-  const { questions } = useOutletContext();
-  console.log(questions);
+  const { questions } = useSelector((state) => state.questions);
 
   return (
     <div className="Qlist-container">
       <div className="list_wrapper">
-        {questions.map((single_question) => {
-          
-          return <QuestionCard single_question ={single_question}/>
+      <AskQuestionCard pageTitle ="Questions"/>
+        {questions?.map((single_question) => {
+          return <QuestionCard single_question={single_question} />;
         })}
-        
       </div>
     </div>
   );

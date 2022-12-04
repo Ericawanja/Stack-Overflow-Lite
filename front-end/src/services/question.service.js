@@ -10,12 +10,11 @@ class QuestionService {
   async GetAllQuestions() {
     try {
       const response = await fetch(this.BASE_URL);
-      const data = await response.json();
-
-      
-
+      const data = await response.json();    
+      // console.log({data});
       return { data, error: null };
     } catch (error) {
+      // console.log({error});
       return { data: null, error: error.message };
     }
   }

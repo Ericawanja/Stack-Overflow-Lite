@@ -19,11 +19,12 @@ export const fetchOneQuestions = createAsyncThunk(
   "questions/fetch-all-questions",
   async (questionId, thunkAPI) => {
     const response = await QuestionService.GetOneQuestion(questionId);
+    console.log(response.data, "fetching data");
 
     if (response.error) {
       thunkAPI.rejectWithValue({ error: response.error });
     }
 
-    return { question: response.data };
+    //return { question: response.data };
   }
 );

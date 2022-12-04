@@ -1,15 +1,15 @@
 import React from "react";
 
-import {Question, Answers, AddAnswer } from "../../components";
+import { Question, Answers, AddAnswer } from "../../components";
 
 function QuestionPage() {
   return (
     <div className="question-container">
       <div className="question_wrapper">
-      
-         <Question />         
+        
+        <Question />
         <Answers />
-        <AddAnswer/>
+        <AddAnswer />
       </div>
     </div>
   );
