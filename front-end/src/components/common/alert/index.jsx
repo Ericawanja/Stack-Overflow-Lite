@@ -15,7 +15,7 @@ function Alert({message}) {
         </span>
         <span>
           <h3 style={{ color: "red", textTransform: "uppercase" }}>
-            {message.message}
+            {message}
           </h3>
         </span>
       </div>

@@ -15,12 +15,12 @@ const questionSlice = createSlice({
   extraReducers: (builder) => {
     // FETCH QUESTIONS CASES
     builder.addCase(fetchAllQuestions.pending, (state, action) => {
-      console.log(action.payload, 'loading');
+      
       state.loading = true;
       state.error = ""
     });
     builder.addCase(fetchAllQuestions.fulfilled, (state, action) => {
-      console.log(action.payload, 'dgthj');
+     
       state.questions = action.payload.questions;
       state.loading = false;
     });

@@ -2,9 +2,12 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { validate } from "../../utils/validateLogin";
 
-import Alert from "../../components/common/alert";
+import {Alert} from "../../components";
+import { useDispatch } from "react-redux";
+import { LogInUser } from "../../redux/thunks/user.thunks";
 
 function Login() {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [login_details, setLogin_details] = useState({
     email: "",
@@ -25,9 +28,10 @@ function Login() {
 
   const handle_login = (event) => {
     let { message } = validate(login_details);
-    console.log(message);
+   
     if (message === "valid") {
       //dispatch the authetication api
+      dispatch(LogInUser(login_details))
       navigate("/questions");
     } else {
       setAlert(true);
