@@ -20,11 +20,12 @@ class QuestionService {
   }
 
   async GetOneQuestion(questionId){
+   
     try {
         const response = await fetch(this.BASE_URL+"/"+questionId);
         const data = await response.json();
 
-        // 
+        
   
         return { data, error: null };
       } catch (error) {

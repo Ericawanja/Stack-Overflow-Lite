@@ -503,7 +503,12 @@ textarea {
 .profile_container {
   padding: 20px;
 }
-.profile_greetings h2 {
+.myquestions_header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.myquestions_header h2 {
   line-height: 2;
   font-size: 1.2rem;
 }
@@ -526,5 +531,10 @@ textarea {
   font-weight: 700;
   font-size: 1.5rem;
   text-align: center;
-  
+}
+.order_questions select{
+  padding: 8px;
+}
+select option{
+  padding: 8px;
 }

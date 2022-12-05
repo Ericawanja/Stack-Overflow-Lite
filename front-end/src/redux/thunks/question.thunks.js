@@ -16,10 +16,11 @@ export const fetchAllQuestions = createAsyncThunk(
 
 // FETCH ONE QUESTION
 export const fetchOneQuestions = createAsyncThunk(
-  "questions/fetch-all-questions",
+  "question/fetch-one-questions",
   async (questionId, thunkAPI) => {
-    const response = await QuestionService.GetOneQuestion(questionId);
     
+    const response = await QuestionService.GetOneQuestion(questionId);
+    //console.log(response);
 
     if (response.error) {
       thunkAPI.rejectWithValue({ error: response.error });

@@ -3,7 +3,7 @@ import { IconContext } from "react-icons";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 
 function QuestionCard({ single_question }) {
-  let { question_id, username, title, question, tags, created_on, votes } =
+  let { id, username, title, question, tags, created_on, votes } =
     single_question;
   let sub_string = question.slice(0, 130);
 
@@ -17,7 +17,7 @@ function QuestionCard({ single_question }) {
       </div>
       <div className="list_middle">
         <div className="quiz_title">
-          <Link to="/questions/1">{title}</Link>
+          <Link to={`/questions/${id}`}>{title}</Link>
         </div>
         <div className="quiz_description">{sub_string}...</div>
         <div className="quiz_list_details">

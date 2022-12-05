@@ -4,7 +4,7 @@
       "user_id": "dsd23t263vsda",
       "username": "User One",
       "email": "user1@gmail.com",
-     
+
       "password": "76764576576"
     },
     {
@@ -16,55 +16,109 @@
   ],
   "questions": [
     {
-      "question_id": "one",
+      "id": "one",
       "user_id": "dsd23t263vsda",
       "username": "User Two",
       "title": "Is ReactJs a framework",
       "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit, ipsa placeat facilis?",
-      "tags":["javascript", "web", "reactJs"],
-      "created_on":"20 Nov 2022",
-      "votes":"6"
-      
+      "tags": ["javascript", "web", "reactJs"],
+      "created_on": "20 Nov 2022",
+      "votes": "6",
+      "answers": [
+        {
+          "answer_id": "534563256233gf",
+          "user_id": "dsd23t263vsda",
+          "question_id": "five",
+          "answer": "dipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit",
+          "votes": "2",
+          "comments": [
+            {
+              "comment": "psam modi culpa nulla tenetur provident consectetur fugiat perspiciatis"
+            }
+          ]
+        }
+      ]
     },
     {
-      "question_id": "two",
+      
+      "id": "two",
       "user_id": "dsd23t263vsda",
       "username": "User Two",
       "title": "What is javascript",
       "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit, ipsa placeat facilis?",
-      "tags":["javascript", "web", "reactJs"],
-      "created_on":"28 Aug 2022",
-      "votes":"2"
+      "tags": ["javascript", "web", "reactJs"],
+      "created_on": "28 Aug 2022",
+      "votes": "2",
+      "answers": []
     },
     {
-      "question_id": "three",
+      "id": "three",
       "user_id": "dsd23t263vsda",
       "username": "User Two",
       "title": "My Server Has Error 404",
       "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit, ipsa placeat facilis?",
-      "tags":["python", "web", "reactJs"],
-      "created_on":"20 Aug 2022",
-      "votes":"2"
+      "tags": ["python", "web", "reactJs"],
+      "created_on": "20 Aug 2022",
+      "votes": "2",
+      "answers": [
+        {
+          "answer_id": "534563256233gf",
+          "user_id": "dsd23t263vsda",
+          "question_id": "five",
+          "answer": "dipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit",
+          "votes": "2",
+          "comments": []
+        },
+        {
+          "answer_id": "534563256233gf",
+          "user_id": "dsd23t263vsda",
+          "question_id": "five",
+          "answer": "Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit",
+          "votes": "2",
+          "comments": [
+            {
+              "comment": "psam modi culpa nulla tenetur provident consectetur fugiat perspiciatis"
+            }
+          ]
+        }
+      ]
     },
     {
-      "question_id": "four",
+      "id": "four",
       "user_id": "dsd23t2",
       "username": "User One",
       "title": "My Server Has Error 404",
       "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit, ipsa placeat facilis?",
-      "tags":["server", "web", "reactJs"],
-      "created_on":"01 Dec 2022",
-      "votes":"6"
+      "tags": ["server", "web", "reactJs"],
+      "created_on": "01 Dec 2022",
+      "votes": "6",
+      "answers": [
+        {
+          "answer_id": "534563256233gf",
+          "user_id": "dsd23t263vsda",
+          "question_id": "five",
+          "answer": "psam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit",
+          "votes": "2",
+          "comments": [
+            {
+              "comment": "psam modi culpa nulla tenetur provident consectetur fugiat perspiciatis"
+            },
+            {
+              "comment": "psam modi culpa nulla tenetur provident consectetur fugiat perspiciatis"
+            }
+          ]
+        }
+      ]
     },
     {
-      "question_id": "five",
+      "id": "five",
       "user_id": "dsd23t2",
       "username": "User One",
       "title": "My Server Has Error 404",
       "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit, ipsa placeat facilis?",
-      "tags":["ruby", "web", "reactJs"],
-      "created_on":"18 Nov 2022",
-      "votes":"1"
+      "tags": ["ruby", "web", "reactJs"],
+      "created_on": "18 Nov 2022",
+      "votes": "1"
     }
   ],
   "answers": [
@@ -73,14 +127,14 @@
       "user_id": "dsd23t263vsda",
       "question_id": "five",
       "answers": "dipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit",
-      "votes":"2"
+      "votes": "2"
     },
     {
       "answer_id": "5345",
       "user_id": "dsd23t263vsda",
       "question_id": "five",
       "answers": "dipisicing elit. Natus ipsam modi culpa nulla tenetur provident consectetur fugiat perspiciatis. Quaerat, beatae. Praesentium quam vitae at perspiciatis eius suscipit",
-      "votes":"1"
+      "votes": "1"
     }
   ],
   "comments": [

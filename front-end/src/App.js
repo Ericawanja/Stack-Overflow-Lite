@@ -22,7 +22,7 @@ function App() {
         <Route path="/questions" element={<QuestionsLayoutPage />}>
           <Route index element={<QuestionsPage />} />
           <Route path="/questions/profile" element={<ProfilePage/>}/>
-          <Route path=":question_id" element={<QuestionPage />} />
+          <Route path=":id" element={<QuestionPage />} />
         </Route>
       </Routes>
     </>

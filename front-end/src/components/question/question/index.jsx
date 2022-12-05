@@ -5,14 +5,16 @@ import { IconContext } from "react-icons/lib";
 
 import {AskQuestionCard} from "../../../components";
 
-function Question() {
+function Question({single_question}) {
+  let {username, answers, created_on, title, question, votes} = single_question
+  console.log(question);
   return (
     <>
       <div className="question_header">
-      <AskQuestionCard pageTitle ={`question`}/>
+      <AskQuestionCard pageTitle ={title}/>
         <div className="question_creation_details">
-          <span>Asked: Today</span>
-          <span>Modified: Not Modified yet</span>
+          <span>Asked: {created_on}</span>
+         
         </div>
       </div>
       <div className="question_description">
@@ -22,7 +24,7 @@ function Question() {
               <AiOutlineCaretUp />
             </IconContext.Provider>
           </div>
-          <div className="votes">0</div>
+          <div className="votes">{votes}</div>
           <div className="downvote">
             <IconContext.Provider value={{ color: "#100720", size: "42px" }}>
               <AiFillCaretDown />
@@ -30,13 +32,7 @@ function Question() {
           </div>
         </div>
         <div className="question_text">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt
-          adipisci iusto magnam fugiat voluptas! Id pariatur optio tempora earum
-          assumenda nam velit, aspernatur, est eum quibusdam, laudantium
-          adipisci vel fuga. Lorem ipsum, dolor sit amet consectetur adipisicing
-          elit. Aperiam nisi delectus quam dolor, id pariatur repellat magnam
-          incidunt sed animi illum! Voluptatem molestiae quam consequatur minima
-          delectus quisquam? Harum, dolorum?
+          {question}
         </div>
       </div>
     </>

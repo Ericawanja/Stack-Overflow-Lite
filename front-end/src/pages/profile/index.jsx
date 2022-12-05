@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { QuestionCard } from "../../components";
 export default function Profile() {
   const { questions } = useSelector((state) => state.questions);
-  console.log(questions);
+ 
   return (
     <div className="profile_container">
       <div className="profile_header">
@@ -23,7 +23,16 @@ export default function Profile() {
         </div>
       </div>
       <div className="my_questions">
-        <h2>Your Questions</h2>
+        <div className="myquestions_header">
+          <span><h2>Your Questions</h2></span>
+          <span className="order_questions">
+            <select>
+              <option value="" selected disabled>Order by</option>
+              <option value="answer">Answers</option>
+              <option value="recent">Recent</option>
+            </select>
+          </span>
+        </div>
         {questions.map((question) => {
           return <QuestionCard single_question={question} />;
         })}
