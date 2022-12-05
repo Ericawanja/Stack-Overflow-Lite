@@ -40,10 +40,10 @@ function QuestionLayout() {
              <div><NavLink to="/questions">Home</NavLink></div> 
               <div className="quiz_links">
                 <span>Questions</span>
-                <div><NavLink>All</NavLink></div>
+                <div><NavLink to='/questions'>All</NavLink></div>
                 
             
-                <div><NavLink>My questions</NavLink></div>
+                <div><NavLink to="users-questions">My questions</NavLink></div>
               </div>
               
               <div><NavLink to="/questions/profile">Profile</NavLink></div> 

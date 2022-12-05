@@ -384,14 +384,16 @@ a {
 }
 
 /******Answer comment*******/
+.answers_list{
+  border-bottom: 1px solid rgba(41, 41, 41, .3);
+}
 .answer_comment_header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
   align-items: center;
 }
-.comment_header {
-}
+
 .add_comment input {
   padding: 10px;
   width: 350px;

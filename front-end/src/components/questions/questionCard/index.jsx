@@ -8,7 +8,7 @@ function QuestionCard({ single_question }) {
   let sub_string = question.slice(0, 130);
 
   //dummy user
-  let user_name = "User One";
+  let user_name = "User Two";
   return (
     <div className="quiz_list">
       <div className="quiz_list_left">
@@ -52,7 +52,7 @@ function QuestionCard({ single_question }) {
                     </IconContext.Provider>
                   </span>
                 </span>
-                <span className="date_created">Created on: {created_on}</span>
+                <span className="date_created">{created_on}</span>
               </div>
             </div>
           )}
