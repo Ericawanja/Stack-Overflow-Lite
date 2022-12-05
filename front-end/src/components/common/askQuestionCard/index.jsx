@@ -17,6 +17,7 @@ export default function AskQuestionCard({ pageTitle }) {
   const handle_input = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+  
 
     setQuestion({ ...question_data, [name]: value });
   };
@@ -40,11 +41,11 @@ export default function AskQuestionCard({ pageTitle }) {
             <h3>Ask Question</h3>
             <div className="form_wrapper">
               <label htmlFor="title">Enter the question title</label>
-              <input type="text" id="title" value={question} onChange = {(event)=>handle_input(event)} />
+              <input type="text" id="title" name= 'title'value={title} onChange = {(event)=>handle_input(event)} />
               <label htmlFor="description">
                 Enter details about the question
               </label>
-              <textarea name="description" id="" cols="10" rows="5" value= {question} onChange = {(event)=>handle_input(event)}></textarea>
+              <textarea name="question" id="" cols="10" rows="5" value= {question} onChange = {(event)=>handle_input(event)}></textarea>
               {tags.map((tag) => {
                 return (
                   <div className="checkboxes">

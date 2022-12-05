@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { validate } from "../../utils/validateLogin";
 
 import {Alert} from "../../components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LogInUser } from "../../redux/thunks/user.thunks";
 
 function Login() {
+  
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  const user = useSelector(state=>state.user)
   const [login_details, setLogin_details] = useState({
     email: "",
     password: "",
@@ -26,20 +28,33 @@ function Login() {
     setLogin_details({ ...login_details, [name]: value });
   };
 
-  const handle_login = (event) => {
+  const handle_login = async (event) => {
     let { message } = validate(login_details);
+  
    
     if (message === "valid") {
       // dispatch the authetication api
-        dispatch(LogInUser(login_details))
-      // navigate("/questions");
+       await  dispatch(LogInUser(login_details)) 
+       navigate("/questions");
+      // return handleNavigation()      
+      
+      // 
     } else {
       setAlert(true);
       setAlertMsg(message);
       return;
     }
   };
+  const handleNavigation =()=>{
+    console.log(user);
+    if(user && user.data){
+      //navigate("/questions");
+    }
 
+  }
+  console.log(user);
+
+  
   return (
     <div className="login-container">
       <div className="login-wrapper">
@@ -72,7 +87,7 @@ function Login() {
             onFocus={() => setAlert(false)}
           />
 
-          {alert && <Alert message={alertMsg} />}
+          {alert && <Alert message={alertMsg} user={user}/>}
 
           <div className="login_btn">
             <button onClick={(e) => handle_login(e)}>Log in</button>

@@ -2,7 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { LogInUser } from "../thunks/user.thunks";
 
 const initialState = {
-  user: {},
+  user: {
+    data:[],
+    error:false
+  },
 };
 
 const userSlice = createSlice({
@@ -16,9 +19,18 @@ const userSlice = createSlice({
       state.error = "";
     });
     builder.addCase(LogInUser.fulfilled, (state, action) => {
-      console.log(action.payload);
+      
+      if(action.payload.data){
+       // console.log(action.payload);
       state.user = action.payload.data;
-      state.loadig = false;
+      state.error = false
+      
+      }else{
+        console.log('no user');
+        state.error = true 
+      }
+      state.loading = false;
+      
     });
   },
 });
