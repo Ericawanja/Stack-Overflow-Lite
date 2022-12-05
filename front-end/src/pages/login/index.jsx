@@ -4,7 +4,7 @@ import { validate } from "../../utils/validateLogin";
 
 import {Alert} from "../../components";
 import { useDispatch } from "react-redux";
-import { LogInUser } from "../../redux/thunks/user.thunks";
+import { LoginUser } from "../../redux/thunks/user.thunks";
 
 function Login() {
   const dispatch = useDispatch()
@@ -30,9 +30,9 @@ function Login() {
     let { message } = validate(login_details);
    
     if (message === "valid") {
-      //dispatch the authetication api
-      dispatch(LogInUser(login_details))
-      navigate("/questions");
+      // dispatch the authetication api
+        dispatch(LoginUser(login_details))
+      // navigate("/questions");
     } else {
       setAlert(true);
       setAlertMsg(message);

@@ -70,7 +70,7 @@ function LandingPage() {
         </div>
         </div>
         <div className="L-register">
-            <span className="L-register_btn"> Dont have an account? <Link to='/login'>Sign up</Link></span>
+            <span className="L-register_btn"> Dont have an account? <Link to='/signup'>Sign up</Link></span>
         </div>
       </div>
     </div>
