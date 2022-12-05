@@ -449,7 +449,6 @@ textarea {
   background-color: rgba(10, 10, 10, 0.3);
   top: 0;
   left: 0;
-
 }
 .Q-form {
   width: 50%;
@@ -458,41 +457,39 @@ textarea {
   background-color: azure;
   padding: 30px;
   border-radius: 10px;
-
 }
-.Q-form h3{
+.Q-form h3 {
   line-height: 3;
 }
-.form_wrapper{
+.form_wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
-
-
 }
-#title, textarea{
+#title,
+textarea {
   width: 90%;
 }
-.form_wrapper input{
+.form_wrapper input {
   padding: 10px;
 }
-.Q-form_btns{
+.Q-form_btns {
   display: flex;
   justify-content: end;
   gap: 20px;
-
 }
-.checkboxes{
+.checkboxes {
   display: flex;
   gap: 8px;
 }
-.checkboxes input{
+.checkboxes input {
   height: 30px;
   width: 30px;
   accent-color: #100720;
 }
 
-.cancel button, .save button{
+.cancel button,
+.save button {
   outline: none;
   border: none;
   padding: 10px;
@@ -501,4 +498,33 @@ textarea {
   color: azure;
   font-size: 1.2rem;
   cursor: pointer;
+}
+/*************USERS PROFILE***************/
+.profile_container {
+  padding: 20px;
+}
+.profile_greetings h2 {
+  line-height: 2;
+  font-size: 1.2rem;
+}
+.user_data {
+  display: flex;
+  gap: 10px;
+  justify-content: space-evenly;
+}
+.user_data div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #100720;
+  color: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+}
+.stat {
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-align: center;
+  
 }

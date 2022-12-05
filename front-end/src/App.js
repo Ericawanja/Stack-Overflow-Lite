@@ -8,7 +8,9 @@ import {
   QuestionsLayoutPage,
   QuestionsPage,
   QuestionPage,
+  ProfilePage,
 } from "./pages";
+import Profile from "./pages/profile";
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/questions" element={<QuestionsLayoutPage />}>
           <Route index element={<QuestionsPage />} />
+          <Route path="/questions/profile" element={<ProfilePage/>}/>
           <Route path=":question_id" element={<QuestionPage />} />
         </Route>
       </Routes>

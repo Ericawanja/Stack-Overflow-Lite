@@ -30,7 +30,7 @@ function QuestionLayout() {
             </span>
             </div>
             <div className="layout_logout">
-                Log Out
+               <NavLink to='/'>Log Out</NavLink> 
             </div>
           
         </div>
@@ -45,8 +45,8 @@ function QuestionLayout() {
             
                 <div><NavLink>My questions</NavLink></div>
               </div>
-              <div><NavLink>Tags</NavLink></div>
-              <div><NavLink>Profile</NavLink></div>
+              
+              <div><NavLink to="/questions/profile">Profile</NavLink></div> 
             </div>
           </div>
           <div className="layout_main">

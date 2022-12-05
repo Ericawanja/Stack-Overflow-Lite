@@ -29,21 +29,22 @@ function Login() {
   };
 
   const handle_login = async (event) => {
-    let { message } = validate(login_details);
+    return  navigate("/questions");
+    //let { message } = validate(login_details);
   
    
-    if (message === "valid") {
-      // dispatch the authetication api
-       await  dispatch(LogInUser(login_details)) 
-       navigate("/questions");
-      // return handleNavigation()      
+    // if (message === "valid") {
+    //   // dispatch the authetication api
+    //    await  dispatch(LogInUser(login_details)) 
+    //    navigate("/questions");
+    //   // return handleNavigation()      
       
-      // 
-    } else {
-      setAlert(true);
-      setAlertMsg(message);
-      return;
-    }
+    //   // 
+    // } else {
+    //   setAlert(true);
+    //   setAlertMsg(message);
+    //   return;
+    // }
   };
   const handleNavigation =()=>{
     console.log(user);

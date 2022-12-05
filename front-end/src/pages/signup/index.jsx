@@ -29,10 +29,11 @@ function Signup() {
     //validation
     let {message} = validateRegister(signup_details);
 
-    //navigate
+    //
+    return navigate("/login");
     console.log(message);
     if (message === "valid") {
-      navigate("/questions");
+      navigate("/login");
     } else {
       setAlert(true);
       setAlertMsg(message);
