@@ -19,7 +19,7 @@ function QuestionLayout() {
     <div className="layout-container">
       <div className="layout_wrapper">
         <div className="layout_header">
-          <div className="logo">Stack Overflow-Lite</div>
+          <div className="logo">Q-Lite</div>
           <div className="search">
             <span className="search_input"><input type="text" /></span>
             <span className="search_btn">

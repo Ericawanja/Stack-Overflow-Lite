@@ -60,7 +60,7 @@ function Login() {
     <div className="login-container">
       <div className="login-wrapper">
         <div className="login_header">
-          <span className="logo">Stack Overflow-Lite</span>
+          <span className="logo">Q-Lite</span>
           <span className="login_login">Log in</span>
         </div>
         <div className="login_welcome">

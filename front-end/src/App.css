@@ -312,12 +312,16 @@ a {
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
+.quiz_list:hover{
+  background-color: rgba(242, 242, 242, .6);
+  cursor: pointer;
+}
 .quiz_list_left {
   display: flex;
   flex-direction: column;
   gap: 10px;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .quiz_list_details {
   display: flex;
@@ -326,7 +330,7 @@ a {
   padding: 10px 0;
 }
 .quiz_title {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.8;
 }
@@ -335,14 +339,29 @@ a {
   gap: 10px;
 }
 .tags span {
-  background-color: rgba(240, 248, 255, 0.6);
-  padding: 2px;
+  background-color: #f2f2f2;
+  padding: 0 5px;
+  height: 20px;
+  text-transform: uppercase;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.quiz_description{
+  font-size: 14px;
 }
 .quiz_creation_details {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 10px;
   font-size: 0.8rem;
+}
+.author_btns, .author{
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
 /******************QUESTION******************************/
@@ -393,7 +412,10 @@ a {
   padding: 20px;
   align-items: center;
 }
-
+.comment_header:hover{
+  border-bottom:  1px solid #100720;
+  cursor: pointer;
+}
 .add_comment input {
   padding: 10px;
   width: 350px;
@@ -408,10 +430,17 @@ a {
   color: white;
   background-color: #100720;
   padding: 10px;
+  cursor: pointer;
 }
+.answer_comment{
+  padding: 20px 100px;
+  font-size: .9rem;
+  border-top: 1px solid rgba(128, 128, 128, .1);
 
+}
 .commentsList ol {
-  padding: 30px 60px;
+
+
 }
 /**********ADD COMMENT*********/
 .form_answer_container {

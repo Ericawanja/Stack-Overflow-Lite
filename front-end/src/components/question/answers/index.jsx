@@ -1,11 +1,13 @@
 import React from "react";
+import { useState } from "react";
 
 import { AiFillCaretDown, AiOutlineCaretUp } from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
 import Comment from "../comment";
 
 function Answers({ single_answer }) {
-  let { answer, comments } = single_answer;
+  let { answer, comments, votes } = single_answer;
+  let [commentForm, setCommentForm] = useState(false)
 
   return (
     <div className="answers_list">
@@ -17,7 +19,7 @@ function Answers({ single_answer }) {
                 <AiOutlineCaretUp />
               </IconContext.Provider>
             </div>
-            <div className="votes">0</div>
+            <div className="votes">{votes}</div>
             <div className="downvote">
               <IconContext.Provider value={{ color: "#100720", size: "42px" }}>
                 <AiFillCaretDown />
@@ -26,16 +28,9 @@ function Answers({ single_answer }) {
           </div>
           <div className="answer_text">{answer}</div>
         </div>
+       
         <div className="answer_comment">
-          <div className="answer_comment_header">
-            <div className="comment_header">Comments</div>
-            <div className="add_comment">
-              <span className="comment_input">
-                <input type="text" />
-              </span>
-              <span className="comment_btn">Add</span>
-            </div>
-          </div>
+          
           {comments.length > 0 ? (
             comments.map((comment ,index) => {
               return <Comment single_comment={comment} key={index}/>;
@@ -43,6 +38,15 @@ function Answers({ single_answer }) {
           ) : (
             <h5>No comments found</h5>
           )}
+          <div className="answer_comment_header">
+            <div className="comment_header" onClick={()=>setCommentForm(!commentForm)}>Add Comment</div>
+            {commentForm && <div className="add_comment">
+              <span className="comment_input">
+                <input type="text" />
+              </span>
+              <span className="comment_btn" onClick={()=>setCommentForm(false)}>Save</span>
+            </div>}
+          </div>
         </div>
       </div>
     </div>

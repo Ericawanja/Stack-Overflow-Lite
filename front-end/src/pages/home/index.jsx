@@ -11,7 +11,7 @@ function LandingPage() {
     <div className="landing_container">
       <div className="landing_wrapper">
         <div className="L-header">
-          <div className="logo">Stack Overflow_Lite</div>
+          <div className="logo">Q_Lite</div>
           <div className="L-header_left">
             <Link to="/login" className="login">Log in</Link>
             <Link to="/signup" className="signup">Sign up</Link>

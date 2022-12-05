@@ -25,7 +25,7 @@ function QuestionPage() {
               return <Answers single_answer={answer} />;
             })
           ) : (
-            <h2>No answers yet</h2>
+            <h6>No answers yet</h6>
           )}
         </div>
         <AddAnswer />
