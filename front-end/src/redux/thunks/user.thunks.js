@@ -1,14 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import userService from "../../services/user.service";
+import UserService from "../../services/user.service";
 
 export const LogInUser = createAsyncThunk(
   "users/getUser",
   async (payload, thunkAPI) => {
-    const response = await userService.LogInUser();
-
+    console.log("user");
+    const response = await UserService.LogInUser(payload);
+    console.log(response);
+    
     if (response.error) {
       thunkAPI.rejectWithValue({ error: response.error });
     }
-    return { question: response.data };
+    return {user:null, message:'getting user' };
   }
 );

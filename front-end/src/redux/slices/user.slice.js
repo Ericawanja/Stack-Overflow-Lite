@@ -16,7 +16,8 @@ const userSlice = createSlice({
       state.error = "";
     });
     builder.addCase(LogInUser.fulfilled, (state, action) => {
-      state.user = action.payload.user;
+      console.log(action.payload);
+      state.user = action.payload.data;
       state.loadig = false;
     });
   },

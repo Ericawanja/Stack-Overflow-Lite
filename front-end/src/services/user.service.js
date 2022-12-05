@@ -6,9 +6,9 @@ class UserService {
     try {
       const response = await fetch(this.BASE_URL);
       const data = await response.json();
-      console.log({ data });
+
       const user = data.filter((user) => user.email === email);
-      console.log("ser");
+      // console.log(user);
       if (user.length > 0) return { message: null, data: { ...user[0] } };
       return { message: "User does not exist", data: null };
     } catch (error) {
