@@ -13,15 +13,15 @@ export default function Profile() {
       <div className="user_data">
         <div className="questions_no">
           <span className="stat">3456</span>
-          <span className="stat_title">Questions asked</span>
+          <span className="stat_title">Questions</span>
         </div>
         <div className="user_answers">
           <span className="stat">3456</span>
-          <span className="stat_title">Answers given</span>
+          <span className="stat_title">Answers </span>
         </div>
         <div className="user_comments">
           <span className="stat">34</span>
-          <span className="stat_title">Your comments</span>
+          <span className="stat_title">comments</span>
         </div>
       </div>
       <div className="my_questions">

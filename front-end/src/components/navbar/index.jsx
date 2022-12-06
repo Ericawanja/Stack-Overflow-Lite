@@ -10,23 +10,42 @@ export default function Navbar({ close_icon, close_menu }) {
           {" "}
           <NavLink to="/questions">Questions</NavLink>
         </span>
-       
       </div>
-      <div className="quiz_links" >
+      <div className="quiz_links">
         <div>
-          <NavLink to="/questions">All</NavLink>
+          <NavLink
+            to="/questions"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            All
+          </NavLink>
         </div>
 
         <div>
-          <NavLink to="users-questions">My questions</NavLink>
+          <NavLink
+            to="users-questions"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            My questions
+          </NavLink>
         </div>
       </div>
 
       <div>
-        <NavLink to="/questions/profile">Profile</NavLink>
+        <NavLink
+          to="/questions/profile"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Profile
+        </NavLink>
       </div>
       <div className="layout_logout_side">
-        <NavLink to="/">Log Out</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Log Out
+        </NavLink>
       </div>
     </div>
   );

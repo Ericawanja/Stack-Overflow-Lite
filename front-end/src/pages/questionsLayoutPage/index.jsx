@@ -10,8 +10,7 @@ import { Navbar } from "../../components";
 function QuestionLayout() {
   const dispatch = useDispatch();
   const [openMenu, setOpenMenu] = useState(true);
-  const [desktopMenu, setDesktopMenu] = useState(true)
-  const [mobileMenu, setMobileMenu] = useState(false)
+
 
   let open_icon = useRef();
   let close_icon = useRef();
@@ -33,16 +32,11 @@ function QuestionLayout() {
     }
   };
 
-  const handle_resize = ()=>{
-   
-   
-     setOpenMenu(false)
-   }
-
+ 
 
   useEffect(() => {
     dispatch(fetchAllQuestions());
-    window.addEventListener('resize', handle_resize);
+ 
   }, []);
 
   return (
