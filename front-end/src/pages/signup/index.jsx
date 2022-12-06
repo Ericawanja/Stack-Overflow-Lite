@@ -46,7 +46,7 @@ function Signup() {
     <div className="signup_container">
       <div className="signup_wrapper">
         <div className="signup_header">
-          <div className="logo">Q_Lite</div>
+          <div className="logo">Q Lite</div>
           <div className="signup_header_right">
             <Link to="/" className="signup">
               Back

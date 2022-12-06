@@ -12,16 +12,47 @@
     .hero_image img{
         height: 250px;
     }
-    .hero_text h3{
+    .hero_text h3, .why-us_container h3{
         text-align: center;
+        font-weight: 500;
     }
     .hero_text p{
         text-align: center;
+       
     }
 }
 @media only screen and (max-width:650px) {
     .why-us div{
         width: 90%;
     }
+    /**********Sign up******************/
+    .signup_wrapper{
+        width: 90%;
+        padding: 10px;
+    }
+    .signup_form{
+        width: 90%;
+    }
     
 }
+@media only screen and (max-width:425px){
+    .logo{
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+    .L-header_left{
+        font-size: 0.9rem;
+        gap: 7px;
+    }
+    .L-register_btn{
+        font-size: 1rem;
+    }
+    /**********Sign up******************/
+    .signup_form{
+        width: 95%;
+    }
+}
+
+
+
+/**********Question list page***************/
