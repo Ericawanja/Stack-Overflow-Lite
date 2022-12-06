@@ -5,7 +5,8 @@
 // import { awaitPromise } from ".";
 
 class QuestionService {
-  BASE_URL = "http://localhost:9090/questions";
+  BASE_URL = process.env.NODE_ENV === "production" ?"https://my-json-server.typicode.com/Ericawanja/jsonserver/questions":"http://localhost:9090/questions"; 
+
 
   async GetAllQuestions() {
     try {

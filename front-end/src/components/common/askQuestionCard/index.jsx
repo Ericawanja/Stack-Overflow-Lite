@@ -9,7 +9,7 @@ export default function AskQuestionCard({ pageTitle }) {
     tags: [],
   });
   let {title, question} = question_data
-  let tags = [1, 2, 3, 4];
+  
   const handle_close = () => {
     setQuestion({ title: "", question: "", tags: [] });
     setOpenQForm(false);

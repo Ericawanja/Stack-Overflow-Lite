@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { AiOutlineClose } from "react-icons/ai";
-import { IconContext } from "react-icons";
+
 
 export default function Navbar({ close_icon, close_menu }) {
   return (

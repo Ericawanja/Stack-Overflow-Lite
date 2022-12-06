@@ -1,5 +1,5 @@
 class UserService {
-  BASE_URL = "http://localhost:9090/users";
+  BASE_URL =  process.env.NODE_ENV === "production" ?"https://my-json-server.typicode.com/Ericawanja/jsonserver/users":"http://localhost:9090/users";
   async LogInUser({ email, password }) {
     // Make API Call
     //Return logged in user or error

@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaSearch } from "react-icons/fa";
 import { AiOutlineMenuUnfold, AiOutlineClose } from "react-icons/ai";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { fetchAllQuestions } from "../../redux/thunks/question.thunks";
 import { Navbar } from "../../components";
 
 function QuestionLayout() {
   const dispatch = useDispatch();
   const [openMenu, setOpenMenu] = useState(true);
-
+  console.log(openMenu);
 
   let open_icon = useRef();
   let close_icon = useRef();
@@ -24,7 +24,7 @@ function QuestionLayout() {
   };
   const close_menu = () => {
     setOpenMenu(false);
-    const {innerWidth, innerHeight} = window;
+    const {innerWidth} = window;
     if(innerWidth <= 850){
     open_icon.current.style.display = "block";
     close_icon.current.style.display = "none";
@@ -37,7 +37,7 @@ function QuestionLayout() {
   useEffect(() => {
     dispatch(fetchAllQuestions());
  
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="layout-container" >

@@ -91,6 +91,9 @@
     color: black;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   }
+  .Q-form {
+    width: 80%;
+  }
 }
 @media only screen and (max-width: 425px) {
   .logo {
@@ -129,6 +132,9 @@
   }
   .ask_btn span {
     display: none;
+  }
+  .Q-form {
+    width: 95%;
   }
 }
 
