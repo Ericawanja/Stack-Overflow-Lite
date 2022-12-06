@@ -18,23 +18,24 @@ function QuestionLayout() {
       <div className="layout_wrapper">
         <div className="layout_header">
           <div className="menu">
-            <AiOutlineMenuUnfold style={{ color: "black", size: "32px" }} />
+          <IconContext.Provider value={{ color: "black", size: "32px" }}>
+                <AiOutlineMenuUnfold/>
+              </IconContext.Provider>
+            
           </div>
 
-          <div className="logo">Q-Lite</div>
+          <div className="logo">Q Lite</div>
           <div className="search">
             <span className="search_input">
               <input type="text" />
             </span>
             <span className="search_btn">
-              <IconContext.Provider value={{ color: "white", size: "20px" }}>
+              <IconContext.Provider value={{ color: "white", size: "16px" }}>
                 <FaSearch />
               </IconContext.Provider>
             </span>
           </div>
-          <div className="layout_logout">
-            <NavLink to="/">Log Out</NavLink>
-          </div>
+          
         </div>
         <div className="layout_body">
           <div className="layout_aside">
@@ -55,6 +56,9 @@ function QuestionLayout() {
               <div>
                 <NavLink to="/questions/profile">Profile</NavLink>
               </div>
+              <div className="layout_logout_side">
+            <NavLink to="/">Log Out</NavLink>
+          </div>
             </div>
           </div>
           <div className="layout_main">

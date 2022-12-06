@@ -232,27 +232,32 @@ a {
 }
 .layout_header {
   display: grid;
-  grid-template-columns: 40% 50% 10%;
+  grid-template-columns: 40% 50% ;
   align-items: center;
-
+  justify-content: space-between;
   height: 90px;
   background-color: rgba(245, 245, 245, 0.2);
   padding: 0 30px;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
+.menu, .layout_logout_side{
+  display: none;
+}
 .search {
   display: flex;
   align-items: baseline;
+  justify-content: flex-end;
 }
 
 .search {
-  border: 1px solid black;
+  border: 1px solid rgb(180, 177, 177);
+  border-radius: 5px;
 }
 .search_input {
   width: 100%;
 }
 .search_input input {
-  padding: 10px;
+  padding: 5px;
   width: 100%;
   outline: none;
   border: none;
@@ -280,7 +285,7 @@ a {
 .layout_aside_inner {
   position: sticky;
   top: 0;
-  padding: 10px 0;
+  padding: 10px 5px;
   display: flex;
   gap: 18px;
   flex-direction: column;
@@ -298,8 +303,7 @@ a {
 
 /************************Question list design***************************/
 
-.list_wrapper {
-}
+
 .page_title {
   display: flex;
   justify-content: space-between;
