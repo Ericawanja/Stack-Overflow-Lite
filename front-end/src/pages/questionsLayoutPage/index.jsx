@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaSearch } from "react-icons/fa";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllQuestions } from "../../redux/thunks/question.thunks";
 
 function QuestionLayout() {
   const dispatch = useDispatch();
-
-  // console.log(questions, 'layout');
 
   useEffect(() => {
     dispatch(fetchAllQuestions());
@@ -18,6 +17,10 @@ function QuestionLayout() {
     <div className="layout-container">
       <div className="layout_wrapper">
         <div className="layout_header">
+          <div className="menu">
+            <AiOutlineMenuUnfold style={{ color: "black", size: "32px" }} />
+          </div>
+
           <div className="logo">Q-Lite</div>
           <div className="search">
             <span className="search_input">
