@@ -149,6 +149,7 @@ a {
   color: white;
   padding: 10px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 /************************login up***************************/
@@ -159,9 +160,10 @@ a {
 }
 .login-wrapper {
   width: 600px;
-  background: rgb(217, 217, 217);
+  background-color: rgb(255, 255, 255);
   padding: 20px;
   min-height: fit-content;
+  border-radius: 5px;
 }
 .login_header {
   display: flex;
@@ -192,7 +194,8 @@ a {
 .login_form input {
   padding: 10px;
   outline: none;
-  border-color: #100720;
+  border: 1px solid #100720;
+  background-color: rgb(246, 246, 246);
 }
 .login_btn button {
   outline: none;
@@ -201,6 +204,7 @@ a {
   padding: 15px;
   color: aliceblue;
   margin-top: 30px;
+  border-radius: 5px;
 }
 .login_alert {
   animation: scaleup 2s;
@@ -489,7 +493,7 @@ textarea {
   width: 50%;
   min-height: 90vh;
   margin: auto;
-  background-color: azure;
+  background-color: rgb(255, 255, 255);
   padding: 30px;
   border-radius: 10px;
 }
