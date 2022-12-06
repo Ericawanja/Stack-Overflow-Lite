@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux";
 import { QuestionCard } from "../../components";
 export default function Profile() {
-  const { questions } = useSelector((state) => state.questions);
+  let { questions } = useSelector((state) => state.questions);
+  let user_name = "User Two";
+  questions = questions.filter((question) => question.username === user_name);
  
   return (
     <div className="profile_container">

@@ -46,14 +46,8 @@ export default function AskQuestionCard({ pageTitle }) {
                 Enter details about the question
               </label>
               <textarea name="question" id="" cols="10" rows="5" value= {question} onChange = {(event)=>handle_input(event)}></textarea>
-              {tags.map((tag) => {
-                return (
-                  <div className="checkboxes">
-                    <input type="checkbox" name="tag" id="tag" />
-                    <label htmlFor="tag">Javascript</label>
-                  </div>
-                );
-              })}
+              <label htmlFor="tags">Enter the tags separated by comma</label>
+              <input type="text" id="tags" name= 'tags'value={title} onChange = {(event)=>handle_input(event)} placeholder='javascript, reactjs'/>
               <div className="Q-form_btns">
                 <div className="cancel">
                   <button onClick={() => handle_close()}>Cancel</button>

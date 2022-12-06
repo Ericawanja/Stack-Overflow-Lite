@@ -85,6 +85,9 @@
   .ask_btn{
     padding: 8px;
   }
+  .quiz_list_details{
+    flex-direction: column;
+  }
  
  
 }
