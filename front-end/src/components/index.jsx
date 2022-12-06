@@ -2,6 +2,8 @@
 export {default as QuestionLayout} from "./common/questionsLayout"
 export {default as Alert} from "./common/alert"
 
+//layout nav
+export {default as Navbar} from "./navbar"
 
 //questions components (list)
 export {default as QuestionCard} from "./questions/questionCard"

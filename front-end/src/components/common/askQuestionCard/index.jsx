@@ -32,7 +32,7 @@ export default function AskQuestionCard({ pageTitle }) {
       <div className="page_title">
         <div className="question_title">{pageTitle}</div>
         <div className="ask_btn" onClick={() => setOpenQForm(true)}>
-          Ask Question
+          Ask  <span>Question</span>
         </div>
       </div>
       {openQForm && (

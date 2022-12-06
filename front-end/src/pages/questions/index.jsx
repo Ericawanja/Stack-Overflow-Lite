@@ -18,7 +18,7 @@ function QuestionsPage({ list = "all" }) {
   return (
     <div className="Qlist-container">
       <div className="list_wrapper">
-        <AskQuestionCard pageTitle="Questions" />
+        <AskQuestionCard pageTitle="All Questions" />
         {filteredQuestions?.map((single_question) => {
           return <QuestionCard single_question={single_question} />;
         })}

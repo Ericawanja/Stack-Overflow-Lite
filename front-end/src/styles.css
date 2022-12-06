@@ -30,6 +30,34 @@
   .layout_header {
     grid-template-columns: 10% 30% 50%;
   }
+
+  .layout_aside{
+    position: absolute;
+    top:0;
+    left: 0;
+    background-color: #100720;
+    width: 200px;
+    z-index: 1;
+    display: none;
+ 
+
+  }
+  .layout_aside_inner a{
+    color: white;
+
+  }
+  .layout_body{
+    grid-template-columns: 100%;
+  }
+  .quiz_list{
+    grid-template-columns: 15% 80%;
+    
+  }
+  .quiz_list_left {
+    font-size: .8rem;
+
+  
+  }
 }
 @media only screen and (max-width: 650px) {
   .why-us div {
@@ -47,6 +75,17 @@
   .layout_header {
     padding: 0 10px;
   }
+  .quiz_list{
+    grid-template-columns: 100%;
+  }
+  .quiz_list_left {
+    flex-direction: row;
+
+  }
+  .ask_btn{
+    padding: 8px;
+  }
+ 
  
 }
 @media only screen and (max-width: 425px) {
@@ -83,6 +122,9 @@
   }
   .search_btn{
     padding: 3px;
+  }
+  .ask_btn span{
+    display: none;
   }
 }
 

@@ -240,7 +240,7 @@ a {
   padding: 0 30px;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
-.menu, .layout_logout_side{
+.menu, .close_icon, .layout_logout_side{
   display: none;
 }
 .search {
@@ -274,6 +274,7 @@ a {
 .layout_body {
   display: grid;
   grid-template-columns: 20% 80%;
+  position: relative;
 }
 .layout_aside {
   min-height: 80vh;
@@ -333,7 +334,7 @@ a {
   flex-direction: column;
   gap: 10px;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: .9rem;
 }
 .quiz_list_details {
   display: flex;
@@ -450,10 +451,7 @@ a {
   border-top: 1px solid rgba(128, 128, 128, .1);
 
 }
-.commentsList ol {
 
-
-}
 /**********ADD COMMENT*********/
 .form_answer_container {
   margin: 30px;
@@ -483,7 +481,7 @@ textarea {
   margin: 30px 50px;
   cursor: pointer;
 }
-/*****************ask form*/
+/*****************ask form***************************/
 
 .question_Form {
   position: absolute;
