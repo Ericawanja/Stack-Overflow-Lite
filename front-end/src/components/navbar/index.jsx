@@ -14,7 +14,7 @@ export default function Navbar({ close_icon, close_menu }) {
         <div>
           <NavLink
             to="/questions"
-            className={({ isActive }) => (isActive ? "active" : "")}
+           
           >
             All
           </NavLink>
@@ -23,7 +23,7 @@ export default function Navbar({ close_icon, close_menu }) {
         <div>
           <NavLink
             to="users-questions"
-            className={({ isActive }) => (isActive ? "active" : "")}
+          
           >
             My questions
           </NavLink>
@@ -33,7 +33,7 @@ export default function Navbar({ close_icon, close_menu }) {
       <div>
         <NavLink
           to="/questions/profile"
-          className={({ isActive }) => (isActive ? "active" : "")}
+          // className={({ isActive }) => (isActive ? "active" : "")}
         >
           Profile
         </NavLink>
@@ -41,7 +41,7 @@ export default function Navbar({ close_icon, close_menu }) {
       <div className="layout_logout_side">
         <NavLink
           to="/"
-          className={({ isActive }) => (isActive ? "active" : "")}
+          // className={({ isActive }) => (isActive ? "active" : "")}
         >
           Log Out
         </NavLink>
