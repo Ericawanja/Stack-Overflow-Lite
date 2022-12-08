@@ -3,7 +3,7 @@ const { getAllQuestions, getUserQuestions, getQuestion } = require('../controlle
 const questionRoutes = express.Router()
 
 questionRoutes.get('/all', getAllQuestions)
-questionRoutes.get('/users', getUserQuestions)
+questionRoutes.get('/user/:user_id', getUserQuestions)
 questionRoutes.get('/:id', getQuestion)
 
 

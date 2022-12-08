@@ -17,15 +17,14 @@ from
     left join answers a on a.question_id = q.id
 where
     isdeleted = 0
-    AND q.user_id = 'ghyd'
+    AND q.user_id = @user_id
 group by
     q.id,
     q.user_id,
     q.title,
     q.question,
     q.tags,
-    q.created_on FOR JSON PATH,
-    INCLUDE_NULL_VALUES;
+    q.created_on 
 
 END
 ELSE BEGIN -- GET ALL QUESTIONS
@@ -48,8 +47,7 @@ group by
     q.title,
     q.question,
     q.tags,
-    q.created_on FOR JSON PATH,
-    INCLUDE_NULL_VALUES;
+    q.created_on 
 
 END
 END
