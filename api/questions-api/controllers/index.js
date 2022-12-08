@@ -58,10 +58,12 @@ const deleteQuestion = async (req, res) => {
 };
 
 
+
 module.exports = {
   getAllQuestions,
   getUserQuestions,
   getQuestion,
   postQuestion,
+  updateQuestion,
   deleteQuestion,
 };
