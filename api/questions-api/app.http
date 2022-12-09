@@ -1,0 +1,38 @@
+
+
+
+POST http://localhost:5000/questions/answer/add
+Content-Type: application/json
+
+{
+   "user_id": "dcdfca04-9bed-4fcd-9bd6-f0303fad7463",
+   "question_id":"question6",
+   "answer":"go statement solved my error"
+}
+
+###
+PUT http://localhost:5000/questions/answer/preffered/undo
+
+{
+"id":"answer1"
+}
+
+###
+PUT http://localhost:5000/questions/answer/preffered/undo
+
+{
+"id":"answer1"
+}
+
+###
+POST http://localhost:5000/questions/answer/comment
+Content-Type: application/json
+
+{
+   "user_id": "dcdfca04-9bed-4fcd-9bd6-f0303fad7463",
+   "answer_id":"answer2",
+   "comment":"I dont think this is the answer"
+}
+
+###
+DELETE   http://localhost:5000/questions/comment/comment1
