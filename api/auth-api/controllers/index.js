@@ -21,7 +21,7 @@ const signupUser = async (req, res) => {
   } catch (error) {
     return res
       .status(400)
-      .json({ error: error.message, message: "The user exists" });
+      .json({ error: "The user exists" });
   }
 };
 
@@ -49,7 +49,7 @@ const loginUser = async (req, res) => {
     });
     res.status(200).json({ token });
   } else {
-    res.status(404).json({ message: "The password is not correct" });
+    res.status(400).json({ error: "The password is not correct" });
   }
 };
 

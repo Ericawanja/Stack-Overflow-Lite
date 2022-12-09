@@ -13,9 +13,10 @@ const {
   addComment,
   deleteComment,
 } = require("../controllers");
+const { verifyUser } = require("../middlewares/verify");
 const router = express.Router();
 
-router.get("/", getAllQuestions);
+router.get("/", verifyUser,  getAllQuestions);
 router.get("/user/:user_id", getUserQuestions);
 router.get("/:id", getQuestion);
 

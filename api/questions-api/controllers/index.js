@@ -1,9 +1,18 @@
-const { exec } = require("../databaseHelpers/db_connect");
+const { exec } = require("../helpers/db_connect");
 const { v4: uuidv4 } = require("uuid");
 
 const getAllQuestions = async (req, res) => {
+  try{
   const questions = await exec("getAllQuestions");
-  res.status(200).json({ questions });
+  if(questions.length > 1){
+    return   res.status(200).json({ questions });
+  }else{
+    return res.status(200).json({message:"There are no questions found", questions})
+  }
+
+  }catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
 };
 
 const getUserQuestions = async (req, res) => {
@@ -142,8 +151,11 @@ const deleteComment = async (req, res) => {
 
 const upvote = async (req,res)=>{
   const {answer_id} = req.params
-
   
+  
+}
+const downVote = async (req, res)=>{
+
 }
 module.exports = {
   getAllQuestions,
