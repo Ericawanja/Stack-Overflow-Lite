@@ -42,14 +42,14 @@ const loginUser = async (req, res) => {
   const user = await exec("getUser", { email });
   const correct = await bcrypt.compare(password, user[0].password);
   if (correct) {
-  
-    let {user_id, email, username} = user[0]
-    let payload= {user_id, email, username}
-    let token = await jwt.sign(payload, process.env.SECRET, {expiresIn:'120s'})
-    res.status(200).json({ token});
-
-  }else{
-    res.status(404).json({message:"The password is not correct"});
+    let { user_id, email, username } = user[0];
+    let payload = { user_id, email, username };
+    let token = await jwt.sign(payload, process.env.SECRET, {
+      expiresIn: "120s",
+    });
+    res.status(200).json({ token });
+  } else {
+    res.status(404).json({ message: "The password is not correct" });
   }
 };
 
