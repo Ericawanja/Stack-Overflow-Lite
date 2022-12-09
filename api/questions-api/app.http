@@ -1,4 +1,5 @@
-http://localhost:5000/questions
+GET http://localhost:5000/questions
+Authorization: Bearer "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDYxMDYwMiwiZXhwIjoxNjcwNjEwNzIyfQ.zsfB9w-L_8W5Y7_4cpSeEpfGWDYjatq9d-Zg-j8ZK9M"
 
 
 POST http://localhost:5000/questions/answer/add

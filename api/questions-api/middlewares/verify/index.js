@@ -4,11 +4,12 @@ require("dotenv").config();
 
 const verifyUser = async (req, res, next) => {
   try {
-    const token = req.headers["token"];
-    if (!token) {
+    const bearer = req.headers["authorization"];
+    if (!bearer || !bearer.startsWith("Bearer ")) {
       res.status(401).json({ message: "You don't have access. Log in first" });
     } else {
-      const decodedData = await jwt.verift(token, process.env.SECRET);
+      const token = bearer.split(" ")[1];
+      const decodedData = await jwt.verify(token, process.env.SECRET);
       req.info = decodedData;
       next();
     }
