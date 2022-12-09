@@ -1,5 +1,5 @@
 const { exec } = require("../databaseHelpers/db_connect");
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 
 const getAllQuestions = async (req, res) => {
   const questions = await exec("getAllQuestions");
@@ -29,7 +29,7 @@ const getQuestion = async (req, res) => {
 
   console.log(question);
 
-  const data = {...question[0], answers: anc}
+  const data = { ...question[0], answers: anc };
 
   res.status(200).json({ question: data });
 };
@@ -38,16 +38,17 @@ const postQuestion = async (req, res) => {
   const question = req.body;
   const question_id = uuidv4();
 
-  await exec("insertOrUpdateQuestion", {...question, id: question_id});
+  await exec("insertOrUpdateQuestion", { ...question, id: question_id });
   res.status(201).json({ message: "You have succesfully added the question" });
 };
 
 const updateQuestion = async (req, res) => {
-const question = req.body;
+  const question = req.body;
 
-await exec("insertOrUpdateQuestion", question)
-res.status(200).json({message: "You have successfully updted the question"})
-
+  await exec("insertOrUpdateQuestion", question);
+  res
+    .status(200)
+    .json({ message: "You have successfully updted the question" });
 };
 const deleteQuestion = async (req, res) => {
   const { id } = req.params;
@@ -58,7 +59,7 @@ const deleteQuestion = async (req, res) => {
 };
 
 
-
+/*******************************ANSWER ENDPOINTS***************************** ********* */
 module.exports = {
   getAllQuestions,
   getUserQuestions,

@@ -9,7 +9,7 @@ BEGIN
 SET NOCOUNT ON;
 DECLARE @Dt datetime =GETDATE()
 
-INSERT INTO comments VALUES (@id, @user_id, @answer_id, @comment, @Dt)
+INSERT INTO comments (id, user_id, answer_id, comment, added_on) VALUES (@id, @user_id, @answer_id, @comment, @Dt )
 END
 
 GO

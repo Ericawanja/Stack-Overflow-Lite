@@ -7,5 +7,5 @@ const validateSignup = require("../middleware/signup");
 
 routes.post("/login",validateLogin, loginUser);
 routes.post("/signup", validateSignup,signupUser)
-routes.post("/update", updateUser)
+routes.post("/update", validateSignup, updateUser)
 module.exports = routes;
