@@ -45,7 +45,7 @@ const loginUser = async (req, res) => {
     let { user_id, email, username } = user[0];
     let payload = { user_id, email, username };
     let token = await jwt.sign(payload, process.env.SECRET, {
-      expiresIn: "120s",
+      expiresIn: "10000s",
     });
     res.status(200).json({ token });
   } else {

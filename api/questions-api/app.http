@@ -1,7 +1,28 @@
 GET http://localhost:5000/questions
-Authorization: Bearer "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDYxMDYwMiwiZXhwIjoxNjcwNjEwNzIyfQ.zsfB9w-L_8W5Y7_4cpSeEpfGWDYjatq9d-Zg-j8ZK9M"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc1OTQzOSwiZXhwIjoxNjcwNzY5NDM5fQ.G5ekji_D7-BNOQeEs9RrPPedyViBszXai-5Pxnjs8cQ
+
+###
+GET http://localhost:5000/questions/author/ghyd
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc1MzA3OSwiZXhwIjoxNjcwNzUzMTk5fQ._FT2bxiA0lrg9uTSUdIEU2Rg5FAjwIc1tFBoCXkW0EA
+
+###
+GET http://localhost:5000/questions/qwe
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc1OTIxMywiZXhwIjoxNjcwNzU5MzMzfQ.w2AY41-oXruUAvgHzdBGTfQ1tYDU2LZfKDO7TWWbrq0
+
+###
+POST http://localhost:5000/questions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc1OTQzOSwiZXhwIjoxNjcwNzY5NDM5fQ.G5ekji_D7-BNOQeEs9RrPPedyViBszXai-5Pxnjs8cQ
+Content-Type: application/json
+
+{
+   "user_id": "9c07f0ef-51dd-4b24-b809-12a8689a726f",
+   "title":"Which is the poorest country",
+   "question": "Which is the poorest country and are there any resources found there",
+   "tags": "general, africa, wealth"
+}
 
 
+###
 POST http://localhost:5000/questions/answer/add
 Content-Type: application/json
 

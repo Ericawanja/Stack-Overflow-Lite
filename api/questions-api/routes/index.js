@@ -1,4 +1,7 @@
 const express = require("express");
+const { verifyUser } = require("../middlewares/verify");
+const router = express.Router();
+
 const {
   getAllQuestions,
   getUserQuestions,
@@ -13,14 +16,14 @@ const {
   addComment,
   deleteComment,
 } = require("../controllers");
-const { verifyUser } = require("../middlewares/verify");
-const router = express.Router();
+const validate = require("../middlewares/validateQuestions");
+
 
 router.get("/", verifyUser,  getAllQuestions);
-router.get("/user/:user_id", getUserQuestions);
-router.get("/:id", getQuestion);
+router.get("/author/:user_id", verifyUser, getUserQuestions);
+router.get("/:id",verifyUser, getQuestion);
 
-router.post("/", postQuestion);
+router.post("/",verifyUser, validate, postQuestion);
 router.put("/:id", updateQuestion);
 router.delete("/:id", deleteQuestion);
 

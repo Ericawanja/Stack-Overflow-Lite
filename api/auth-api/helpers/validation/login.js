@@ -8,9 +8,8 @@ const schema = Joi.object({
   }),
 });
 
-module.exports ={
-    validateLogin:(data)=>{
-    
-        return schema.validate(data)
-    }
-}
+module.exports = {
+  validateLogin: (data) => {
+    return schema.validate(data);
+  },
+};
