@@ -2,29 +2,46 @@ const { exec } = require("../helpers/db_connect");
 const { v4: uuidv4 } = require("uuid");
 
 const getAllQuestions = async (req, res) => {
-  try{
-  const questions = await exec("getAllQuestions");
-  if(questions.length > 1){
-    return   res.status(200).json({ questions });
-  }else{
-    return res.status(200).json({message:"There are no questions found", questions})
-  }
-
-  }catch (error) {
+  try {
+    const questions = await exec("getAllQuestions");
+    if (questions.length > 1) {
+      return res.status(200).json({ questions });
+    } else {
+      return res
+        .status(200)
+        .json({ message: "There are no questions found", questions });
+    }
+  } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
 
 const getUserQuestions = async (req, res) => {
   let { user_id } = req.params;
-  const questions = await exec("getAllQuestions", { user_id });
-  res.status(200).json({ questions });
+  console.log(req.info);
+  try {
+    const questions = await exec("getAllQuestions", { user_id });
+    if (questions.length > 0) {
+      res.status(200).json({ questions });
+    } else {
+      res
+        .status(200)
+        .json({ message: "You haven't created any questions yet" });
+    }
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
 };
 
 const getQuestion = async (req, res) => {
   const { id } = req.params;
 
   let question = await exec("getOneQuestion", { id });
+  if (question.length === 0) {
+    return res
+      .status(400)
+      .json({ message: "The question does not exist. Check the question id" });
+  }
   const answers = await exec("getQuestionAnswers", { id });
 
   const anc = await Promise.all(
@@ -50,12 +67,32 @@ const postQuestion = async (req, res) => {
 };
 
 const updateQuestion = async (req, res) => {
-  const question = req.body;
+  let { id } = req.params;
 
-  await exec("insertOrUpdateQuestion", question);
-  res
-    .status(200)
-    .json({ message: "You have successfully updted the question" });
+ 
+  try {
+    let question = await exec("getOneQuestion", { id });
+    
+    if (question.length >= 1){
+      let { id } = req.params;
+      const question = req.body;
+   
+      await exec("insertOrUpdateQuestion", { id, ...question });
+      return res
+        .status(200)
+        .json({ message: "You have successfully updated the question" });
+    }
+    else  {
+      return res
+        .status(400)
+        .json({
+          message: "The question does not exist. Check the question id",
+        });
+    } 
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error });
+  }
 };
 const deleteQuestion = async (req, res) => {
   const { id } = req.params;
@@ -141,22 +178,19 @@ const deleteComment = async (req, res) => {
   console.log(id);
 
   try {
-    await exec("deleteComment", {id})
-    res.status(200).json({message:"You have succesfully deleted the comment"})
-
+    await exec("deleteComment", { id });
+    res
+      .status(200)
+      .json({ message: "You have succesfully deleted the comment" });
   } catch (error) {
-    return res.status(400).json({ error: error.message }); 
+    return res.status(400).json({ error: error.message });
   }
 };
 
-const upvote = async (req,res)=>{
-  const {answer_id} = req.params
-  
-  
-}
-const downVote = async (req, res)=>{
-
-}
+const upvote = async (req, res) => {
+  const { answer_id } = req.params;
+};
+const downVote = async (req, res) => {};
 module.exports = {
   getAllQuestions,
   getUserQuestions,
@@ -171,7 +205,5 @@ module.exports = {
   deleteAnswer,
 
   addComment,
-  deleteComment
+  deleteComment,
 };
-
-

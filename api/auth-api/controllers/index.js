@@ -40,10 +40,12 @@ const updateUser = async (req, res) => {
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await exec("getUser", { email });
+
   const correct = await bcrypt.compare(password, user[0].password);
   if (correct) {
     let { user_id, email, username } = user[0];
-    let payload = { user_id, email, username };
+   
+    let payload = { email, user_id, username };
     let token = await jwt.sign(payload, process.env.SECRET, {
       expiresIn: "10000s",
     });

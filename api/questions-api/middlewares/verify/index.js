@@ -10,6 +10,7 @@ const verifyUser = async (req, res, next) => {
     } else {
       const token = bearer.split(" ")[1];
       const decodedData = await jwt.verify(token, process.env.SECRET);
+      console.log({decodedData});
       req.info = decodedData;
       next();
     }

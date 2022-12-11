@@ -1,17 +1,17 @@
 GET http://localhost:5000/questions
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc1OTQzOSwiZXhwIjoxNjcwNzY5NDM5fQ.G5ekji_D7-BNOQeEs9RrPPedyViBszXai-5Pxnjs8cQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc2NDEzNCwiZXhwIjoxNjcwNzc0MTM0fQ.Rd5E1y-Dx3U_v61cOc_XsV9FjfmhfH79CQhwxt-RNT4
 
 ###
-GET http://localhost:5000/questions/author/ghyd
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc1MzA3OSwiZXhwIjoxNjcwNzUzMTk5fQ._FT2bxiA0lrg9uTSUdIEU2Rg5FAjwIc1tFBoCXkW0EA
+GET http://localhost:5000/questions/author/fghjjke
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc2NDEzNCwiZXhwIjoxNjcwNzc0MTM0fQ.Rd5E1y-Dx3U_v61cOc_XsV9FjfmhfH79CQhwxt-RNT4
 
 ###
-GET http://localhost:5000/questions/qwe
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc1OTIxMywiZXhwIjoxNjcwNzU5MzMzfQ.w2AY41-oXruUAvgHzdBGTfQ1tYDU2LZfKDO7TWWbrq0
+GET http://localhost:5000/questions/88ff0f87-bd27-4b75-9066-d7a5b5262a04
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc2NDEzNCwiZXhwIjoxNjcwNzc0MTM0fQ.Rd5E1y-Dx3U_v61cOc_XsV9FjfmhfH79CQhwxt-RNT4
 
 ###
 POST http://localhost:5000/questions
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc1OTQzOSwiZXhwIjoxNjcwNzY5NDM5fQ.G5ekji_D7-BNOQeEs9RrPPedyViBszXai-5Pxnjs8cQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc2NDEzNCwiZXhwIjoxNjcwNzc0MTM0fQ.Rd5E1y-Dx3U_v61cOc_XsV9FjfmhfH79CQhwxt-RNT4
 Content-Type: application/json
 
 {
@@ -21,6 +21,20 @@ Content-Type: application/json
    "tags": "general, africa, wealth"
 }
 
+###
+PUT http://localhost:5000/questions/question5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDc2NDEzNCwiZXhwIjoxNjcwNzc0MTM0fQ.Rd5E1y-Dx3U_v61cOc_XsV9FjfmhfH79CQhwxt-RNT4
+Content-Type: application/json
+
+{
+  "user_id":"9c07f0ef-51dd-4b24-b809-12a8689a726f",
+   "title": "which is the current trending programming language",
+   "question":"I want to kow the current trending programming language so that I can start learning it",
+   "tags":"programmig language"
+}
+
+###
+DELETE http://localhost:5000/questions/question6
 
 ###
 POST http://localhost:5000/questions/answer/add

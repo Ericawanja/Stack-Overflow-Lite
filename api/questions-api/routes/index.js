@@ -24,7 +24,7 @@ router.get("/author/:user_id", verifyUser, getUserQuestions);
 router.get("/:id",verifyUser, getQuestion);
 
 router.post("/",verifyUser, validate, postQuestion);
-router.put("/:id", updateQuestion);
+router.put("/:id",verifyUser, validate, updateQuestion);
 router.delete("/:id", deleteQuestion);
 
 router.post("/answer/add", postAnswer);
