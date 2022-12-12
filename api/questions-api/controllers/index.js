@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const getAllQuestions = async (req, res) => {
   try {
     const questions = await exec("getAllQuestions");
-    if (questions.length > 1) {
+    if (questions.length !== 0) {
       return res.status(200).json({ questions });
     } else {
       return res
@@ -37,6 +37,7 @@ const getQuestion = async (req, res) => {
   const { id } = req.params;
 
   let question = await exec("getOneQuestion", { id });
+
   if (question.length === 0) {
     return res
       .status(400)
@@ -68,41 +69,56 @@ const postQuestion = async (req, res) => {
 
 const updateQuestion = async (req, res) => {
   let { id } = req.params;
-
- 
+  console.log(req.info);
   try {
-    let question = await exec("getOneQuestion", { id });
-    
-    if (question.length >= 1){
+    let questionDb = await exec("getOneQuestion", { id });
+
+    if (questionDb.length >= 1) {
       let { id } = req.params;
       const question = req.body;
-   
+      const { email } = req.info;
+
+      // const user = await exec("getUser", { email });
+
+      //  if (user[0].id === questionDb[0].user_id) {
+
+      //   return res
+      //     .status(400)
+      //     .json({
+      //       message:
+      //         "You cannot edit this question since you're not the author",
+      //     });
+      // }
+
       await exec("insertOrUpdateQuestion", { id, ...question });
       return res
         .status(200)
         .json({ message: "You have successfully updated the question" });
+    } else {
+      return res.status(400).json({
+        message: "The question does not exist. Check the question id",
+      });
     }
-    else  {
-      return res
-        .status(400)
-        .json({
-          message: "The question does not exist. Check the question id",
-        });
-    } 
   } catch (error) {
-    console.log(error);
     res.status(400).json({ error });
   }
 };
 const deleteQuestion = async (req, res) => {
   const { id } = req.params;
-  try {
-    await exec("deleteQuestion", { id });
-    res
-      .status(200)
-      .json({ message: "You have succesfully deleted the question" });
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
+  let question = await exec("getOneQuestion", { id });
+  if (question.length >= 1) {
+    try {
+      await exec("deleteQuestion", { id });
+      res
+        .status(200)
+        .json({ message: "You have succesfully deleted the question" });
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  } else {
+    return res.status(400).json({
+      message: "The question does not exist. Check the question id",
+    });
   }
 };
 
@@ -114,9 +130,16 @@ const postAnswer = async (req, res) => {
   const { user_id, question_id, answer } = req.body;
   const id = uuidv4();
   try {
-    console.log(req.body);
-    await exec("insertAnswer", { id, user_id, question_id, answer });
-    res.status(200).json({ message: "Thank for adding a answer" });
+    let question = await exec("getOneQuestion", { id: question_id });
+    if (question.length > 0) {
+      await exec("insertAnswer", { id, user_id, question_id, answer });
+      return res.status(200).json({ message: "Thank for adding a answer" });
+    } else {
+      return res.status(400).json({
+        message:
+          "You cannot add answer to a question that does not exist.Check the question id",
+      });
+    }
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -125,39 +148,52 @@ const postAnswer = async (req, res) => {
 // set answer as preferred
 const setPrefferedAnswer = async (req, res) => {
   const { id } = req.body;
-
-  try {
-    await exec("updatePreferredAnswer", { id });
-    res
-      .status(200)
-      .json({ message: "You have set this answer as preferred answer" });
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
+  const ans = await exec("getAnswer", { id });
+  if (ans.length > 0) {
+    try {
+      await exec("updatePreferredAnswer", { id });
+      res
+        .status(200)
+        .json({ message: "You have set this answer as preferred answer" });
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  } else {
+    res.status(400).json({ message: "The entered id is incorect" });
   }
 };
 
 const undoPrefferedAnswer = async (req, res) => {
   const { id } = req.body;
-
-  try {
-    await exec("undoPreferredAnswer", { id });
-    res
-      .status(200)
-      .json({ message: "This answer is no longer the preffered answer" });
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
+  const ans = await exec("getAnswer", { id });
+  if (ans.length > 0) {
+    try {
+      await exec("undoPreferredAnswer", { id });
+      res
+        .status(200)
+        .json({ message: "This answer is no longer the preffered answer" });
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  } else {
+    res.status(400).json({ message: "The entered id is incorect" });
   }
 };
 
 const deleteAnswer = async (req, res) => {
   const { id } = req.paams;
-  try {
-    await exec("deleteAnswer", { id });
-    res
-      .status(200)
-      .json({ message: "You have successfully deleted the answer" });
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
+  const ans = await exec("getAnswer", { id });
+  if (ans.length > 0) {
+    try {
+      await exec("deleteAnswer", { id });
+      res
+        .status(200)
+        .json({ message: "You have successfully deleted the answer" });
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  } else {
+    res.status(400).json({ message: "The entered id is incorect" });
   }
 };
 
@@ -165,32 +201,106 @@ const addComment = async (req, res) => {
   const { user_id, answer_id, comment } = req.body;
   const id = uuidv4();
 
-  try {
-    await exec("insertComment", { id, user_id, answer_id, comment });
-    res.status(200).json({ message: "You have added a comment" });
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
+  const ans = await exec("getAnswer", { id });
+  if (ans.length > 0) {
+    try {
+      await exec("insertComment", { id, user_id, answer_id, comment });
+      res.status(200).json({ message: "You have added a comment" });
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  } else {
+    res.status(400).json({ message: "The entered id is incorect" });
   }
 };
 
 const deleteComment = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+
+  const comment = await exec("getComment", { id });
+  if (comment.length > 0) {
+    try {
+      await exec("deleteComment", { id });
+      res
+        .status(200)
+        .json({ message: "You have succesfully deleted the comment" });
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  } else {
+    res
+      .status(400)
+      .json({ message: "The id is incorrect or the comment does not exist" });
+  }
+};
+
+const upvote = async (req, res) => {
+  const { answer_id } = req.body;
 
   try {
-    await exec("deleteComment", { id });
+    const votes = await exec("getVotes", { answer_id });
+    let vote_value = votes.length > 0 ? votes[0].votes : 0;
+
+    let new_value = +vote_value + 1;
+    console.log(new_value);
+    await exec("insertOrUpdateVotes", { answer_id, votes: new_value });
     res
       .status(200)
-      .json({ message: "You have succesfully deleted the comment" });
+      .json({ message: "You have succesfully upvoted the answer" });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
 
-const upvote = async (req, res) => {
-  const { answer_id } = req.params;
+const downVote = async (req, res) => {
+  const { answer_id } = req.body;
+
+  try {
+    const votes = await exec("getVotes", { answer_id });
+
+    let vote_value = votes.length > 0 ? votes[0].votes : 0;
+
+    let new_value = +vote_value - 1;
+    console.log(new_value);
+    await exec("insertOrUpdateVotes", { answer_id, votes: new_value });
+    res
+      .status(200)
+      .json({ message: "You have succesfully downvoted the answer" });
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
 };
-const downVote = async (req, res) => {};
+
+const getQuestionWithMostAnswers = async (req, res) => {
+  try {
+    let questions = await exec("getAllQuestions");
+    if (questions.length > 1) {
+      questions = questions.sort((x, y) => {
+        return +y.answers - +x.answers;
+      });
+      let topQuiz = questions[0];
+      return res.status(200).json(topQuiz);
+    } else {
+      return res
+        .status(200)
+        .json({ message: "There are no questions found", questions });
+    }
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+const search = async (req, res) => {
+  
+  try {
+    let questions = await exec("getAllQuestions");
+    questions = qui
+
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllQuestions,
   getUserQuestions,
@@ -206,4 +316,10 @@ module.exports = {
 
   addComment,
   deleteComment,
+
+  upvote,
+  downVote,
+
+  getQuestionWithMostAnswers,
+  search
 };

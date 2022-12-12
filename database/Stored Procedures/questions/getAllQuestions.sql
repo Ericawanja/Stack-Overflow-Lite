@@ -11,12 +11,12 @@ select
     q.question,
     q.tags,
     q.created_on,
-    count(q.id) as answers
+    count(a.answer) as answers
 from
     questions q
     left join answers a on a.question_id = q.id
 where
-    isdeleted = 0
+    q.isdeleted = 0
     AND q.user_id = @user_id
 group by
     q.id,
@@ -35,12 +35,12 @@ select
     q.question,
     q.tags,
     q.created_on,
-    count(q.id) as answers
+    count(a.answer) as answers
 from
     questions q
     left join answers a on a.question_id = q.id
 where
-    isdeleted = 0
+    q.isdeleted = 0
 group by
     q.id,
     q.user_id,

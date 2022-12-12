@@ -9,9 +9,8 @@ select
     title,
     question,
     tags,
-    created_on,
-    tags,
     created_on
+    
 from
     questions
 where
