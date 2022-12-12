@@ -46,6 +46,6 @@ router.post("/answer/upvote", verifyUser, upvote)
 router.post("/answer/downvote", verifyUser, downVote)
 
 router.get("/ordered/top", verifyUser, getQuestionWithMostAnswers)
-router.post("/", search)
+router.post("/list/search", verifyUser, search)
 
 module.exports = router;

@@ -60,11 +60,17 @@ const getQuestion = async (req, res) => {
 };
 
 const postQuestion = async (req, res) => {
+  console.log("ggg");
   const question = req.body;
   const question_id = uuidv4();
+  const { id } = req.info;
 
-  await exec("insertOrUpdateQuestion", { ...question, id: question_id });
-  res.status(201).json({ message: "You have succesfully added the question" });
+  await exec("insertOrUpdateQuestion", {
+    ...question,
+    id: question_id,
+    user_id: id,
+  });
+  res.status(201).json({ message: `You have added the question ${id}` });
 };
 
 const updateQuestion = async (req, res) => {
@@ -76,21 +82,13 @@ const updateQuestion = async (req, res) => {
     if (questionDb.length >= 1) {
       let { id } = req.params;
       const question = req.body;
-      const { email } = req.info;
+      const user = req.info;
 
-      // const user = await exec("getUser", { email });
-
-      //  if (user[0].id === questionDb[0].user_id) {
-
-      //   return res
-      //     .status(400)
-      //     .json({
-      //       message:
-      //         "You cannot edit this question since you're not the author",
-      //     });
-      // }
-
-      await exec("insertOrUpdateQuestion", { id, ...question });
+      await exec("insertOrUpdateQuestion", {
+        id,
+        ...question,
+        user_id: user.id,
+      });
       return res
         .status(200)
         .json({ message: "You have successfully updated the question" });
@@ -127,12 +125,18 @@ const deleteQuestion = async (req, res) => {
 //POST ANSWERS
 
 const postAnswer = async (req, res) => {
-  const { user_id, question_id, answer } = req.body;
-  const id = uuidv4();
+  const { question_id, answer } = req.body;
+  const { id } = req.info;
+  const ans_id = uuidv4();
   try {
     let question = await exec("getOneQuestion", { id: question_id });
     if (question.length > 0) {
-      await exec("insertAnswer", { id, user_id, question_id, answer });
+      await exec("insertAnswer", {
+        id: ans_id,
+        user_id: id,
+        question_id,
+        answer,
+      });
       return res.status(200).json({ message: "Thank for adding a answer" });
     } else {
       return res.status(400).json({
@@ -198,19 +202,28 @@ const deleteAnswer = async (req, res) => {
 };
 
 const addComment = async (req, res) => {
-  const { user_id, answer_id, comment } = req.body;
-  const id = uuidv4();
+  const { answer_id, comment } = req.body;
+  const { id } = req.info;
+  const comment_id = uuidv4();
 
-  const ans = await exec("getAnswer", { id });
-  if (ans.length > 0) {
+  const ans = await exec("getAnswer", { id: answer_id });
+  console.log(ans);
+  if (ans.length !== 0) {
     try {
-      await exec("insertComment", { id, user_id, answer_id, comment });
+      await exec("insertComment", {
+        id: comment_id,
+        user_id: id,
+        answer_id,
+        comment,
+      });
       res.status(200).json({ message: "You have added a comment" });
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }
   } else {
-    res.status(400).json({ message: "The entered id is incorect" });
+    res
+      .status(400)
+      .json({ message: `The entered answer id is incorect ${ans}` });
   }
 };
 
@@ -291,11 +304,17 @@ const getQuestionWithMostAnswers = async (req, res) => {
 };
 
 const search = async (req, res) => {
-  
+  const { searchTerm } = req.body;
   try {
-    let questions = await exec("getAllQuestions");
-    questions = qui
+    let questions = await exec("search", { searchTerm });
 
+    if (questions.length !== 0) {
+      return res.status(200).json({ questions });
+    } else {
+      return res
+        .status(200)
+        .json({ message: "There are no questions found", questions });
+    }
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -321,5 +340,5 @@ module.exports = {
   downVote,
 
   getQuestionWithMostAnswers,
-  search
+  search,
 };

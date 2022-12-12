@@ -1,33 +1,33 @@
 GET http://localhost:5000/questions
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 
 ###
 GET http://localhost:5000/questions/author/fghjjke
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 
 ###
-GET http://localhost:5000/questions/47bbc034-59a9-4114-920d-5466299037a9
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+GET http://localhost:5000/questions/2456416c-f2ee-447c-9c4a-11ca835555ea
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 
 ###
 POST http://localhost:5000/questions
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 Content-Type: application/json
 
 {
-   "user_id": "9c07f0ef-51dd-4b24-b809-12a8689a726f",
-   "title":"The trending programming language",
-   "question": "Which is the currently trending programming language to learn",
+ 
+   "title":"Which is the largest continent",
+   "question": "Which is the largest continent in terms of size",
    "tags": "programming"
 }
 
 ###
-PUT http://localhost:5000/questions/88ff0f87-bd27-4b75-9066-d7a5b5262a04
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+PUT http://localhost:5000/questions/2456416c-f2ee-447c-9c4a-11ca835555ea
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 Content-Type: application/json
 
 {
-  "user_id":"9c07f0ef-51dd-4b24-b809-12a8689a726f",
+  
    "title": "which is the best programing language",
    "question":"I want to kow the current trending programming language so that I can start learning it",
    "tags":"programmig language"
@@ -35,18 +35,18 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/questions/kguj
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 
 
 ###
 POST http://localhost:5000/questions/answer/add
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 Content-Type: application/json
 
 {
-   "user_id": "dcdfca04-9bed-4fcd-9bd6-f0303fad7463",
-   "question_id":"47bbc034-59a9-4114-920d-5466299037a9",
-   "answer":"Python all the way fro anything"
+ 
+   "question_id":"222961db-adfe-4f04-a91c-44a238e1e55d",
+   "answer":"America I guess"
    
 }
 
@@ -54,7 +54,7 @@ Content-Type: application/json
 
 ###
 PUT http://localhost:5000/questions/answer/preffered
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 Content-Type: application/json
 
 {
@@ -63,7 +63,7 @@ Content-Type: application/json
 
 ###
 PUT http://localhost:5000/questions/answer/unprefer
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 Content-Type: application/json
 
 {
@@ -72,23 +72,21 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/questions/answer/comment
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 Content-Type: application/json
 
-{
-   "user_id": "dcdfca04-9bed-4fcd-9bd6-f0303fad7463",
-   "answer_id":"answer2",
+{   
+   "answer_id":"fee32388-2235-4fe9-87fe-96cf5c9dd398",
    "comment":"I dont think this is the answer"
 }
 
 ###
 DELETE   http://localhost:5000/questions/comment/1a639954-09ff-453d-89cf-ea26ac40b924
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 
 ###
 POST http://localhost:5000/questions/answer/upvote
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 Content-Type: application/json
 
 {
@@ -98,7 +96,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/questions/answer/downvote
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
 Content-Type: application/json
 
 {
@@ -108,4 +106,13 @@ Content-Type: application/json
 
 ###
 GET  http://localhost:5000/questions/ordered/top
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IlJlcyIsImlhdCI6MTY3MDg0MDUyOSwiZXhwIjoxNjcwODUwNTI5fQ.kPWIU60fz6UflqCSUUKRS1-cuUn2ueQIPOsHj1zttEk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+
+###
+POST   http://localhost:5000/questions/list/search
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+Content-Type: application/json
+
+{
+   "searchTerm": "best"
+}
