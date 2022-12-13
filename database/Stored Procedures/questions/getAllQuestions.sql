@@ -11,21 +11,20 @@ select
     q.question,
     q.tags,
     q.created_on,
-    count(q.id) as answers
+    count(a.answer) as answers
 from
     questions q
     left join answers a on a.question_id = q.id
 where
-    isdeleted = 0
-    AND q.user_id = 'ghyd'
+    q.isdeleted = 0
+    AND q.user_id = @user_id
 group by
     q.id,
     q.user_id,
     q.title,
     q.question,
     q.tags,
-    q.created_on FOR JSON PATH,
-    INCLUDE_NULL_VALUES;
+    q.created_on 
 
 END
 ELSE BEGIN -- GET ALL QUESTIONS
@@ -36,20 +35,19 @@ select
     q.question,
     q.tags,
     q.created_on,
-    count(q.id) as answers
+    count(a.answer) as answers
 from
     questions q
     left join answers a on a.question_id = q.id
 where
-    isdeleted = 0
+    q.isdeleted = 0
 group by
     q.id,
     q.user_id,
     q.title,
     q.question,
     q.tags,
-    q.created_on FOR JSON PATH,
-    INCLUDE_NULL_VALUES;
+    q.created_on 
 
 END
 END

@@ -1,0 +1,118 @@
+GET http://localhost:5000/questions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+
+###
+GET http://localhost:5000/questions/author/fghjjke
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+
+###
+GET http://localhost:5000/questions/2456416c-f2ee-447c-9c4a-11ca835555ea
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+
+###
+POST http://localhost:5000/questions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+Content-Type: application/json
+
+{
+ 
+   "title":"Which is the largest continent",
+   "question": "Which is the largest continent in terms of size",
+   "tags": "programming"
+}
+
+###
+PUT http://localhost:5000/questions/2456416c-f2ee-447c-9c4a-11ca835555ea
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+Content-Type: application/json
+
+{
+  
+   "title": "which is the best programing language",
+   "question":"I want to kow the current trending programming language so that I can start learning it",
+   "tags":"programmig language"
+}
+
+###
+DELETE http://localhost:5000/questions/kguj
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+
+
+###
+POST http://localhost:5000/questions/answer/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+Content-Type: application/json
+
+{
+ 
+   "question_id":"222961db-adfe-4f04-a91c-44a238e1e55d",
+   "answer":"America I guess"
+   
+}
+
+
+
+###
+PUT http://localhost:5000/questions/answer/preffered
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+Content-Type: application/json
+
+{
+"id":"12ab0a1b-f86b-49a7-844b-30b4b655197a"
+}
+
+###
+PUT http://localhost:5000/questions/answer/unprefer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+Content-Type: application/json
+
+{
+"id":"12ab0a1b-f86b-49a7-844b-30b4b655197a"
+}
+
+###
+POST http://localhost:5000/questions/answer/comment
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+Content-Type: application/json
+
+{   
+   "answer_id":"fee32388-2235-4fe9-87fe-96cf5c9dd398",
+   "comment":"I dont think this is the answer"
+}
+
+###
+DELETE   http://localhost:5000/questions/comment/1a639954-09ff-453d-89cf-ea26ac40b924
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+
+###
+POST http://localhost:5000/questions/answer/upvote
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+Content-Type: application/json
+
+{
+   "answer_id":"0ad1dc34-fa98-4d5f-a20e-1126b8b19e67"
+}
+
+
+###
+POST http://localhost:5000/questions/answer/downvote
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+Content-Type: application/json
+
+{
+   "answer_id":"adab94ed-f426-4bc7-8c45-b5a424bfbe04"
+}
+
+
+###
+GET  http://localhost:5000/questions/ordered/top
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+
+###
+POST   http://localhost:5000/questions/list/search
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljMDdmMGVmLTUxZGQtNGIyNC1iODA5LTEyYTg2ODlhNzI2ZiIsImVtYWlsIjoicmVzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUmVzIiwiaWF0IjoxNjcwODcyODM2LCJleHAiOjE2NzA4ODI4MzZ9.bWfZrf_ValICSMtdlE1k2XNlpWxCx6-xNP9TmnkAPXk
+Content-Type: application/json
+
+{
+   "searchTerm": "best"
+}
