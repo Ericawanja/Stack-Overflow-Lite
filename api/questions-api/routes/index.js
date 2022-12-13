@@ -37,7 +37,7 @@ router.delete("/:id", verifyUser, deleteQuestion);
 router.post("/answer/add", verifyUser, validateAnswer, postAnswer);
 router.put("/answer/preffered", verifyUser, setPrefferedAnswer);
 router.put("/answer/unprefer", verifyUser, undoPrefferedAnswer);
-router.delete("/answer/:id", deleteAnswer)
+router.delete("/answer/delete/:id",verifyUser, deleteAnswer)
 
 router.post("/answer/comment",verifyUser, validateComment, addComment)
 router.delete("/comment/:id", verifyUser, deleteComment)

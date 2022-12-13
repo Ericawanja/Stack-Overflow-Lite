@@ -1,5 +1,6 @@
 const { exec } = require("../helpers/db_connect");
 const { v4: uuidv4 } = require("uuid");
+const { user } = require("../Config");
 
 const getAllQuestions = async (req, res) => {
   try {
@@ -70,19 +71,24 @@ const postQuestion = async (req, res) => {
     id: question_id,
     user_id: id,
   });
-  res.status(201).json({ message: `You have added the question ${id}` });
+  res.status(201).json({ message: `You have added the question ` });
 };
 
 const updateQuestion = async (req, res) => {
   let { id } = req.params;
-  console.log(req.info);
+
   try {
     let questionDb = await exec("getOneQuestion", { id });
 
     if (questionDb.length >= 1) {
+      const user = req.info;
+      if (questionDb[0].user_id !== user.id) {
+        return res.status(401).json({
+          message: "You cannot edit this question",
+        });
+      }
       let { id } = req.params;
       const question = req.body;
-      const user = req.info;
 
       await exec("insertOrUpdateQuestion", {
         id,
@@ -105,6 +111,12 @@ const deleteQuestion = async (req, res) => {
   const { id } = req.params;
   let question = await exec("getOneQuestion", { id });
   if (question.length >= 1) {
+    const user = req.info;
+    if (question[0].user_id !== user.id) {
+      return res.status(401).json({
+        message: "You cannot delete this question",
+      });
+    }
     try {
       await exec("deleteQuestion", { id });
       res
@@ -154,6 +166,15 @@ const setPrefferedAnswer = async (req, res) => {
   const { id } = req.body;
   const ans = await exec("getAnswer", { id });
   if (ans.length > 0) {
+    const user = req.info;
+    let questionDb = await exec("getOneQuestion", { id: ans[0].question_id });
+
+    if (questionDb[0].user_id !== user.id) {
+      return res.status(401).json({
+        message:
+          "You cannot set this answer as preferred since you are not the author",
+      });
+    }
     try {
       await exec("updatePreferredAnswer", { id });
       res
@@ -171,6 +192,15 @@ const undoPrefferedAnswer = async (req, res) => {
   const { id } = req.body;
   const ans = await exec("getAnswer", { id });
   if (ans.length > 0) {
+    const user = req.info;
+    let questionDb = await exec("getOneQuestion", { id: ans[0].question_id });
+
+    if (questionDb[0].user_id !== user.id) {
+      return res.status(401).json({
+        message:
+          "You cannot unprefer this answer since you are not the question author",
+      });
+    }
     try {
       await exec("undoPreferredAnswer", { id });
       res
@@ -185,9 +215,15 @@ const undoPrefferedAnswer = async (req, res) => {
 };
 
 const deleteAnswer = async (req, res) => {
-  const { id } = req.paams;
+  const { id } = req.params;
   const ans = await exec("getAnswer", { id });
   if (ans.length > 0) {
+    const user = req.info;
+    if (ans[0].user_id !== user.id) {
+      return res.status(401).json({
+        message: "You cannot delete this answer",
+      });
+    }
     try {
       await exec("deleteAnswer", { id });
       res
@@ -232,6 +268,16 @@ const deleteComment = async (req, res) => {
 
   const comment = await exec("getComment", { id });
   if (comment.length > 0) {
+    const user = req.info
+
+    if(comment[0].user_id !== user.id){
+      console.log(comment[0].user_id, user.id);
+      return res.status(401).json({
+        message:
+          "You dont have permission to delete this comment",
+      });
+
+    }
     try {
       await exec("deleteComment", { id });
       res

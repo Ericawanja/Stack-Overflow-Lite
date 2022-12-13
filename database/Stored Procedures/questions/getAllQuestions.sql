@@ -14,7 +14,7 @@ select
     count(a.answer) as answers
 from
     questions q
-    left join answers a on a.question_id = q.id
+    left join answers a on a.question_id = q.id AND a.isdeleted =0
 where
     q.isdeleted = 0
     AND q.user_id = @user_id
@@ -38,7 +38,7 @@ select
     count(a.answer) as answers
 from
     questions q
-    left join answers a on a.question_id = q.id
+    left join answers a on a.question_id = q.id AND a.isdeleted =0
 where
     q.isdeleted = 0
 group by
