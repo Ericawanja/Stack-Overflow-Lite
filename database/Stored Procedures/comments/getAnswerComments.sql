@@ -1,7 +1,10 @@
 CREATE
 OR ALTER PROCEDURE getAnswerComments(@id varchar(200)) As Begin
 select
-    id, user_id, answer_id, comment
+    id,
+    user_id,
+    answer_id,
+    comment
 from
     comments
 where

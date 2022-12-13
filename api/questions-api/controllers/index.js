@@ -19,9 +19,9 @@ const getAllQuestions = async (req, res) => {
 
 const getUserQuestions = async (req, res) => {
   let { user_id } = req.params;
-  console.log(req.info);
+  let user = req.info
   try {
-    const questions = await exec("getAllQuestions", { user_id });
+    const questions = await exec("getAllQuestions", { user_id : user.id });
     if (questions.length > 0) {
       res.status(200).json({ questions });
     } else {
@@ -50,7 +50,18 @@ const getQuestion = async (req, res) => {
     answers.map(async (answer) => {
       let id = answer.id;
       let comments = await exec("getAnswerComments", { id });
-      let data = { ...answer, comments };
+      let downvotes = await exec("getAnswerDownvotes", { answer_id: id });
+      let downvotes_value = downvotes.length > 0 ? downvotes[0].downvotes : 0;
+      let upvotes = await exec("getAnswerUpvotes", { answer_id: id });
+
+      let upvotes_value = upvotes.length > 0 ? upvotes[0].upvotes : 0;
+
+      let data = {
+        ...answer,
+        downvotes: downvotes_value,
+        upvotes: upvotes_value,
+        comments,
+      };
       return data;
     })
   );
@@ -268,15 +279,13 @@ const deleteComment = async (req, res) => {
 
   const comment = await exec("getComment", { id });
   if (comment.length > 0) {
-    const user = req.info
+    const user = req.info;
 
-    if(comment[0].user_id !== user.id){
+    if (comment[0].user_id !== user.id) {
       console.log(comment[0].user_id, user.id);
       return res.status(401).json({
-        message:
-          "You dont have permission to delete this comment",
+        message: "You dont have permission to delete this comment",
       });
-
     }
     try {
       await exec("deleteComment", { id });
@@ -366,6 +375,61 @@ const search = async (req, res) => {
   }
 };
 
+const _upvote = async (req, res) => {
+  const user = req.info;
+  const { answer_id } = req.body;
+
+  try {
+    let has_voted = await exec("userUpvoted", { user_id: user.id, answer_id });
+    if (has_voted.length !== 0) {
+      return res
+        .status(400)
+        .json({ message: "You have already upvoted the answer" });
+    } else {
+      await exec("insertOrUpdateAnswerVotes", {
+        user_id: user.id,
+        answer_id,
+        upvote: 1,
+        downvote: 0,
+      });
+      return res
+        .status(200)
+        .json({ message: "You have successfully upvoted the answer" });
+    }
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+const _downvote = async (req, res) => {
+  const user = req.info;
+  const { answer_id } = req.body;
+  console.log(user.id);
+
+  try {
+    let has_voted = await exec("userDownvoted", {
+      user_id: user.id,
+      answer_id,
+    });
+    if (has_voted.length !== 0) {
+      return res
+        .status(400)
+        .json({ message: "You have already downvoted the answer" });
+    } else {
+      await exec("insertOrUpdateAnswerVotes", {
+        user_id: user.id,
+        answer_id,
+        upvote: 0,
+        downvote: 1,
+      });
+      return res
+        .status(200)
+        .json({ message: "You have successfully downvoted the answer" });
+    }
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
 module.exports = {
   getAllQuestions,
   getUserQuestions,
@@ -380,11 +444,14 @@ module.exports = {
   deleteAnswer,
 
   addComment,
-  deleteComment,
+  deleteComment, 
 
   upvote,
   downVote,
 
   getQuestionWithMostAnswers,
   search,
+
+  _upvote,
+  _downvote,
 };

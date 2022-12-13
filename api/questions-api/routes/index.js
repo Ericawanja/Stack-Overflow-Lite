@@ -18,7 +18,9 @@ const {
   upvote,
   downVote,
   getQuestionWithMostAnswers,
-  search
+  search,
+  _upvote,
+  _downvote
 } = require("../controllers");
 const validateQuestion = require("../middlewares/validateQuestions");
 const validateAnswer = require("../middlewares/validateAnswer");
@@ -27,7 +29,7 @@ const validateComment = require("../middlewares/validateComment");
 
 
 router.get("/", verifyUser,  getAllQuestions);
-router.get("/author/:user_id", verifyUser, getUserQuestions);
+router.get("/user/created", verifyUser, getUserQuestions);
 router.get("/:id",verifyUser, getQuestion);
 
 router.post("/",verifyUser, validateQuestion, postQuestion);
@@ -42,10 +44,13 @@ router.delete("/answer/delete/:id",verifyUser, deleteAnswer)
 router.post("/answer/comment",verifyUser, validateComment, addComment)
 router.delete("/comment/:id", verifyUser, deleteComment)
 
-router.post("/answer/upvote", verifyUser, upvote)
-router.post("/answer/downvote", verifyUser, downVote)
+
 
 router.get("/ordered/top", verifyUser, getQuestionWithMostAnswers)
 router.post("/list/search", verifyUser, search)
+
+
+router.post("/answer/upvote",verifyUser, _upvote)
+router.post("/answer/downvote",verifyUser, _downvote)
 
 module.exports = router;
