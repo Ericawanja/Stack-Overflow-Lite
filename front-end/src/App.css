@@ -236,7 +236,7 @@ a {
 }
 .layout_header {
   display: grid;
-  grid-template-columns: 40% 50% ;
+  grid-template-columns: 40% 50%;
   align-items: center;
   justify-content: space-between;
   height: 90px;
@@ -244,7 +244,8 @@ a {
   padding: 0 30px;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
-.menu, .close_icon{
+.menu,
+.close_icon {
   display: none;
 }
 .search {
@@ -308,7 +309,6 @@ a {
 
 /************************Question list design***************************/
 
-
 .page_title {
   display: flex;
   justify-content: space-between;
@@ -329,8 +329,8 @@ a {
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.quiz_list:hover{
-  background-color: rgba(242, 242, 242, .6);
+.quiz_list:hover {
+  background-color: rgba(242, 242, 242, 0.6);
   cursor: pointer;
 }
 .quiz_list_left {
@@ -338,7 +338,7 @@ a {
   flex-direction: column;
   gap: 10px;
   font-weight: 400;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 .quiz_list_details {
   display: flex;
@@ -365,7 +365,7 @@ a {
   justify-content: center;
   align-items: center;
 }
-.quiz_description{
+.quiz_description {
   font-size: 14px;
 }
 .quiz_creation_details {
@@ -375,7 +375,8 @@ a {
   gap: 10px;
   font-size: 0.7rem;
 }
-.author_btns, .author{
+.author_btns,
+.author {
   display: flex;
   gap: 4px;
   align-items: center;
@@ -420,8 +421,8 @@ a {
 }
 
 /******Answer comment*******/
-.answers_list{
-  border-bottom: 1px solid rgba(41, 41, 41, .3);
+.answers_list {
+  border-bottom: 1px solid rgba(41, 41, 41, 0.3);
 }
 .answer_comment_header {
   display: flex;
@@ -429,8 +430,8 @@ a {
   padding: 20px;
   align-items: center;
 }
-.comment_header:hover{
-  border-bottom:  1px solid #100720;
+.comment_header:hover {
+  border-bottom: 1px solid #100720;
   cursor: pointer;
 }
 .add_comment input {
@@ -449,11 +450,10 @@ a {
   padding: 10px;
   cursor: pointer;
 }
-.answer_comment{
+.answer_comment {
   padding: 20px 100px;
-  font-size: .9rem;
-  border-top: 1px solid rgba(128, 128, 128, .1);
-
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
 }
 
 /**********ADD COMMENT*********/
@@ -494,12 +494,11 @@ textarea {
   background-color: rgba(10, 10, 10, 0.3);
   top: 0;
   left: 0;
-
 }
 .Q-form {
   width: 50%;
   min-height: 90vh;
-   margin: auto; 
+  margin: auto;
   background-color: rgb(255, 255, 255);
   padding: 30px;
   border-radius: 10px;
@@ -561,7 +560,7 @@ textarea {
 .user_data {
   display: flex;
   gap: 10px;
- 
+
   flex-wrap: wrap;
 }
 .user_data div {
@@ -580,11 +579,28 @@ textarea {
 .stat {
   font-weight: 700;
   font-size: 1.8rem;
-  
 }
-.order_questions select{
+.order_questions select {
   padding: 8px;
 }
-select option{
+select option {
   padding: 8px;
+}
+
+.alert-danger {
+  color: rgb(255, 0, 0, 0.8);
+  background-color: rgb(255, 0, 0, 0.2);
+  padding: 8px 5px;
+  font-size: 14px;
+  border-radius: 10px;
+  margin: 20px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+button:disabled {
+  opacity: 20%;
+  cursor: not-allowed;
 }

@@ -1,18 +1,25 @@
+import axios from "axios";
+
 class UserService {
-  BASE_URL =  process.env.NODE_ENV === "production" ?"https://my-json-server.typicode.com/Ericawanja/jsonserver/users":"http://localhost:9090/users";
-  async LogInUser({ email, password }) {
+  BASE_URL =
+    process.env.NODE_ENV === "production"
+      ? "https://my-json-server.typicode.com/Ericawanja/jsonserver/users"
+      : "http://localhost:9090/users";
+  async LogInUser(details) {
     // Make API Call
     //Return logged in user or error
     try {
-      const response = await fetch(this.BASE_URL);
-      const data = await response.json();
+      let url = "http://localhost:5001/user/login";
+      const { data } = await axios.post(url, details);
 
-      const user = data.filter((user) => user.email === email);
-      // console.log(user);
-      if (user.length > 0) return { message: null, data: { ...user[0] } };
-      return { message: "User does not exist", data: null };
+      localStorage.setItem("token", data?.token);
+      return { data: data?.user, error: null };
     } catch (error) {
-      return { data: null, error: error.message };
+      const message =
+        error?.response?.data?.message ||
+        "An error occurred. Please try again later";
+
+      return { data: null, error: message };
     }
   }
 

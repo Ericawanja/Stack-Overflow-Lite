@@ -2,14 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { LogInUser } from "../thunks/user.thunks";
 
 const initialState = {
-  user: {
-    data:[],
-    error:false
-  },
+  user: {},
+  error: "",
+  loading: false,
 };
 
 const userSlice = createSlice({
-  name: "questions",
+  name: "users",
   initialState,
   reducers: {},
 
@@ -19,18 +18,12 @@ const userSlice = createSlice({
       state.error = "";
     });
     builder.addCase(LogInUser.fulfilled, (state, action) => {
-      
-      if(action.payload.data){
-       // console.log(action.payload);
       state.user = action.payload.data;
-      state.error = false
-      
-      }else{
-        console.log('no user');
-        state.error = true 
-      }
       state.loading = false;
-      
+    });
+    builder.addCase(LogInUser.rejected, (state, action) => {
+      state.error = action.payload.error;
+      state.loading = false;
     });
   },
 });
