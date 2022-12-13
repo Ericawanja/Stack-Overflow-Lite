@@ -3,9 +3,9 @@ POST http://localhost:5001/user/signup
 Content-Type: application/json
 
 {
-    "username":"JaneD",
-    "email": "janed@gmail.com",
-    "password": "254Jane254"
+    "username":"EricaWanja",
+    "email": "ericawanja@gmail.com",
+    "password": "254ericawanja254"
 }
 
 ###
@@ -13,6 +13,6 @@ POST http://localhost:5001/user/login
 Content-Type: application/json
 
 {
-     "email": "janed@gmail.com",
-    "password": "254Jane254"
+     "email": "ericawanja@gmail.com",
+    "password": "254ericawanja254"
 }

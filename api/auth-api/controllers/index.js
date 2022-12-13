@@ -1,7 +1,3 @@
-require("dotenv").config();
-
-const express = require("express");
-const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { v4 } = require("uuid");
@@ -19,9 +15,7 @@ const signupUser = async (req, res) => {
     await exec("insertUser", data);
     return res.status(201).json({ message: "sucess", error: "" });
   } catch (error) {
-    return res
-      .status(400)
-      .json({ error: "The user exists" });
+    return res.status(400).json({ error: "The user exists" });
   }
 };
 
@@ -37,24 +31,27 @@ const updateUser = async (req, res) => {
     return res.status(400).json({ error: error.message });
   }
 };
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await exec("getUser", { email });
 
-  const correct = await bcrypt.compare(password, user[0].password);
-  if (correct) {
-    let { id, email, username } = user[0];
- 
-    
-   
-    let payload = { id, email,  username };
-    let token = await jwt.sign(payload, process.env.SECRET, {
-      expiresIn: "10000s",
-    });
-    res.status(200).json({ token });
-  } else {
-    res.status(400).json({ error: "The password is not correct" });
+  if (user.length <= 0) {
+    return res.status(400).send({ message: "Incorrect credentials!" });
   }
+
+  const correct = await bcrypt.compare(password, user[0].password);
+
+  if (!correct)
+    return res.status(400).send({ message: "Incorrect credentials!" });
+
+  let token = await jwt.sign({ id: user[0].id }, process.env.SECRET, {
+    expiresIn: "10000s",
+  });
+
+  const {password: p, ...rest} = user[0]
+
+  res.status(200).json({ token, user: rest });
 };
 
 module.exports = {

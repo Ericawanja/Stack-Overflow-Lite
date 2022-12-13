@@ -9,11 +9,11 @@ const getAllQuestions = async (req, res) => {
       return res.status(200).json({ questions });
     } else {
       return res
-        .status(200)
+        .status(404)
         .json({ message: "There are no questions found", questions });
     }
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -41,7 +41,7 @@ const getQuestion = async (req, res) => {
 
   if (question.length === 0) {
     return res
-      .status(400)
+      .status(404)
       .json({ message: "The question does not exist. Check the question id" });
   }
   const answers = await exec("getQuestionAnswers", { id });
@@ -72,7 +72,7 @@ const getQuestion = async (req, res) => {
 };
 
 const postQuestion = async (req, res) => {
-  console.log("ggg");
+  
   const question = req.body;
   const question_id = uuidv4();
   const { id } = req.info;

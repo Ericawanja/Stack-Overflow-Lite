@@ -1,13 +1,20 @@
+require('dotenv').config()
 const express = require("express");
+const cors = require('cors')
 const userRoutes = require("./routes");
 
 const app = express();
-require('dotenv').config()
-
+app.use(cors())
 app.use(express.json());
+
 app.get("/", (req, res) => {
   res.status(200).send("running");
 });
+
 app.use('/user', userRoutes)
 
-app.listen(process.env.PORT || 5001, () => console.log("app running"));
+const PORT = process.env.PORT || 5001;
+app.listen(
+  PORT, 
+  () => console.log(`App running on port ${PORT}`)
+);
