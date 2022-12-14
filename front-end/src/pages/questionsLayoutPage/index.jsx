@@ -10,7 +10,7 @@ import { Navbar } from "../../components";
 function QuestionLayout() {
   const dispatch = useDispatch();
   const [openMenu, setOpenMenu] = useState(true);
-  console.log(openMenu);
+ 
 
   let open_icon = useRef();
   let close_icon = useRef();

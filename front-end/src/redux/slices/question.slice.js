@@ -23,7 +23,7 @@ const questionSlice = createSlice({
       state.error = "";
     });
     builder.addCase(fetchAllQuestions.fulfilled, (state, action) => {
-      console.log(action.payload.questions.questions);
+      
       state.questions = action.payload.questions.questions;
       state.loading = false;
     });

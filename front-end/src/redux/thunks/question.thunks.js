@@ -6,7 +6,7 @@ export const fetchAllQuestions = createAsyncThunk(
   "questions/fetch-all-questions",
   async (_, thunkAPI) => {
     const response = await QuestionService.GetAllQuestions();
-    console.log(response);
+  
     if (response.error) {
       thunkAPI.rejectWithValue({ error: response.error });
     }

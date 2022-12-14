@@ -5,7 +5,7 @@ const initialState = {
   user: {},
   error: "",
   loading: false,
-  registered:false,
+  registered: false,
 };
 
 const userSlice = createSlice({
@@ -20,6 +20,8 @@ const userSlice = createSlice({
     });
     builder.addCase(LogInUser.fulfilled, (state, action) => {
       state.user = action.payload.data;
+      localStorage.setItem("user", JSON.stringify(action.payload.data));
+
       state.loading = false;
     });
     builder.addCase(LogInUser.rejected, (state, action) => {
@@ -30,16 +32,15 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = "";
     });
-    builder.addCase(SignupUser.fulfilled, (state, action)=>{
+    builder.addCase(SignupUser.fulfilled, (state, action) => {
       state.loading = false;
       state.registered = true;
-
-    })
-    builder.addCase(SignupUser.rejected, (state, action)=>{
+    });
+    builder.addCase(SignupUser.rejected, (state, action) => {
       state.loading = false;
-      console.log(action.payload);
-      state.error = action.payload.error
-    })
+     
+      state.error = action.payload.error;
+    });
   },
 });
 

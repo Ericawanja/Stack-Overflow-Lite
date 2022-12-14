@@ -14,7 +14,7 @@ class QuestionService {
     try {
       let url = "http://localhost:5000/questions"
       const token = localStorage.getItem('token')
-   
+
       const config = {
         headers: { Authorization: `Bearer ${token}` }
     };

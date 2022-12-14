@@ -6,8 +6,9 @@ import { QuestionCard, AskQuestionCard } from "../../components";
 
 function QuestionsPage({ list = "all" }) {
   let { questions } = useSelector((state) => state.questions);
+  let currentUser  = JSON.parse(localStorage.getItem('user'))
   
-  let user_name='erica'
+  
   let [page, setPage] = useState("");
   const filteredQuestions = useMemo(() => {
     if (list === "all") {
@@ -17,15 +18,15 @@ function QuestionsPage({ list = "all" }) {
 
     //filter here and return
     setPage("Your Questions");
-    return questions.filter((question) => question.username === user_name);
-  }, [list, questions, user_name]);
+    return questions.filter((question) => question.user_id === currentUser.id);
+  }, [list, questions, currentUser.id]);
 
   return (
     <div className="Qlist-container">
       <div className="list_wrapper">
         <AskQuestionCard pageTitle={page} />
         {filteredQuestions?.map((single_question) => {
-          return <QuestionCard single_question={single_question} />;
+          return <QuestionCard key = {single_question.question_id} single_question={single_question} currentUser={currentUser} />;
         })}
       </div>
     </div>
