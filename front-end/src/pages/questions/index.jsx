@@ -6,7 +6,8 @@ import { QuestionCard, AskQuestionCard } from "../../components";
 
 function QuestionsPage({ list = "all" }) {
   let { questions } = useSelector((state) => state.questions);
-  let user_name = "User Two";
+  
+  let user_name='erica'
   let [page, setPage] = useState("");
   const filteredQuestions = useMemo(() => {
     if (list === "all") {

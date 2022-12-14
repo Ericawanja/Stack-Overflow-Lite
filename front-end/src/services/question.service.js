@@ -1,8 +1,10 @@
 //logic for api calls used in the thunks
 
+import axios from "axios";
 
 
-// import { awaitPromise } from ".";
+
+
 
 class QuestionService {
   BASE_URL = process.env.NODE_ENV === "production" ?"https://my-json-server.typicode.com/Ericawanja/jsonserver/questions":"http://localhost:9090/questions"; 
@@ -10,12 +12,18 @@ class QuestionService {
 
   async GetAllQuestions() {
     try {
-      const response = await fetch(this.BASE_URL);
-      const data = await response.json();    
-      // console.log({data});
-      return { data, error: null };
+      let url = "http://localhost:5000/questions"
+      const token = localStorage.getItem('token')
+   
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+      const response = await axios.get(url,config);
+     
+
+      return {data: response.data, error: null };
     } catch (error) {
-      // console.log({error});
+ 
       return { data: null, error: error.message };
     }
   }

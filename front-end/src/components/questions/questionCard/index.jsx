@@ -3,9 +3,11 @@ import { IconContext } from "react-icons";
 import { AiFillEdit, AiFillDelete,AiOutlineUser } from "react-icons/ai";
 
 function QuestionCard({ single_question }) {
-  let { id, username, title, question, tags, created_on, votes } =
+  console.log(single_question);
+  let { id, username, title, question,  created_on, votes } =
     single_question;
   let sub_string = question.slice(0, 130);
+  let tags = [1,2]
 
   //dummy user
   let user_name = "User Two";
@@ -23,7 +25,7 @@ function QuestionCard({ single_question }) {
         <div className="quiz_list_details">
           <div className="tags">
             {tags.map((tag) => {
-              return <span  >{tag}</span>;
+              return <span  >tag</span>;
             })}
           </div>
           {user_name !== username ? (

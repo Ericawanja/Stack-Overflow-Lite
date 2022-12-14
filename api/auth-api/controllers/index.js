@@ -11,8 +11,8 @@ const signupUser = async (req, res) => {
 
     const id = v4();
     const hashedpassword = await bcrypt.hash(password, 8);
-    const data = { id, username, email, password: hashedpassword };
-    await exec("insertUser", data);
+ 
+    await exec("insertUser", { id, username, email, password: hashedpassword });
     return res.status(201).json({ message: "sucess", error: "" });
   } catch (error) {
     return res.status(400).json({ error: "The user exists" });

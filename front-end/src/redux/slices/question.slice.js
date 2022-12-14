@@ -23,11 +23,12 @@ const questionSlice = createSlice({
       state.error = "";
     });
     builder.addCase(fetchAllQuestions.fulfilled, (state, action) => {
-      state.questions = action.payload.questions;
+      console.log(action.payload.questions.questions);
+      state.questions = action.payload.questions.questions;
       state.loading = false;
     });
     builder.addCase(fetchAllQuestions.rejected, (state, action) => {
-      // console.log(action.payload, 'error');
+      
       state.error = action.payload.error;
       state.loading = false;
     });
