@@ -1,47 +1,39 @@
 import React, { useState, useEffect } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-import Alert from "../../components/common/alert";
-
-import { validate, validateRegister } from "../../utils/validateRegister";
+import { Alert } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { SignupUser } from "../../redux/thunks/user.thunks";
 
 function Signup() {
   const navigate = useNavigate();
-  const [signup_details, setSignup_details] = useState({
+  const dispatch = useDispatch();
+
+  const { loading, error, registered } = useSelector((state) => state.user);
+
+  const [state, setState] = useState({
     username: "",
     email: "",
     password: "",
-    confirm_password: "",
   });
-  let { username, email, password, confirm_password } = signup_details;
 
-  const [alert, setAlert] = useState(false);
-  const [alertMsg, setAlertMsg] = useState("");
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
 
-  const handle_inputs = (event) => {
-    let name = event.target.name;
-    let value = event.target.value;
-    console.log(name, value);
-    setSignup_details({ ...signup_details, [name]: value });
+    setState((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handle_signup = () => {
-    //validation
-    let {message} = validateRegister(signup_details);
+  const handleSignupSubmit = () => {
+    dispatch(SignupUser(state));
+    //return navigate("/login");
+  };
 
-    //
-    return navigate("/login");
-    console.log(message);
-    if (message === "valid") {
-      navigate("/login");
-    } else {
-      setAlert(true);
-      setAlertMsg(message);
-      return;
+  useEffect(() => {
+    if (registered) {
+    navigate("/login")
     }
+  }, [registered]);
 
-    // navigate("/login", { replace: true });
-  };
   return (
     <div className="signup_container">
       <div className="signup_wrapper">
@@ -53,23 +45,22 @@ function Signup() {
             </Link>
           </div>
         </div>
+        {error && <Alert message={error} />}
         <div className="signup_form">
           <label htmlFor="username">Enter your username</label>
           <input
             type="text"
             name="username"
-            value={username}
-            onChange={(e) => handle_inputs(e)}
-            onFocus={() => setAlert(false)}
+            value={state.username}
+            onChange={handleInputChange}
             placeholder="username..."
           />
           <label htmlFor="email">Enter your email</label>
           <input
             type="email"
             name="email"
-            value={email}
-            onChange={(e) => handle_inputs(e)}
-            onFocus={() => setAlert(false)}
+            value={state.email}
+            onChange={handleInputChange}
             placeholder="email..."
           />
 
@@ -77,26 +68,28 @@ function Signup() {
           <input
             type="password"
             name="password"
-            value={password}
-            onChange={(e) => handle_inputs(e)}
-            onFocus={() => setAlert(false)}
+            value={state.password}
+            onChange={handleInputChange}
             placeholder="password..."
           />
 
-          <label htmlFor="confirm_password">Confirm your password</label>
+          {/* <label htmlFor="confirm_password">Confirm your password</label>
           <input
             type="password"
             name="confirm_password"
-            value={confirm_password}
-            onChange={(e) => handle_inputs(e)}
-            onFocus={() => setAlert(false)}
+            value={state.confirm_password}
+            onChange={ handleInputChange}
+         
             placeholder="confirm password..."
-          />
+          /> */}
 
-          {alert && <Alert message= {alertMsg}/>}
           <div className="signup_btn">
-            <button type="button" onClick={handle_signup}>
-              Save
+            <button
+              type="button"
+              disabled={loading}
+              onClick={handleSignupSubmit}
+            >
+              {loading ? "Loading...." : "Sign up"}
             </button>
           </div>
         </div>

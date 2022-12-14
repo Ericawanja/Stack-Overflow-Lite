@@ -25,7 +25,7 @@ function Login() {
 
   useEffect(() => {
     if (user?.id) {
-      navigate("/");
+      navigate("/questions");
     }
   }, [user]);
 

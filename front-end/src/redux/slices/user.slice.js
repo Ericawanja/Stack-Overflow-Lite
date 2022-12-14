@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LogInUser } from "../thunks/user.thunks";
+import { LogInUser, SignupUser } from "../thunks/user.thunks";
 
 const initialState = {
   user: {},
   error: "",
   loading: false,
+  registered:false,
 };
 
 const userSlice = createSlice({
@@ -25,6 +26,20 @@ const userSlice = createSlice({
       state.error = action.payload.error;
       state.loading = false;
     });
+    builder.addCase(SignupUser.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(SignupUser.fulfilled, (state, action)=>{
+      state.loading = false;
+      state.registered = true;
+
+    })
+    builder.addCase(SignupUser.rejected, (state, action)=>{
+      state.loading = false;
+      console.log(action.payload);
+      state.error = action.payload.error
+    })
   },
 });
 

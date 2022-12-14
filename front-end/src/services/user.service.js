@@ -6,8 +6,6 @@ class UserService {
       ? "https://my-json-server.typicode.com/Ericawanja/jsonserver/users"
       : "http://localhost:9090/users";
   async LogInUser(details) {
-    // Make API Call
-    //Return logged in user or error
     try {
       let url = "http://localhost:5001/user/login";
       const { data } = await axios.post(url, details);
@@ -23,9 +21,21 @@ class UserService {
     }
   }
 
-  async RegisterUser() {}
+  async SignupUser(details) {
+    try {
+      let url = "http://localhost:5001/user/signup";
+       const response = await axios.post(url, details);
+       
+       return response;
+     
+    } catch (error) {
+      const message =
+        error?.response?.data?.message ||
+        "Invalid details. Please try again later";
 
-  async GetAllUsers() {}
+      return { data: null, error: message };
+    }
+  }
 }
 
 export default new UserService();

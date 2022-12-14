@@ -6,8 +6,8 @@ const { exec } = require("../helpers/db");
 const signupUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const exists = await exec("getUser", { email });
-    console.log(exists);
+    // const exists = await exec("getUser", { email });
+  
 
     const id = v4();
     const hashedpassword = await bcrypt.hash(password, 8);
