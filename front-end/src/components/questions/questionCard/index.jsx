@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOneQuestions } from "../../../redux/thunks/question.thunks";
+import { useEffect } from "react";
 
 function QuestionCard({ single_question, currentUser }) {
+  let one_question = useSelector((state) => state.questions.question);
   let { question_id, user_id, title, question, tags, created_on, answers } =
     single_question;
   let sub_string = question.slice(0, 130);
@@ -14,15 +18,27 @@ function QuestionCard({ single_question, currentUser }) {
     month: "short",
     day: "numeric",
   });
+  const dispatch = useDispatch();
+  const fetchOneQuestion = () => {
+    dispatch(fetchOneQuestions({ question_id }));
+  };
+ 
+ const navigate = useNavigate()
+  useEffect(() => {
+    if (one_question?.question) {
+      navigate(`/questions/${question_id}`);
+    }
+   
+  }, [one_question]);
 
   return (
     <div className="quiz_list">
       <div className="quiz_list_left">
         <span>{answers} Answers</span>
       </div>
-      <div className="list_middle">
+      <div className="list_middle" onClick={fetchOneQuestion}>
         <div className="quiz_title">
-          <Link to={`/questions/${question_id}`}>{title}</Link>
+          <span>{title}</span>
         </div>
         <div className="quiz_description">{sub_string}...</div>
         <div className="quiz_list_details">

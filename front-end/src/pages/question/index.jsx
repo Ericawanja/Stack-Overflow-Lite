@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { Question, Answers, AddAnswer } from "../../components";
-import { fetchOneQuestions } from "../../redux/thunks/question.thunks";
+
 
 function QuestionPage() {
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const question = useSelector((state) => state.questions.question);
-  let { comments, answers } = question;
 
-  useEffect(() => {
-    dispatch(fetchOneQuestions(id));
-  }, []);
+  const {question} = useSelector((state) => state.questions.question);
+
+  let {  answers } = question;
+console.log(question);
+  
   return (
     <div className="question-container">
       <div className="question_wrapper">

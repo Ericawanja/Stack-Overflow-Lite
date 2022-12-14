@@ -2,47 +2,37 @@
 
 import axios from "axios";
 
-
-
-
-
 class QuestionService {
-  BASE_URL = process.env.NODE_ENV === "production" ?"https://my-json-server.typicode.com/Ericawanja/jsonserver/questions":"http://localhost:9090/questions"; 
+  BASE_URL =
+    process.env.NODE_ENV === "production"
+      ? "https://my-json-server.typicode.com/Ericawanja/jsonserver/questions"
+      : "http://localhost:5000/questions";
 
+  TOKEN = localStorage.getItem("token");
+  config = {
+    headers: { Authorization: `Bearer ${this.TOKEN}` },
+  };
 
   async GetAllQuestions() {
     try {
-      let url = "http://localhost:5000/questions"
-      const token = localStorage.getItem('token')
+      const response = await axios.get(this.BASE_URL, this.config);
 
-      const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
-      const response = await axios.get(url,config);
-     
-
-      return {data: response.data, error: null };
+      return { data: response.data, error: null };
     } catch (error) {
- 
       return { data: null, error: error.message };
     }
   }
 
-  async GetOneQuestion(questionId){
-   
+  async GetOneQuestion({question_id}) {
     try {
-        const response = await fetch(this.BASE_URL+"/"+questionId);
-        const data = await response.json();
-
-        
-  
-        return { data, error: null };
-      } catch (error) {
-        return { data: null, error: error.message };
-      }
+     
+      const response = await axios.get(this.BASE_URL + "/" + question_id, this.config);
+      
+      return { data: response.data, error: null };
+    } catch (error) {
+      return { data: null, error: error.message };
+    }
   }
-
-
 }
 
 export default new QuestionService();

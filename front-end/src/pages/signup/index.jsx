@@ -25,7 +25,7 @@ function Signup() {
 
   const handleSignupSubmit = () => {
     dispatch(SignupUser(state));
-    //return navigate("/login");
+    
   };
 
   useEffect(() => {
