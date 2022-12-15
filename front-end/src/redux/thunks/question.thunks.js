@@ -21,7 +21,7 @@ export const fetchOneQuestions = createAsyncThunk(
   async (questionId, thunkAPI) => {
     
     const response = await QuestionService.GetOneQuestion(questionId);
-   
+   console.log(response);
 
     if (response.error) {
       thunkAPI.rejectWithValue({ error: response.error });

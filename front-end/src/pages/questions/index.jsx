@@ -1,17 +1,15 @@
-import React, { useMemo } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useMemo, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
 import { QuestionCard, AskQuestionCard } from "../../components";
 
 function QuestionsPage({ list = "all" }) {
-  let { questions } = useSelector((state) => state.questions);
-
+  let { questions} = useSelector((state) => state.questions);
   let currentUser = JSON.parse(localStorage.getItem("user"));
-
   let [page, setPage] = useState("");
+
   const filteredQuestions = useMemo(() => {
     if (list === "all") {
       setPage("All Questions");

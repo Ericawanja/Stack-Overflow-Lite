@@ -38,7 +38,7 @@ const questionSlice = createSlice({
     });
 
     builder.addCase(fetchOneQuestions.fulfilled, (state, action) => {
-      
+      console.log(action.payload.question);
       state.question = action.payload.question;
       state.loading = false;
     });
