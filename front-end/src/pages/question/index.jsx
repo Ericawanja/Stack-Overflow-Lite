@@ -7,18 +7,18 @@ import { fetchOneQuestions } from "../../redux/thunks/question.thunks";
 
 function QuestionPage() {
   const dispatch = useDispatch();
-  const { question } = useSelector((state) => state.questions);
-  console.log(question);
+  const { question, loading } = useSelector((state) => state.questions);
+  console.log(question, loading);
   let answers = question?.question?.answers;
   const { id } = useParams();
   console.log(id);
   useEffect(() => {
-    console.log("effect");
+   
     dispatch(fetchOneQuestions({ question_id: id }))
   }, []);
   return (
     <div className="question-container">
-      <div className="question_wrapper">
+      {Object.keys(question).length !==0 && <div className="question_wrapper">
         <Question single_question={question?.question} />
         <div className="answers_container">
           <div className="answers_header">Answers</div>
@@ -31,7 +31,7 @@ function QuestionPage() {
           )}
         </div>
         <AddAnswer />
-      </div>
+      </div> }
     </div>
   );
 }

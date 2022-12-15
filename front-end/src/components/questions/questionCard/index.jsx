@@ -10,12 +10,12 @@ function QuestionCard({ single_question, currentUser }) {
   let sub_string = question.slice(0, 130);
   let tagsArr = tags.split(",");
 
-  let createdOn = new Date(created_on).toLocaleDateString("en-US", {
+  let createdOn = created_on ? new Date(created_on).toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "short",
     day: "numeric",
-  });
+  }) : created_on
   
   const navigate = useNavigate()
   const navigateToQuestion = () => {
