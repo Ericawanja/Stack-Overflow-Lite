@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  createQuestion,
   fetchAllQuestions,
   fetchOneQuestions,
   getUsersQuestions,
@@ -32,6 +33,7 @@ const questionSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(fetchAllQuestions.rejected, (state, action) => {
+      console.log(action.payload.error);
       state.error = action.payload.error;
       state.loading = false;
     });
@@ -75,13 +77,32 @@ const questionSlice = createSlice({
       state.loading = true;
       state.error = "";
     });
-    builder.addCase(getUsersQuestions.fulfilled, (state,action)=>{
-      state.searching = false
-      console.log(action.payload);
+    builder.addCase(getUsersQuestions.fulfilled, (state, action) => {
+      state.searching = false;
+
       state.questions = action.payload.question.questions;
       state.loading = false;
-    })
-
+    });
+    builder.addCase(getUsersQuestions.rejected, (state, action) => {
+      state.error = action.payload.error;
+      state.loading = false;
+    });
+    //POST QUESTION
+    builder.addCase(createQuestion.pending, (state, action) => {
+      state.searching = false;
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(createQuestion.fulfilled, (state, action) => {
+      state.searching = false; //work on this
+      state.loading = false;
+      state.error = "";
+    });
+    builder.addCase(createQuestion.rejected, (state, action) => {
+      
+      state.error = action.payload.error;
+      state.loading = false;
+    });
   },
 });
 

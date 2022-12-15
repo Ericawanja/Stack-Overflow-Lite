@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 import { useSelector } from "react-redux";
 
@@ -11,7 +11,7 @@ function QuestionsPage({ list = "all" }) {
   );
 
   questions = searching ? searchedQuestions : questions;
-  console.log(searching, questions);
+  
   let currentUser = JSON.parse(localStorage.getItem("user"));
   let [page, setPage] = useState("");
 

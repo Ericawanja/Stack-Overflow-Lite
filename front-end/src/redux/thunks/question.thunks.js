@@ -48,11 +48,21 @@ export const getUsersQuestions = createAsyncThunk(
   async (_, thunkAPI) => {
     const response = await QuestionService.GetUserQuestions();
 
-    console.log(response);
     if (response.error) {
       thunkAPI.rejectWithValue({ error: response.error });
     }
     return { question: response.data };
   }
- 
+);
+
+export const createQuestion = createAsyncThunk(
+  "questions/create question",
+  async (questionDetails, thunkAPI) => {
+    const response = await QuestionService.CreateQuestion(questionDetails);
+
+    if (response.error) {
+      return thunkAPI.rejectWithValue({ error: response.error });
+    }
+    return { question: response.data };
+  }
 );

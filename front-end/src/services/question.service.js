@@ -35,26 +35,52 @@ class QuestionService {
       return { data: null, error: error.message };
     }
   }
+
   async GetsearchedQuestions(searchTerm) {
     try {
       const response = await axios.post(
-        this.BASE_URL + "/list/search", 
-        {searchTerm},
+        this.BASE_URL + "/list/search",
+        { searchTerm },
         this.config
       );
-    
+
       return { data: response.data, error: null };
     } catch (error) {
       return { data: null, error: error.message };
     }
   }
-  
-  async GetUserQuestions(){
-    try{
-      const response = await axios.get(this.BASE_URL + "/user/created", this.config)
+
+  async GetUserQuestions() {
+    try {
+      const response = await axios.get(
+        this.BASE_URL + "/user/created",
+        this.config
+      );
       return { data: response.data, error: null };
-    }catch (error) {
+    } catch (error) {
       return { data: null, error: error.message };
+    }
+  }
+
+  async CreateQuestion(questionDetails) {
+    console.log(questionDetails);
+    try {
+      const response = await axios.post(
+        this.BASE_URL,
+        questionDetails,
+        this.config
+      );
+      console.log(response);
+      return { data: response, error: null };
+    } catch (error) {
+      console.log(error?.response?.data?.errors);
+     
+      const message =
+      error?.response?.data?.errors[0] ||
+        "An error occurred. Please try again later";
+
+      return { data: null, error: message };
+     
     }
   }
 }
