@@ -6,7 +6,12 @@ import { useSelector } from "react-redux";
 import { QuestionCard, AskQuestionCard } from "../../components";
 
 function QuestionsPage({ list = "all" }) {
-  let { questions} = useSelector((state) => state.questions);
+  let { questions, searching, searchedQuestions } = useSelector(
+    (state) => state.questions
+  );
+
+  questions = searching ? searchedQuestions : questions;
+  console.log(searching, questions);
   let currentUser = JSON.parse(localStorage.getItem("user"));
   let [page, setPage] = useState("");
 
@@ -20,12 +25,11 @@ function QuestionsPage({ list = "all" }) {
     return questions.filter((question) => question.user_id === currentUser.id);
   }, [list, questions, currentUser.id]);
 
-  
   return (
     <div className="Qlist-container">
       <div className="list_wrapper">
         <AskQuestionCard pageTitle={page} />
-        {filteredQuestions?.map((single_question) => {
+        {questions?.map((single_question) => {
           return (
             <QuestionCard
               key={single_question.question_id}

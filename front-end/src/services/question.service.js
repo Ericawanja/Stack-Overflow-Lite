@@ -23,13 +23,37 @@ class QuestionService {
     }
   }
 
-  async GetOneQuestion({question_id}) {
+  async GetOneQuestion({ question_id }) {
     try {
-     
-      const response = await axios.get(this.BASE_URL + "/" + question_id, this.config);
-      
+      const response = await axios.get(
+        this.BASE_URL + "/" + question_id,
+        this.config
+      );
+
       return { data: response.data, error: null };
     } catch (error) {
+      return { data: null, error: error.message };
+    }
+  }
+  async GetsearchedQuestions(searchTerm) {
+    try {
+      const response = await axios.post(
+        this.BASE_URL + "/list/search", 
+        {searchTerm},
+        this.config
+      );
+    
+      return { data: response.data, error: null };
+    } catch (error) {
+      return { data: null, error: error.message };
+    }
+  }
+  
+  async GetUserQuestions(){
+    try{
+      const response = await axios.get(this.BASE_URL + "/user/created", this.config)
+      return { data: response.data, error: null };
+    }catch (error) {
       return { data: null, error: error.message };
     }
   }

@@ -1,7 +1,11 @@
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-
+import { fetchAllQuestions, getUsersQuestions } from "../../redux/thunks/question.thunks";
 
 export default function Navbar({ close_icon, close_menu }) {
+  const dispatch = useDispatch();
+ 
+
   return (
     <div className="layout_aside_inner" onClick={close_menu}>
       <div className="top_nav_element">
@@ -11,40 +15,20 @@ export default function Navbar({ close_icon, close_menu }) {
         </span>
       </div>
       <div className="quiz_links">
-        <div>
-          <NavLink
-            to="/questions"
-           
-          >
-            All
-          </NavLink>
+        <div  onClick={()=>dispatch(fetchAllQuestions())}>
+          <NavLink to="/questions">All</NavLink>
         </div>
 
-        <div>
-          <NavLink
-            to="users-questions"
-          
-          >
-            My questions
-          </NavLink>
+        <div onClick={()=>dispatch(getUsersQuestions())}>
+          <NavLink to="users-questions">My questions</NavLink>
         </div>
       </div>
 
       <div>
-        <NavLink
-          to="/questions/profile"
-          // className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Profile
-        </NavLink>
+        <NavLink to="/questions/profile">Profile</NavLink>
       </div>
       <div className="layout_logout_side">
-        <NavLink
-          to="/"
-          // className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Log Out
-        </NavLink>
+        <NavLink to="/">Log Out</NavLink>
       </div>
     </div>
   );
