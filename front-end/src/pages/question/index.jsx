@@ -8,30 +8,31 @@ import { fetchOneQuestions } from "../../redux/thunks/question.thunks";
 function QuestionPage() {
   const dispatch = useDispatch();
   const { question, loading } = useSelector((state) => state.questions);
-  console.log(question, loading);
+
   let answers = question?.question?.answers;
   const { id } = useParams();
-  console.log(id);
+ 
   useEffect(() => {
-   
-    dispatch(fetchOneQuestions({ question_id: id }))
+    dispatch(fetchOneQuestions({ question_id: id }));
   }, []);
   return (
     <div className="question-container">
-      {Object.keys(question).length !==0 && <div className="question_wrapper">
-        <Question single_question={question?.question} />
-        <div className="answers_container">
-          <div className="answers_header">Answers</div>
-          {answers?.length > 0 ? (
-            answers.map((answer) => {
-              return <Answers single_answer={answer} />;
-            })
-          ) : (
-            <h6 style={{ textAlign: "center" }}>No answers yet</h6>
-          )}
+      {Object.keys(question).length !== 0 && (
+        <div className="question_wrapper">
+          <Question single_question={question?.question} />
+          <div className="answers_container">
+            <div className="answers_header">Answers</div>
+            {answers?.length > 0 ? (
+              answers.map((answer) => {
+                return <Answers single_answer={answer} />;
+              })
+            ) : (
+              <h6 style={{ textAlign: "center" }}>No answers yet</h6>
+            )}
+          </div>
+          <AddAnswer question_id={id} />
         </div>
-        <AddAnswer />
-      </div> }
+      )}
     </div>
   );
 }

@@ -35,10 +35,10 @@ function QuestionCard({ single_question, currentUser }) {
         <span>{answers} Answers</span>
       </div>
       <div className="list_middle" /*onClick={navigateToQuestion}*/>
-        <div className="quiz_title">
+        <div className="quiz_title" onClick={navigateToQuestion}>
           <span>{title}</span>
         </div>
-        <div className="quiz_description">{sub_string}...</div>
+        <div className="quiz_description" onClick={navigateToQuestion}>{sub_string}...</div>
         <div className="quiz_list_details">
           <div className="tags">
             {tagsArr.map((tag, index) => {

@@ -6,6 +6,7 @@ import {
   fetchAllQuestions,
   fetchOneQuestions,
   getUsersQuestions,
+  postAnswer,
   searchQuestions,
 } from "../thunks/question.thunks";
 
@@ -21,6 +22,7 @@ const initialState = {
   openQForm: false,
   editing: false,
   questionToEdit: {},
+  ansForm: false,
 };
 
 const questionSlice = createSlice({
@@ -47,6 +49,12 @@ const questionSlice = createSlice({
     },
     setIsEditingFalse: (state, action) => {
       state.editing = false;
+    },
+    closeAnsForm: (state, action) => {
+      state.ansForm = false;
+    },
+    openAnsForm: (state, action) => {
+      state.ansForm = true;
     },
   },
   extraReducers: (builder) => {
@@ -122,7 +130,6 @@ const questionSlice = createSlice({
       state.error = "";
     });
     builder.addCase(createQuestion.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.searching = false; //work on this
       state.loading = false;
       state.error = "";
@@ -144,13 +151,12 @@ const questionSlice = createSlice({
       state.loading = false;
       state.feedBack = true;
       state.feedBackMsg = action.payload.message.message;
-      state.openQForm = false
+      state.openQForm = false;
     });
-    builder.addCase(editQuestion.rejected, (state, action)=>{
-      state.error = action.payload.error
-      state.loading = false
-      
-    })
+    builder.addCase(editQuestion.rejected, (state, action) => {
+      state.error = action.payload.error;
+      state.loading = false;
+    });
 
     //DELETE
     builder.addCase(deleteQuestion.pending, (state, action) => {
@@ -170,6 +176,23 @@ const questionSlice = createSlice({
       state.feedBack = true;
       state.feedBackMsg = action.payload.error.message;
     });
+
+    //POST ANSWER
+    builder.addCase(postAnswer.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(postAnswer.fulfilled, (state, action) => {
+      state.loading = false;
+      state.feedBack = true;
+      state.ansForm = false;
+      state.feedBackMsg = action.payload.message;
+      state.error = "";
+    });
+    builder.addCase(postAnswer.rejected, (state, action) => {
+      state.error = action.payload.error;
+      state.loading = false;
+    });
   },
 });
 export const {
@@ -178,5 +201,7 @@ export const {
   closeQUestionForm,
   setIsEditingTrue,
   setIsEditingFalse,
+  openAnsForm,
+  closeAnsForm,
 } = questionSlice.actions;
 export default questionSlice.reducer;

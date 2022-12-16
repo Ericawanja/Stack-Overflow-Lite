@@ -73,9 +73,8 @@ export const editQuestion = createAsyncThunk(
   "questions/edit",
 
   async (details, thunkAPI) => {
-
     const response = await QuestionService.EditQuestion(details);
-  
+
     if (response.error) {
       return thunkAPI.rejectWithValue({ error: response.error });
     }
@@ -96,5 +95,19 @@ export const deleteQuestion = createAsyncThunk(
 
     thunkAPI.dispatch(fetchAllQuestions());
     return { message: response.data };
+  }
+);
+
+export const postAnswer = createAsyncThunk(
+  "questions/ add answer",
+  async (answer, thunkAPI) => {
+    const response = await QuestionService.AddAnswer(answer);
+ 
+    if (response.error) {
+      return thunkAPI.rejectWithValue({ error: response.error.errors[0] });
+    }
+    console.log(answer);
+    thunkAPI.dispatch(fetchOneQuestions({ question_id: answer.question_id }));
+    return { message: response.data.message };
   }
 );

@@ -24,6 +24,7 @@ class QuestionService {
   }
 
   async GetOneQuestion({ question_id }) {
+  
     try {
       const response = await axios.get(
         this.BASE_URL + "/" + question_id,
@@ -80,9 +81,8 @@ class QuestionService {
     }
   }
   async EditQuestion(details) {
-    let {question_id, data} = details
+    let { question_id, data } = details;
     try {
-      
       const response = await axios.put(
         this.BASE_URL + "/" + question_id,
         data,
@@ -107,6 +107,20 @@ class QuestionService {
         this.config
       );
 
+      return { data: response.data, error: null };
+    } catch (error) {
+      return { data: null, error: error.response.data };
+    }
+  }
+  async AddAnswer(answer) {
+    try {
+      const response = await axios.post(
+        this.BASE_URL + "/answer/add",
+        answer,
+        this.config
+      );
+
+      console.log(response);
       return { data: response.data, error: null };
     } catch (error) {
       return { data: null, error: error.response.data };

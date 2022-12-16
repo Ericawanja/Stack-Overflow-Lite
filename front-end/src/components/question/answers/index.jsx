@@ -19,7 +19,7 @@ function Answers({ single_answer }) {
                 <AiOutlineCaretUp />
               </IconContext.Provider>
             </div>
-            <div className="votes">{votes}</div>
+            <div className="votes">0</div>
             <div className="downvote">
               <IconContext.Provider value={{ color: "#100720", size: "42px" }}>
                 <AiFillCaretDown />
