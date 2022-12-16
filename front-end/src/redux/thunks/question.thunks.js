@@ -59,10 +59,10 @@ export const createQuestion = createAsyncThunk(
   "questions/create question",
   async (questionDetails, thunkAPI) => {
     const response = await QuestionService.CreateQuestion(questionDetails);
-
+console.log(response);
     if (response.error) {
       return thunkAPI.rejectWithValue({ error: response.error });
     }
-    return { question: response.data };
+    return { message: response.message };
   }
 );

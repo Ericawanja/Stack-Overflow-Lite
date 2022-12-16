@@ -82,7 +82,7 @@ const postQuestion = async (req, res) => {
     id: question_id,
     user_id: id,
   });
-  res.status(201).json({ message: `You have added the question ` });
+  res.status(201).json({ message: `The question added successfully. Thank you` });
 };
 
 const updateQuestion = async (req, res) => {

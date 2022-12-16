@@ -14,6 +14,9 @@ const initialState = {
   searching: false,
   loading: false,
   error: "",
+  feedBack: false,
+  feedBackMsg: "",
+  openQForm: false,
 };
 
 const questionSlice = createSlice({
@@ -21,6 +24,17 @@ const questionSlice = createSlice({
   initialState,
   reducers: {},
 
+  reducers: {
+    closeFeedbackModal: (state, action) => {
+      state.feedBack = false;
+    },
+    openQUestionForm: (state, action) => {
+      state.openQForm = true;
+    },
+    closeQUestionForm: (state, action) => {
+      state.openQForm = false;
+    },
+  },
   extraReducers: (builder) => {
     // FETCH QUESTIONS CASES
     builder.addCase(fetchAllQuestions.pending, (state, action) => {
@@ -94,16 +108,19 @@ const questionSlice = createSlice({
       state.error = "";
     });
     builder.addCase(createQuestion.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.searching = false; //work on this
       state.loading = false;
       state.error = "";
+      state.feedBack = true;
+      state.feedBackMsg = action.payload.message.message;
+      state.openQForm = false;
     });
     builder.addCase(createQuestion.rejected, (state, action) => {
-      
       state.error = action.payload.error;
       state.loading = false;
     });
   },
 });
-
+export const { closeFeedbackModal, openQUestionForm, closeQUestionForm } = questionSlice.actions;
 export default questionSlice.reducer;

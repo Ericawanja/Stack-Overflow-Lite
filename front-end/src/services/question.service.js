@@ -71,7 +71,7 @@ class QuestionService {
         this.config
       );
       console.log(response);
-      return { data: response, error: null };
+      return { message: response.data, error: null };
     } catch (error) {
       console.log(error?.response?.data?.errors);
      

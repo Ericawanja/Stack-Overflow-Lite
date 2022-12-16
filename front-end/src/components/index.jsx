@@ -1,6 +1,7 @@
 
 export {default as QuestionLayout} from "./common/questionsLayout"
 export {default as Alert} from "./common/alert"
+export {default as FeedbackModal} from "./common/feedbackModal"
 
 //layout nav
 export {default as Navbar} from "./navbar"

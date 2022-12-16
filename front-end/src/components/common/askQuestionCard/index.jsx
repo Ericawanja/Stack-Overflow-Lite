@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { closeQUestionForm, openQUestionForm } from "../../../redux/slices/question.slice";
 import { createQuestion } from "../../../redux/thunks/question.thunks";
 import Alert from "../alert";
 
 export default function AskQuestionCard({ pageTitle }) {
-  const [openQForm, setOpenQForm] = useState(false);
 
+  const { openQForm,error } = useSelector((state) => state.questions);
   const [newQuestion, setQuestion] = useState({
     title: "",
     question: "",
@@ -14,7 +15,8 @@ export default function AskQuestionCard({ pageTitle }) {
 
   const handleClose = () => {
     setQuestion({ title: "", question: "", tags: [] });
-    setOpenQForm(false);
+    dispatch(closeQUestionForm())
+   
   };
 
   const handleInput = (e) => {
@@ -24,21 +26,18 @@ export default function AskQuestionCard({ pageTitle }) {
 
   const dispatch = useDispatch();
   const handleSubmit = () => {
-    console.log(error);
+ 
     dispatch(createQuestion(newQuestion));
-    if (!error) {
-      //handleClose();
-      
-    }
+   
   };
-  const { error } = useSelector((state) => state.questions);
-  console.log(error);
+
+  
 
   return (
     <div>
       <div className="page_title">
         <div className="question_title">{pageTitle}</div>
-        <div className="ask_btn" onClick={() => setOpenQForm(true)}>
+        <div className="ask_btn" onClick={() => dispatch(openQUestionForm())}>
           Ask <span>Question</span>
         </div>
       </div>
