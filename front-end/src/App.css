@@ -453,9 +453,11 @@ a {
 }
 .answer_comment_header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   padding: 20px;
   align-items: center;
+  font-size: .7rem;
 }
 .comment_header:hover {
   border-bottom: 1px solid #100720;

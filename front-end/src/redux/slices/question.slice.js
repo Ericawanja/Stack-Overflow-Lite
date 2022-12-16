@@ -7,6 +7,7 @@ import {
   fetchOneQuestions,
   getUsersQuestions,
   postAnswer,
+  postComment,
   searchQuestions,
 } from "../thunks/question.thunks";
 
@@ -23,6 +24,7 @@ const initialState = {
   editing: false,
   questionToEdit: {},
   ansForm: false,
+  comment: false,
 };
 
 const questionSlice = createSlice({
@@ -55,6 +57,12 @@ const questionSlice = createSlice({
     },
     openAnsForm: (state, action) => {
       state.ansForm = true;
+    },
+    openCommentForm: (state, action) => {
+      state.comment = !state.comment;
+    },
+    closeCommenTForm: (state, action) => {
+      state.comment = false;
     },
   },
   extraReducers: (builder) => {
@@ -193,6 +201,23 @@ const questionSlice = createSlice({
       state.error = action.payload.error;
       state.loading = false;
     });
+
+    //POST COMMENT
+    builder.addCase(postComment.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(postComment.fulfilled, (state, action) => {
+      state.loading = false;
+      state.feedBack = true;
+      state.comment = false;
+      state.feedBackMsg = action.payload.message;
+      state.error = "";
+    });
+    builder.addCase(postComment.rejected, (state, action) => {
+      state.error = action.payload.error;
+      state.loading = false;
+    });
   },
 });
 export const {
@@ -203,5 +228,7 @@ export const {
   setIsEditingFalse,
   openAnsForm,
   closeAnsForm,
+  openCommentForm,
+  closeCommenTForm,
 } = questionSlice.actions;
 export default questionSlice.reducer;

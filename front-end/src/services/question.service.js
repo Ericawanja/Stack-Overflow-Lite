@@ -24,7 +24,6 @@ class QuestionService {
   }
 
   async GetOneQuestion({ question_id }) {
-  
     try {
       const response = await axios.get(
         this.BASE_URL + "/" + question_id,
@@ -120,6 +119,19 @@ class QuestionService {
         this.config
       );
 
+      return { data: response.data, error: null };
+    } catch (error) {
+      return { data: null, error: error.response.data };
+    }
+  }
+
+  async AddComment(comment) {
+    try {
+      const response = await axios.post(
+        this.BASE_URL + "/answer/comment",
+        comment,
+        this.config
+      );
       console.log(response);
       return { data: response.data, error: null };
     } catch (error) {

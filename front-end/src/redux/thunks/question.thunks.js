@@ -102,12 +102,26 @@ export const postAnswer = createAsyncThunk(
   "questions/ add answer",
   async (answer, thunkAPI) => {
     const response = await QuestionService.AddAnswer(answer);
- 
+
     if (response.error) {
       return thunkAPI.rejectWithValue({ error: response.error.errors[0] });
     }
     console.log(answer);
     thunkAPI.dispatch(fetchOneQuestions({ question_id: answer.question_id }));
+    return { message: response.data.message };
+  }
+);
+
+export const postComment = createAsyncThunk(
+  "questions/ add comment",
+  async (param, thunkAPI) => {
+    const response = await QuestionService.AddComment(param.comment);
+    console.log(response);
+    if (response.error) {
+      return thunkAPI.rejectWithValue({ error: response.error.errors[0] });
+    }
+  
+    thunkAPI.dispatch(fetchOneQuestions({ question_id: param.question_id }));
     return { message: response.data.message };
   }
 );
