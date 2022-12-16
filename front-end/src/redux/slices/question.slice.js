@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   createQuestion,
+  deleteQuestion,
   fetchAllQuestions,
   fetchOneQuestions,
   getUsersQuestions,
@@ -120,7 +121,25 @@ const questionSlice = createSlice({
       state.error = action.payload.error;
       state.loading = false;
     });
+
+    builder.addCase(deleteQuestion.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(deleteQuestion.fulfilled, (state, action) => {
+      state.loading = false;
+      state.feedBackMsg = action.payload.message.message;
+      state.feedBack = true;
+      state.error = "";
+    });
+    builder.addCase(deleteQuestion.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error;
+      state.feedBack = true;
+      state.feedBackMsg = action.payload.error.message;
+    });
   },
 });
-export const { closeFeedbackModal, openQUestionForm, closeQUestionForm } = questionSlice.actions;
+export const { closeFeedbackModal, openQUestionForm, closeQUestionForm } =
+  questionSlice.actions;
 export default questionSlice.reducer;

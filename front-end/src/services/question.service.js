@@ -63,24 +63,35 @@ class QuestionService {
   }
 
   async CreateQuestion(questionDetails) {
-    console.log(questionDetails);
     try {
       const response = await axios.post(
         this.BASE_URL,
         questionDetails,
         this.config
       );
-      console.log(response);
+
       return { message: response.data, error: null };
     } catch (error) {
       console.log(error?.response?.data?.errors);
-     
+
       const message =
-      error?.response?.data?.errors[0] ||
+        error?.response?.data?.errors[0] ||
         "An error occurred. Please try again later";
 
       return { data: null, error: message };
-     
+    }
+  }
+
+  async DeleteQuestion(question_id) {
+    try {
+      const response = await axios.delete(
+        this.BASE_URL + "/" + question_id,
+        this.config
+      );
+
+      return { data: response.data, error: null };
+    } catch (error) {
+      return { data: null, error: error.response.data };
     }
   }
 }

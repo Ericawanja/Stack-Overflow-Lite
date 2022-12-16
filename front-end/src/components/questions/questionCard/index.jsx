@@ -2,9 +2,10 @@ import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { fetchOneQuestions } from "../../../redux/thunks/question.thunks";
+import { deleteQuestion, fetchOneQuestions } from "../../../redux/thunks/question.thunks";
 
 function QuestionCard({ single_question, currentUser }) {
+  const dispatch = useDispatch()
   let { question_id, user_id, title, question, tags, created_on, answers } =
     single_question;
   let sub_string = question.slice(0, 130);
@@ -27,7 +28,7 @@ function QuestionCard({ single_question, currentUser }) {
       <div className="quiz_list_left">
         <span>{answers} Answers</span>
       </div>
-      <div className="list_middle" onClick={navigateToQuestion}>
+      <div className="list_middle" /*onClick={navigateToQuestion}*/>
         <div className="quiz_title">
           <span>{title}</span>
         </div>
@@ -54,7 +55,7 @@ function QuestionCard({ single_question, currentUser }) {
                   <span className="edit">
                     <AiFillEdit style={{ fontSize: "16px" }} />
                   </span>
-                  <span className="delete">
+                  <span className="delete" onClick={()=>dispatch(deleteQuestion(question_id))}>
                     <AiFillDelete style={{ fontSize: "16px" }} />
                   </span>
                 </span>
