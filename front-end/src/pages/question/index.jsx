@@ -24,7 +24,7 @@ function QuestionPage() {
             <div className="answers_header">Answers</div>
             {answers?.length > 0 ? (
               answers.map((answer) => {
-                return <Answers single_answer={answer} />;
+                return <Answers single_answer={answer}  key={answer.id}/>;
               })
             ) : (
               <h6 style={{ textAlign: "center" }}>No answers yet</h6>
