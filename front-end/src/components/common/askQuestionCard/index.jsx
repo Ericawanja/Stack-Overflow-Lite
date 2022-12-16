@@ -1,38 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeQUestionForm, openQUestionForm } from "../../../redux/slices/question.slice";
-import { createQuestion } from "../../../redux/thunks/question.thunks";
+import {
+  closeQUestionForm,
+  openQUestionForm,
+} from "../../../redux/slices/question.slice";
+import {
+  createQuestion,
+  editQuestion,
+} from "../../../redux/thunks/question.thunks";
 import Alert from "../alert";
 
 export default function AskQuestionCard({ pageTitle }) {
+  const dispatch = useDispatch();
+  const { openQForm, error, editing, questionToEdit, loading } = useSelector(
+    (state) => state.questions
+  );
 
-  const { openQForm,error } = useSelector((state) => state.questions);
   const [newQuestion, setQuestion] = useState({
     title: "",
     question: "",
     tags: "",
   });
+  console.log({ newQuestion });
 
   const handleClose = () => {
-    setQuestion({ title: "", question: "", tags: [] });
-    dispatch(closeQUestionForm())
-   
+    setQuestion({ title: "", question: "", tags: "" });
+    dispatch(closeQUestionForm());
   };
 
   const handleInput = (e) => {
     let { name, value } = e.target;
+    console.log(name, value);
     setQuestion({ ...newQuestion, [name]: value });
   };
 
-  const dispatch = useDispatch();
   const handleSubmit = () => {
- 
-    dispatch(createQuestion(newQuestion));
-   
+    if (!editing) {
+      return dispatch(createQuestion(newQuestion));
+    } else {
+      return dispatch(
+        editQuestion({
+          question_id: questionToEdit.question_id,
+          data: newQuestion,
+        })
+      );
+    }
   };
-
-  
-
+  useEffect(() => {
+    if (editing) {
+      setQuestion({
+        title: questionToEdit.title,
+        question: questionToEdit.question,
+        tags: questionToEdit.tags,
+      });
+    }
+  }, [questionToEdit]);
   return (
     <div>
       <div className="page_title">
@@ -77,10 +99,14 @@ export default function AskQuestionCard({ pageTitle }) {
               {error && <Alert message={error} />}
               <div className="Q-form_btns">
                 <div className="cancel">
-                  <button onClick={() => handleClose()}>Cancel</button>
+                  <button disabled={loading} onClick={() => handleClose()}>
+                    Cancel
+                  </button>
                 </div>
                 <div className="save">
-                  <button onClick={() => handleSubmit()}>Save</button>
+                  <button disabled={loading} onClick={() => handleSubmit()}>
+                    Save
+                  </button>
                 </div>
               </div>
             </div>

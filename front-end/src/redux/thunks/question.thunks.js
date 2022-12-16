@@ -69,6 +69,20 @@ export const createQuestion = createAsyncThunk(
 );
 
 //edit question
+export const editQuestion = createAsyncThunk(
+  "questions/edit",
+
+  async (details, thunkAPI) => {
+
+    const response = await QuestionService.EditQuestion(details);
+  
+    if (response.error) {
+      return thunkAPI.rejectWithValue({ error: response.error });
+    }
+    thunkAPI.dispatch(fetchAllQuestions());
+    return { message: response.message };
+  }
+);
 
 //delete question
 export const deleteQuestion = createAsyncThunk(

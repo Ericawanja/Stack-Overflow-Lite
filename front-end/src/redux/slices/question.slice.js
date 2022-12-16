@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   createQuestion,
   deleteQuestion,
+  editQuestion,
   fetchAllQuestions,
   fetchOneQuestions,
   getUsersQuestions,
@@ -18,6 +19,8 @@ const initialState = {
   feedBack: false,
   feedBackMsg: "",
   openQForm: false,
+  editing: false,
+  questionToEdit: {},
 };
 
 const questionSlice = createSlice({
@@ -34,6 +37,16 @@ const questionSlice = createSlice({
     },
     closeQUestionForm: (state, action) => {
       state.openQForm = false;
+      state.error = "";
+      state.questionToEdit = {};
+    },
+    setIsEditingTrue: (state, action) => {
+      state.editing = true;
+      state.openQForm = true;
+      state.questionToEdit = action.payload;
+    },
+    setIsEditingFalse: (state, action) => {
+      state.editing = false;
     },
   },
   extraReducers: (builder) => {
@@ -121,7 +134,25 @@ const questionSlice = createSlice({
       state.error = action.payload.error;
       state.loading = false;
     });
+    builder.addCase(editQuestion.pending, (state, action) => {
+      state.error = "";
+      state.loading = true;
+    });
+    builder.addCase(editQuestion.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.error = "";
+      state.loading = false;
+      state.feedBack = true;
+      state.feedBackMsg = action.payload.message.message;
+      state.openQForm = false
+    });
+    builder.addCase(editQuestion.rejected, (state, action)=>{
+      state.error = action.payload.error
+      state.loading = false
+      
+    })
 
+    //DELETE
     builder.addCase(deleteQuestion.pending, (state, action) => {
       state.loading = true;
       state.error = "";
@@ -133,6 +164,7 @@ const questionSlice = createSlice({
       state.error = "";
     });
     builder.addCase(deleteQuestion.rejected, (state, action) => {
+      console.log(action.payload);
       state.loading = false;
       state.error = action.payload.error;
       state.feedBack = true;
@@ -140,6 +172,11 @@ const questionSlice = createSlice({
     });
   },
 });
-export const { closeFeedbackModal, openQUestionForm, closeQUestionForm } =
-  questionSlice.actions;
+export const {
+  closeFeedbackModal,
+  openQUestionForm,
+  closeQUestionForm,
+  setIsEditingTrue,
+  setIsEditingFalse,
+} = questionSlice.actions;
 export default questionSlice.reducer;

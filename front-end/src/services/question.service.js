@@ -72,8 +72,26 @@ class QuestionService {
 
       return { message: response.data, error: null };
     } catch (error) {
-      console.log(error?.response?.data?.errors);
+      const message =
+        error?.response?.data?.errors[0] ||
+        "An error occurred. Please try again later";
 
+      return { data: null, error: message };
+    }
+  }
+  async EditQuestion(details) {
+    let {question_id, data} = details
+    try {
+      
+      const response = await axios.put(
+        this.BASE_URL + "/" + question_id,
+        data,
+        this.config
+      );
+
+      return { message: response.data, error: null };
+    } catch (error) {
+      console.log(details.data);
       const message =
         error?.response?.data?.errors[0] ||
         "An error occurred. Please try again later";
