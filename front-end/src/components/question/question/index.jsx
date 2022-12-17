@@ -24,19 +24,7 @@ function Question({single_question}) {
         </div>
       </div>
       <div className="question_description">
-        <div className="question_votes">
-          <div className="upvote">
-            <IconContext.Provider value={{ color: "#100720", size: "42px" }}>
-              <AiOutlineCaretUp />
-            </IconContext.Provider>
-          </div>
-          <div className="votes">{votes}</div>
-          <div className="downvote">
-            <IconContext.Provider value={{ color: "#100720", size: "42px" }}>
-              <AiFillCaretDown />
-            </IconContext.Provider>
-          </div>
-        </div>
+       
         <div className="question_text">
           {question}
         </div>

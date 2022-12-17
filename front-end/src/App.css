@@ -228,7 +228,7 @@ a {
   }
 }
 
-.alertModal{
+.alertModal {
   width: 100%;
   height: 60px;
   display: flex;
@@ -236,18 +236,17 @@ a {
   justify-content: center;
   align-items: center;
   color: rgb(255, 255, 255);
-  background-color: rgba(16, 7, 32, .4);
-  border-bottom:2px solid #100720;
-   border-top:2px solid #100720;
+  background-color: rgba(16, 7, 32, 0.4);
+  border-bottom: 2px solid #100720;
+  border-top: 2px solid #100720;
 }
-.alertModalClose{
+.alertModalClose {
   font-weight: 900;
   font-size: 1.3rem;
   border: 1px solid #100720;
   padding: 0px 5px;
   border-radius: 5px;
   cursor: pointer;
-  
 }
 /*********************QUESTIONS LAYOUT COMPONENT****************************/
 .layout_wrapper {
@@ -353,7 +352,6 @@ a {
 }
 .quiz_list:hover {
   background-color: rgba(242, 242, 242, 0.6);
-  
 }
 .quiz_list_left {
   display: flex;
@@ -405,7 +403,7 @@ a {
   gap: 4px;
   align-items: center;
 }
-.author_btns span{
+.author_btns span {
   cursor: pointer;
 }
 
@@ -423,41 +421,54 @@ a {
 .question_creation_details div {
   padding: 10px;
 }
-.question_description,
+.question_description {
+  border-left: 15px solid #b6b4ba;
+  border-bottom-left-radius: 4px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+}
+.question_text {
+  padding: 10px;
+}
 .answer_body {
   display: grid;
   grid-template-columns: 10% 90%;
 }
-.question_text,
+
 .answer_text {
-  padding: 10px;
-  margin: auto;
+  margin: auto 10px;
 }
 
-.question_votes,
 .answer_votes {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .answers_header {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.8;
   margin: 10px;
 }
-
+.upvote,
+.downvote {
+  cursor: pointer;
+}
 /******Answer comment*******/
 .answers_list {
-  border-bottom: 1px solid rgba(41, 41, 41, 0.3);
+  border-bottom: 1px solid rgba(209, 206, 206, 0.2);
 }
 .answer_comment_header {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-  align-items: center;
-  font-size: .7rem;
+
+  padding: 5px;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+.commentsList ul li {
+  font-size: 0.8rem;
+  padding: 3px 0;
 }
 .comment_header:hover {
   border-bottom: 1px solid #100720;
@@ -480,9 +491,8 @@ a {
   cursor: pointer;
 }
 .answer_comment {
-  padding: 20px 100px;
+  padding: 20px 60px;
   font-size: 0.9rem;
-  border-top: 1px solid rgba(128, 128, 128, 0.1);
 }
 
 /**********ADD COMMENT*********/
@@ -490,9 +500,11 @@ a {
   margin: 30px;
 }
 .form_answer_container h3 {
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 500;
   line-height: 2;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 textarea {
@@ -500,11 +512,16 @@ textarea {
 
   padding: 5px;
 }
+.answer_save_btn {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 .answer_save_btn button {
   outline: none;
   border: none;
   background-color: #100720;
-  padding: 15px;
+  padding: 8px;
   color: aliceblue;
   font-size: 1.2rem;
   margin: 30px 0px;

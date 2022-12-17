@@ -18,7 +18,7 @@ function AddAnswer({ question_id }) {
   };
   return (
     <div className="form_answer_container">
-      <h3 onClick={()=> dispatch(openAnsForm())}>Add a answer</h3>
+      <h3 onClick={()=> dispatch(openAnsForm())}>Add answer</h3>
       {error && <Alert message= {error}/>}
      { ansForm &&<>
       <div className="answer_form">
@@ -33,7 +33,7 @@ function AddAnswer({ question_id }) {
         ></textarea>
       </div>
       <div className="answer_save_btn">
-        <button onClick={()=>dispatch(closeAnsForm())}>Close</button>
+        <button onClick={()=>dispatch(closeAnsForm())}>Cancel</button>
         <button onClick={() => handleAnswerSubmit()}>save</button>
       </div>
       </>}

@@ -29,16 +29,22 @@ function Answers({ single_answer }) {
         <div className="answer_body">
           <div className="answer_votes">
             <div className="upvote">
-              <IconContext.Provider value={{ color: "#100720", size: "42px" }}>
+              <IconContext.Provider value={{ color: "#100720", size: "24px" }}>
                 <AiOutlineCaretUp />
               </IconContext.Provider>
             </div>
-            <div className="votes">0</div>
+            <div className="votes">100</div>
             <div className="downvote">
-              <IconContext.Provider value={{ color: "#100720", size: "42px" }}>
+              <IconContext.Provider value={{ color: "#100720", size: "24px" }}>
                 <AiFillCaretDown />
               </IconContext.Provider>
             </div>
+            <div className="downvote">
+              <IconContext.Provider value={{ color: "#100720", size: "24px" }}>
+                <AiFillCaretDown />
+              </IconContext.Provider>
+            </div>
+           
           </div>
           <div className="answer_text">{answer}</div>
         </div>

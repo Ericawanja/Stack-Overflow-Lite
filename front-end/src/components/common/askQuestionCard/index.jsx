@@ -21,7 +21,7 @@ export default function AskQuestionCard({ pageTitle }) {
     question: "",
     tags: "",
   });
-  console.log({ newQuestion });
+ 
 
   const handleClose = () => {
     setQuestion({ title: "", question: "", tags: "" });
