@@ -79,6 +79,7 @@ class QuestionService {
       return { data: null, error: message };
     }
   }
+
   async EditQuestion(details) {
     let { question_id, data } = details;
     try {
@@ -160,7 +161,32 @@ class QuestionService {
     
       return { data: response.data, error: null };
     } catch (error){
-      console.log(error);
+    
+      return { data: null, error: error.response.data };
+    }
+  }
+  async VoteAnswer(details) {
+    try {
+
+      let answerId = {answer_id:details.answer_id}
+      let response;
+      if (details.status === "upvote") {
+        response = await axios.post(
+          this.BASE_URL + "/answer/upvote",
+          answerId,
+          this.config
+        );
+      } else {
+        response = await axios.post(
+          this.BASE_URL + "/answer/downvote",
+          answerId,
+          this.config
+        );
+      }
+    
+      return { data: response.data, error: null };
+    } catch (error){
+    
       return { data: null, error: error.response.data };
     }
   }

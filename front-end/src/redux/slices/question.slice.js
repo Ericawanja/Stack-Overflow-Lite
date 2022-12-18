@@ -10,6 +10,7 @@ import {
   postComment,
   preferAnswer,
   searchQuestions,
+  voteAnswer,
 } from "../thunks/question.thunks";
 
 const initialState = {
@@ -239,6 +240,26 @@ const questionSlice = createSlice({
       state.feedBack = true;
       state.feedBackMsg = action.payload.error.message;
     });
+    // Vote answer
+
+    builder.addCase(voteAnswer.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(voteAnswer.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = "";
+      state.feedBack = true;
+      state.feedBackMsg = action.payload.message;
+    });
+    builder.addCase(voteAnswer.rejected, (state, action) => {
+    
+      state.loading = false;
+      state.error = action.payload.error.message;
+      state.feedBack = true;
+      state.feedBackMsg = action.payload.error.message;
+    });
+
   },
 });
 export const {

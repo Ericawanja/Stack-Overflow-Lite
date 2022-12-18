@@ -332,7 +332,7 @@ const upvote = async (req, res) => {
     }
     if (has_voted[0].votes === 1) {
       return res
-        .status(404)
+        .status(400)
         .json({ message: "You previously upvoted this answer" });
     }
     if (has_voted[0].votes === -1) {
@@ -373,7 +373,7 @@ const downvote = async (req, res) => {
     }
     if (has_voted[0].votes === -1) {
       return res
-        .status(404)
+        .status(400)
         .json({ message: "You previously downvoted this answer" });
     }
     if (has_voted[0].votes === 1) {

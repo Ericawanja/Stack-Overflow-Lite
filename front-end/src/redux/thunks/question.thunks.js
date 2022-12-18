@@ -138,3 +138,16 @@ export const preferAnswer = createAsyncThunk(
     return { message: response.data.message };
   }
 );
+
+export const voteAnswer = createAsyncThunk(
+  "questions/ vote answer",
+  async (details, thunkAPI) => {
+    const response = await QuestionService.VoteAnswer(details);
+
+    if (response.error) {
+      return thunkAPI.rejectWithValue({ error: response.error});
+    }
+    thunkAPI.dispatch(fetchOneQuestions({ question_id: details.question_id }));
+    return { message: response.data.message };
+  }
+);

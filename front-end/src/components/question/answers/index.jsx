@@ -15,6 +15,7 @@ import { openCommentForm } from "../../../redux/slices/question.slice";
 import {
   postComment,
   preferAnswer,
+  voteAnswer,
 } from "../../../redux/thunks/question.thunks";
 import Comment from "../comment";
 
@@ -44,6 +45,16 @@ function Answers({ single_answer }) {
       })
     );
   };
+  const handleVoting = (status)=>{
+    dispatch(
+      voteAnswer({
+        status,
+        answer_id: single_answer.id,
+        question_id: id,
+      })
+    );
+    
+  }
 
   return (
     <div className="answers_list">
@@ -53,13 +64,13 @@ function Answers({ single_answer }) {
             {single_answer.preferred && (
               <div className="preferred">preferred</div>
             )}
-            <div className="upvote">
+            <div className="upvote" onClick={()=> handleVoting('upvote')}>
               <IconContext.Provider value={{ color: "#c2bfba", size: "32px" }}>
                 <AiOutlineCaretUp />
               </IconContext.Provider>
             </div>
             <div className="votes">{votes}</div>
-            <div className="downvote">
+            <div className="downvote" onClick={()=> handleVoting('downvote')}>
               <IconContext.Provider value={{ color: "#c2bfba", size: "32px" }}>
                 <AiFillCaretDown />
               </IconContext.Provider>
