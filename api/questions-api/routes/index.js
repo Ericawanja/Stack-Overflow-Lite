@@ -21,6 +21,8 @@ const {
   search,
 
   downvote,
+  getUserComments,
+  getUserAnswers,
 } = require("../controllers");
 const validateQuestion = require("../middlewares/validateQuestions");
 const validateAnswer = require("../middlewares/validateAnswer");
@@ -47,5 +49,8 @@ router.post("/list/search", verifyUser, search);
 
 router.post("/answer/upvote", verifyUser, upvote);
 router.post("/answer/downvote", verifyUser, downvote);
+
+router.get("/user/answers", verifyUser, getUserAnswers);
+router.get("/user/comments", verifyUser, getUserComments);
 
 module.exports = router;

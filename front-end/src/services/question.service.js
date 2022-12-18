@@ -199,6 +199,31 @@ class QuestionService {
       return { data: null, error: error.message };
     }
   }
+  async GetUserComments() {
+    try {
+      const response = await axios.get(
+        this.BASE_URL + "/user/comments",
+        this.config
+      );
+
+      return { data: response.data, error: null };
+    } catch (error) {
+      return { data: null, error: error.message };
+    }
+  }
+
+  async GetUserAnswers() {
+    try {
+      const response = await axios.get(
+        this.BASE_URL + "/user/answers",
+        this.config
+      );
+
+      return { data: response.data, error: null };
+    } catch (error) {
+      return { data: null, error: error.message };
+    }
+  }
 }
 
 export default new QuestionService();

@@ -330,7 +330,8 @@ a {
 }
 .order{
   cursor: pointer;
-  font-size: .95rem;
+  font-size: .8rem;
+  padding: 4px;
 }
 
 /************************Question list design***************************/

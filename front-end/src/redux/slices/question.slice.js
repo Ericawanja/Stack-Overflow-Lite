@@ -5,6 +5,8 @@ import {
   editQuestion,
   fetchAllQuestions,
   fetchOneQuestions,
+  getUserAnswers,
+  getUserComments,
   getUsersQuestions,
   orderByAnswers,
   postAnswer,
@@ -28,6 +30,9 @@ const initialState = {
   questionToEdit: {},
   ansForm: false,
   comment: false,
+
+  userComments: [],
+  userAnswers:[]
 };
 
 const questionSlice = createSlice({
@@ -270,6 +275,40 @@ const questionSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(orderByAnswers.rejected, (state, action) => {
+  
+      state.error = action.payload.error;
+      state.loading = false;
+    });
+
+    //user answers
+    builder.addCase(getUserAnswers.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+      state.searching = false;
+    });
+    builder.addCase(getUserAnswers.fulfilled, (state, action) => {
+     
+      state.userAnswers = action.payload.answers;
+      state.loading = false;
+    });
+    builder.addCase(getUserAnswers.rejected, (state, action) => {
+  
+      state.error = action.payload.error;
+      state.loading = false;
+    });
+
+    //user comments
+    builder.addCase(getUserComments.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+      state.searching = false;
+    });
+    builder.addCase(getUserComments.fulfilled, (state, action) => {
+     
+      state.userComments = action.payload.comments;
+      state.loading = false;
+    });
+    builder.addCase(getUserComments.rejected, (state, action) => {
   
       state.error = action.payload.error;
       state.loading = false;

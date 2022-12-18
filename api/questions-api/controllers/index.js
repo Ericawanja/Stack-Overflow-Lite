@@ -345,8 +345,6 @@ const upvote = async (req, res) => {
         .status(200)
         .json({ message: "You have successfully upvoted the answer" });
     }
-
-  
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -386,13 +384,10 @@ const downvote = async (req, res) => {
         .status(200)
         .json({ message: "You have successfully downvoted the answer" });
     }
-
-  
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
-
 
 const getQuestionWithMostAnswers = async (req, res) => {
   try {
@@ -430,7 +425,25 @@ const search = async (req, res) => {
   }
 };
 
+const getUserComments = async (req, res) => {
+  const user = req.info;
+  try {
+    const comments = await exec("getUserComments", { user_id: user.id });
+    return res.status(200).json(comments);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
 
+const getUserAnswers = async (req, res) => {
+  const user = req.info;
+  try {
+    const answers = await exec("getUserAnswers", { user_id: user.id });
+    return res.status(200).json(answers);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
 
 module.exports = {
   getAllQuestions,
@@ -454,5 +467,6 @@ module.exports = {
   getQuestionWithMostAnswers,
   search,
 
-  
+  getUserAnswers,
+  getUserComments,
 };

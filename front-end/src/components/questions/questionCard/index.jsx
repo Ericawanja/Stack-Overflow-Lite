@@ -8,7 +8,7 @@ import {
   fetchOneQuestions,
 } from "../../../redux/thunks/question.thunks";
 
-function QuestionCard({ single_question, currentUser }) {
+function QuestionCard({ single_question, currentUser ={} }) {
   const dispatch = useDispatch();
   let { question_id, user_id, title, question, tags, created_on, answers } =
     single_question;
@@ -45,7 +45,7 @@ function QuestionCard({ single_question, currentUser }) {
               return <span key={index}>{tag}</span>;
             })}
           </div>
-          {currentUser.id !== user_id ? (
+          {currentUser?.id !== user_id ? (
             <div className="quiz_creation_details">
               <span className="author">
                 {/* <AiOutlineUser style={{ fontSize: "16px" }} />

@@ -9,8 +9,6 @@ import {
 export default function Navbar({ close_menu }) {
   const dispatch = useDispatch();
 
- 
-
   return (
     <div className="layout_aside_inner">
       <div className="top_nav_element">
@@ -24,15 +22,12 @@ export default function Navbar({ close_menu }) {
         <div onClick={() => dispatch(fetchAllQuestions())}>
           <NavLink to="/questions">All</NavLink>
         </div>
+        <div className="order" onClick={() => dispatch(orderByAnswers())}>
+          <NavLink to="/questions">order By answers</NavLink>
+        </div>
 
         <div onClick={() => dispatch(getUsersQuestions())}>
           <NavLink to="users-questions">My questions</NavLink>
-        </div>
-        <div
-          className="order"
-          onClick={() => dispatch(orderByAnswers())}
-        >
-          <NavLink to="/questions">order By answers</NavLink>
         </div>
       </div>
 
