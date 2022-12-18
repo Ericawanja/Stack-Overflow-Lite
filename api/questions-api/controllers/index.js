@@ -19,9 +19,9 @@ const getAllQuestions = async (req, res) => {
 
 const getUserQuestions = async (req, res) => {
   let { user_id } = req.params;
-  let user = req.info
+  let user = req.info;
   try {
-    const questions = await exec("getAllQuestions", { user_id : user.id });
+    const questions = await exec("getAllQuestions", { user_id: user.id });
     if (questions.length > 0) {
       res.status(200).json({ questions });
     } else {
@@ -50,16 +50,21 @@ const getQuestion = async (req, res) => {
     answers.map(async (answer) => {
       let id = answer.id;
       let comments = await exec("getAnswerComments", { id });
-      let downvotes = await exec("getAnswerDownvotes", { answer_id: id });
-      let downvotes_value = downvotes.length > 0 ? downvotes[0].downvotes : 0;
-      let upvotes = await exec("getAnswerUpvotes", { answer_id: id });
+      let votes = await exec("getVotes", { answer_id: id });
+      let totalVotes = 0;
+      if (votes.length === 0) {
+        totalVotes = 0;
+      } else {
+        for (let i = 0; i < votes.length; i++) {
+          totalVotes = totalVotes + votes[i].votes;
+        }
+      }
 
-      let upvotes_value = upvotes.length > 0 ? upvotes[0].upvotes : 0;
+     
 
       let data = {
         ...answer,
-        downvotes: downvotes_value,
-        upvotes: upvotes_value,
+        votes: totalVotes,
         comments,
       };
       return data;
@@ -72,7 +77,6 @@ const getQuestion = async (req, res) => {
 };
 
 const postQuestion = async (req, res) => {
-  
   const question = req.body;
   const question_id = uuidv4();
   const { id } = req.info;
@@ -82,7 +86,9 @@ const postQuestion = async (req, res) => {
     id: question_id,
     user_id: id,
   });
-  res.status(201).json({ message: `The question added successfully. Thank you` });
+  res
+    .status(201)
+    .json({ message: `The question added successfully. Thank you` });
 };
 
 const updateQuestion = async (req, res) => {
@@ -180,17 +186,16 @@ const setPrefferedAnswer = async (req, res) => {
     const user = req.info;
     let questionDb = await exec("getOneQuestion", { id: ans[0].question_id });
 
-    if (questionDb.length === 0 ) {
+    if (questionDb.length === 0) {
       return res.status(401).json({
-        message:
-          "Invalid operation",
+        message: "Invalid operation",
       });
     }
-      if (questionDb[0].user_id !== user.id) {
-        return res.status(401).json({
-          message:
-            "You cannot set this answer as preferred since you are not the author",
-        });
+    if (questionDb[0].user_id !== user.id) {
+      return res.status(401).json({
+        message:
+          "You cannot set this answer as preferred since you are not the author",
+      });
     }
     try {
       await exec("updatePreferredAnswer", { id });
@@ -450,7 +455,7 @@ module.exports = {
   deleteAnswer,
 
   addComment,
-  deleteComment, 
+  deleteComment,
 
   upvote,
   downVote,
