@@ -60,8 +60,6 @@ const getQuestion = async (req, res) => {
         }
       }
 
-     
-
       let data = {
         ...answer,
         votes: totalVotes,
@@ -314,41 +312,87 @@ const deleteComment = async (req, res) => {
 };
 
 const upvote = async (req, res) => {
+  const user = req.info;
   const { answer_id } = req.body;
 
   try {
-    const votes = await exec("getVotes", { answer_id });
-    let vote_value = votes.length > 0 ? votes[0].votes : 0;
+    let has_voted = await exec("userVotes", {
+      user_id: user.id,
+      answer_id,
+    });
+    if (has_voted.length === 0) {
+      await exec("insertVotes", {
+        user_id: user.id,
+        answer_id,
+        vote: 1,
+      });
+      return res
+        .status(200)
+        .json({ message: "You have successfully upvoted the answer" });
+    }
+    if (has_voted[0].votes === 1) {
+      return res
+        .status(404)
+        .json({ message: "You previously upvoted this answer" });
+    }
+    if (has_voted[0].votes === -1) {
+      await exec("updateVotes", {
+        user_id: user.id,
+        answer_id,
+        vote: 1,
+      });
+      return res
+        .status(200)
+        .json({ message: "You have successfully upvoted the answer" });
+    }
 
-    let new_value = +vote_value + 1;
-    console.log(new_value);
-    await exec("insertOrUpdateVotes", { answer_id, votes: new_value });
-    res
-      .status(200)
-      .json({ message: "You have succesfully upvoted the answer" });
+  
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
 
-const downVote = async (req, res) => {
+const downvote = async (req, res) => {
+  const user = req.info;
   const { answer_id } = req.body;
 
   try {
-    const votes = await exec("getVotes", { answer_id });
+    let has_voted = await exec("userVotes", {
+      user_id: user.id,
+      answer_id,
+    });
+    if (has_voted.length === 0) {
+      await exec("insertVotes", {
+        user_id: user.id,
+        answer_id,
+        vote: -1,
+      });
+      return res
+        .status(200)
+        .json({ message: "You have successfully downvoted the answer" });
+    }
+    if (has_voted[0].votes === -1) {
+      return res
+        .status(404)
+        .json({ message: "You previously downvoted this answer" });
+    }
+    if (has_voted[0].votes === 1) {
+      await exec("updateVotes", {
+        user_id: user.id,
+        answer_id,
+        vote: -1,
+      });
+      return res
+        .status(200)
+        .json({ message: "You have successfully downvoted the answer" });
+    }
 
-    let vote_value = votes.length > 0 ? votes[0].votes : 0;
-
-    let new_value = +vote_value - 1;
-    console.log(new_value);
-    await exec("insertOrUpdateVotes", { answer_id, votes: new_value });
-    res
-      .status(200)
-      .json({ message: "You have succesfully downvoted the answer" });
+  
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
+
 
 const getQuestionWithMostAnswers = async (req, res) => {
   try {
@@ -386,61 +430,8 @@ const search = async (req, res) => {
   }
 };
 
-const _upvote = async (req, res) => {
-  const user = req.info;
-  const { answer_id } = req.body;
 
-  try {
-    let has_voted = await exec("userUpvoted", { user_id: user.id, answer_id });
-    if (has_voted.length !== 0) {
-      return res
-        .status(400)
-        .json({ message: "You have already upvoted the answer" });
-    } else {
-      await exec("insertOrUpdateAnswerVotes", {
-        user_id: user.id,
-        answer_id,
-        upvote: 1,
-        downvote: 0,
-      });
-      return res
-        .status(200)
-        .json({ message: "You have successfully upvoted the answer" });
-    }
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
-  }
-};
 
-const _downvote = async (req, res) => {
-  const user = req.info;
-  const { answer_id } = req.body;
-  console.log(user.id);
-
-  try {
-    let has_voted = await exec("userDownvoted", {
-      user_id: user.id,
-      answer_id,
-    });
-    if (has_voted.length !== 0) {
-      return res
-        .status(400)
-        .json({ message: "You have already downvoted the answer" });
-    } else {
-      await exec("insertOrUpdateAnswerVotes", {
-        user_id: user.id,
-        answer_id,
-        upvote: 0,
-        downvote: 1,
-      });
-      return res
-        .status(200)
-        .json({ message: "You have successfully downvoted the answer" });
-    }
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
-  }
-};
 module.exports = {
   getAllQuestions,
   getUserQuestions,
@@ -458,11 +449,10 @@ module.exports = {
   deleteComment,
 
   upvote,
-  downVote,
+  downvote,
 
   getQuestionWithMostAnswers,
   search,
 
-  _upvote,
-  _downvote,
+  
 };

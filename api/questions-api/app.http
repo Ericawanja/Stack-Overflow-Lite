@@ -108,18 +108,18 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/questions/answer/upvote
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFiYjdhYjlhLTkzOGUtNDY4OS1hOThmLTY0OTM3OWE2MTQ2YiIsImlhdCI6MTY3MTAxODU4MSwiZXhwIjoxNjcxMDI4NTgxfQ.__GLmY8doQkVMzlcjW2EXyDkO6aQmKufEH0YqKB9jis
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFiYjdhYjlhLTkzOGUtNDY4OS1hOThmLTY0OTM3OWE2MTQ2YiIsImlhdCI6MTY3MTM3MzUyNCwiZXhwIjoxNjcxMzgzNTI0fQ.lKWgmFxEr43nD8e3FUpUS3CSGqKk9Wqa2kIQfQX4H9k
 Content-Type: application/json
 
 {
-   "answer_id":"007227e8-a4a7-45be-945a-3799a6f770fb"
+   "answer_id":"5d6e50c4-6b06-4cf5-b7d8-10910e5457d6"
 }
 
 ###
 POST http://localhost:5000/questions/answer/downvote
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFiYjdhYjlhLTkzOGUtNDY4OS1hOThmLTY0OTM3OWE2MTQ2YiIsImlhdCI6MTY3MTAxODU4MSwiZXhwIjoxNjcxMDI4NTgxfQ.__GLmY8doQkVMzlcjW2EXyDkO6aQmKufEH0YqKB9jis
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFiYjdhYjlhLTkzOGUtNDY4OS1hOThmLTY0OTM3OWE2MTQ2YiIsImlhdCI6MTY3MTM3MzUyNCwiZXhwIjoxNjcxMzgzNTI0fQ.lKWgmFxEr43nD8e3FUpUS3CSGqKk9Wqa2kIQfQX4H9k
 Content-Type: application/json
 
 {
-   "answer_id":"007227e8-a4a7-45be-945a-3799a6f770fb"
+   "answer_id":"5d6e50c4-6b06-4cf5-b7d8-10910e5457d6"
 }
