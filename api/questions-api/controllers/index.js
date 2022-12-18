@@ -180,11 +180,17 @@ const setPrefferedAnswer = async (req, res) => {
     const user = req.info;
     let questionDb = await exec("getOneQuestion", { id: ans[0].question_id });
 
-    if (questionDb[0].user_id !== user.id) {
+    if (questionDb.length === 0 ) {
       return res.status(401).json({
         message:
-          "You cannot set this answer as preferred since you are not the author",
+          "Invalid operation",
       });
+    }
+      if (questionDb[0].user_id !== user.id) {
+        return res.status(401).json({
+          message:
+            "You cannot set this answer as preferred since you are not the author",
+        });
     }
     try {
       await exec("updatePreferredAnswer", { id });

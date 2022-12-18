@@ -8,6 +8,7 @@ import {
   getUsersQuestions,
   postAnswer,
   postComment,
+  preferAnswer,
   searchQuestions,
 } from "../thunks/question.thunks";
 
@@ -217,6 +218,26 @@ const questionSlice = createSlice({
     builder.addCase(postComment.rejected, (state, action) => {
       state.error = action.payload.error;
       state.loading = false;
+    });
+
+    //PREFER ANSWER
+
+    builder.addCase(preferAnswer.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(preferAnswer.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = "";
+      state.feedBack = true;
+      state.feedBackMsg = action.payload.message;
+    });
+    builder.addCase(preferAnswer.rejected, (state, action) => {
+    
+      state.loading = false;
+      state.error = action.payload.error.message;
+      state.feedBack = true;
+      state.feedBackMsg = action.payload.error.message;
     });
   },
 });

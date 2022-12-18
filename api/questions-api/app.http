@@ -53,8 +53,8 @@ Content-Type: application/json
 
 
 ###
-PUT http://localhost:5000/questions/answer/preffered
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFiYjdhYjlhLTkzOGUtNDY4OS1hOThmLTY0OTM3OWE2MTQ2YiIsImlhdCI6MTY3MTAxODU4MSwiZXhwIjoxNjcxMDI4NTgxfQ.__GLmY8doQkVMzlcjW2EXyDkO6aQmKufEH0YqKB9jis
+PUT http://localhost:5000/questions/answer/preffer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFiYjdhYjlhLTkzOGUtNDY4OS1hOThmLTY0OTM3OWE2MTQ2YiIsImlhdCI6MTY3MTM2MDQ1MiwiZXhwIjoxNjcxMzcwNDUyfQ.MA-YwzE9DVS-lru8gmqpVHhIKdXUfTFOQ-eNjMGW5uI
 Content-Type: application/json
 
 {
@@ -63,7 +63,7 @@ Content-Type: application/json
 
 ###
 PUT http://localhost:5000/questions/answer/unprefer
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFiYjdhYjlhLTkzOGUtNDY4OS1hOThmLTY0OTM3OWE2MTQ2YiIsImlhdCI6MTY3MTAxODU4MSwiZXhwIjoxNjcxMDI4NTgxfQ.__GLmY8doQkVMzlcjW2EXyDkO6aQmKufEH0YqKB9jis
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFiYjdhYjlhLTkzOGUtNDY4OS1hOThmLTY0OTM3OWE2MTQ2YiIsImlhdCI6MTY3MTM2MDQ1MiwiZXhwIjoxNjcxMzcwNDUyfQ.MA-YwzE9DVS-lru8gmqpVHhIKdXUfTFOQ-eNjMGW5uI
 Content-Type: application/json
 
 {

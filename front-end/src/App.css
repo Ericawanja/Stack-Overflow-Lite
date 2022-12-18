@@ -434,6 +434,7 @@ a {
 .answer_body {
   display: grid;
   grid-template-columns: 10% 90%;
+  padding: 15px;
 }
 
 .answer_text {
@@ -453,6 +454,17 @@ a {
 }
 .upvote,
 .downvote {
+  cursor: pointer;
+}
+
+.preferred{
+  font-size: .7rem;
+  background-color: green;
+  color: white;
+  padding: 2px;
+  border-radius: 3px;
+}
+.prefer{
   cursor: pointer;
 }
 /******Answer comment*******/

@@ -132,9 +132,35 @@ class QuestionService {
         comment,
         this.config
       );
-      console.log(response);
+
       return { data: response.data, error: null };
     } catch (error) {
+      return { data: null, error: error.response.data };
+    }
+  }
+
+  async PreferAnswer(details) {
+    try {
+
+      let answerId = {id:details.answer_id}
+      let response;
+      if (details.status === "prefer") {
+        response = await axios.put(
+          this.BASE_URL + "/answer/preffer",
+          answerId,
+          this.config
+        );
+      } else {
+        response = await axios.put(
+          this.BASE_URL + "/answer/unprefer",
+          answerId,
+          this.config
+        );
+      }
+    
+      return { data: response.data, error: null };
+    } catch (error){
+      console.log(error);
       return { data: null, error: error.response.data };
     }
   }
