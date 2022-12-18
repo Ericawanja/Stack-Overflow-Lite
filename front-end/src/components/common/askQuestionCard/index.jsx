@@ -30,7 +30,7 @@ export default function AskQuestionCard({ pageTitle }) {
 
   const handleInput = (e) => {
     let { name, value } = e.target;
-    console.log(name, value);
+    
     setQuestion({ ...newQuestion, [name]: value });
   };
 

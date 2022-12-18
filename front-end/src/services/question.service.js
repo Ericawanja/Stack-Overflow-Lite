@@ -142,8 +142,7 @@ class QuestionService {
 
   async PreferAnswer(details) {
     try {
-
-      let answerId = {id:details.answer_id}
+      let answerId = { id: details.answer_id };
       let response;
       if (details.status === "prefer") {
         response = await axios.put(
@@ -158,17 +157,15 @@ class QuestionService {
           this.config
         );
       }
-    
+
       return { data: response.data, error: null };
-    } catch (error){
-    
+    } catch (error) {
       return { data: null, error: error.response.data };
     }
   }
   async VoteAnswer(details) {
     try {
-
-      let answerId = {answer_id:details.answer_id}
+      let answerId = { answer_id: details.answer_id };
       let response;
       if (details.status === "upvote") {
         response = await axios.post(
@@ -183,11 +180,23 @@ class QuestionService {
           this.config
         );
       }
-    
+
       return { data: response.data, error: null };
-    } catch (error){
-    
+    } catch (error) {
       return { data: null, error: error.response.data };
+    }
+  }
+
+  async OrderQuestionsByAnswers() {
+    try {
+      const response = await axios.get(
+        this.BASE_URL + "/ordered/top",
+        this.config
+      );
+
+      return { data: response.data, error: null };
+    } catch (error) {
+      return { data: null, error: error.message };
     }
   }
 }

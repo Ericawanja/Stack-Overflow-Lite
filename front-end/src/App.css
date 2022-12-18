@@ -326,6 +326,11 @@ a {
   flex-direction: column;
   gap: 18px;
   padding-left: 10px;
+  color: white;
+}
+.order{
+  cursor: pointer;
+  font-size: .95rem;
 }
 
 /************************Question list design***************************/

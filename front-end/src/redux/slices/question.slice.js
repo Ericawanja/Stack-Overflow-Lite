@@ -6,6 +6,7 @@ import {
   fetchAllQuestions,
   fetchOneQuestions,
   getUsersQuestions,
+  orderByAnswers,
   postAnswer,
   postComment,
   preferAnswer,
@@ -234,7 +235,6 @@ const questionSlice = createSlice({
       state.feedBackMsg = action.payload.message;
     });
     builder.addCase(preferAnswer.rejected, (state, action) => {
-    
       state.loading = false;
       state.error = action.payload.error.message;
       state.feedBack = true;
@@ -253,13 +253,27 @@ const questionSlice = createSlice({
       state.feedBackMsg = action.payload.message;
     });
     builder.addCase(voteAnswer.rejected, (state, action) => {
-    
       state.loading = false;
       state.error = action.payload.error.message;
       state.feedBack = true;
       state.feedBackMsg = action.payload.error.message;
     });
-
+    //order questions
+    builder.addCase(orderByAnswers.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+      state.searching = false;
+    });
+    builder.addCase(orderByAnswers.fulfilled, (state, action) => {
+     
+      state.questions = action.payload.questions;
+      state.loading = false;
+    });
+    builder.addCase(orderByAnswers.rejected, (state, action) => {
+  
+      state.error = action.payload.error;
+      state.loading = false;
+    });
   },
 });
 export const {

@@ -402,7 +402,7 @@ const getQuestionWithMostAnswers = async (req, res) => {
         return +y.answers - +x.answers;
       });
       let topQuiz = questions[0];
-      return res.status(200).json(topQuiz);
+      return res.status(200).json(questions);
     } else {
       return res
         .status(200)

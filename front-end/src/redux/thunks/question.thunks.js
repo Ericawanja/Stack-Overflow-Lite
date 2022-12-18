@@ -151,3 +151,16 @@ export const voteAnswer = createAsyncThunk(
     return { message: response.data.message };
   }
 );
+
+export const orderByAnswers = createAsyncThunk(
+  "questions/order questions by answers",
+  async (_, thunkAPI) => {
+    const response = await QuestionService.OrderQuestionsByAnswers ();
+
+    if (response.error) {
+      thunkAPI.rejectWithValue({ error: response.error });
+    }
+
+    return { questions: response.data };
+  }
+);
