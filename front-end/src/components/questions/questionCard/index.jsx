@@ -5,7 +5,7 @@ import { setIsEditingTrue } from "../../../redux/slices/question.slice";
 
 import {
   deleteQuestion,
-  fetchOneQuestions,
+
 } from "../../../redux/thunks/question.thunks";
 
 function QuestionCard({ single_question, currentUser ={} }) {

@@ -23,8 +23,8 @@ const initialState = {
   searching: false,
   loading: false,
   error: "",
-  feedBack: false,
-  feedBackMsg: "",
+  feedBack: true,
+  feedBackMsg: "dummy msg",
   openQForm: false,
   editing: false,
   questionToEdit: {},
@@ -147,6 +147,7 @@ const questionSlice = createSlice({
       state.searching = false;
       state.loading = true;
       state.error = "";
+      state.editing = false
     });
     builder.addCase(createQuestion.fulfilled, (state, action) => {
       state.searching = false; //work on this
@@ -155,11 +156,15 @@ const questionSlice = createSlice({
       state.feedBack = true;
       state.feedBackMsg = action.payload.message.message;
       state.openQForm = false;
+      state.editing = false
     });
     builder.addCase(createQuestion.rejected, (state, action) => {
       state.error = action.payload.error;
       state.loading = false;
+      state.editing = false
     });
+
+    //UPDATE QUESTION
     builder.addCase(editQuestion.pending, (state, action) => {
       state.error = "";
       state.loading = true;
@@ -171,6 +176,7 @@ const questionSlice = createSlice({
       state.feedBack = true;
       state.feedBackMsg = action.payload.message.message;
       state.openQForm = false;
+      state.editing = false
     });
     builder.addCase(editQuestion.rejected, (state, action) => {
       state.error = action.payload.error;
@@ -200,6 +206,7 @@ const questionSlice = createSlice({
     builder.addCase(postAnswer.pending, (state, action) => {
       state.loading = true;
       state.error = "";
+      state.editing = false
     });
     builder.addCase(postAnswer.fulfilled, (state, action) => {
       state.loading = false;
@@ -207,10 +214,12 @@ const questionSlice = createSlice({
       state.ansForm = false;
       state.feedBackMsg = action.payload.message;
       state.error = "";
+      state.editing = false
     });
     builder.addCase(postAnswer.rejected, (state, action) => {
       state.error = action.payload.error;
       state.loading = false;
+      state.editing = false
     });
 
     //POST COMMENT

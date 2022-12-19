@@ -12,16 +12,21 @@ import Alert from "../alert";
 
 export default function AskQuestionCard({ pageTitle }) {
   const dispatch = useDispatch();
-  const { openQForm, error, editing, questionToEdit, loading } = useSelector(
-    (state) => state.questions
-  );
+  const {
+    feedBack,
+    feedBackMsg,
+    openQForm,
+    error,
+    editing,
+    questionToEdit,
+    loading,
+  } = useSelector((state) => state.questions);
 
   const [newQuestion, setQuestion] = useState({
     title: "",
     question: "",
     tags: "",
   });
- 
 
   const handleClose = () => {
     setQuestion({ title: "", question: "", tags: "" });
@@ -30,15 +35,15 @@ export default function AskQuestionCard({ pageTitle }) {
 
   const handleInput = (e) => {
     let { name, value } = e.target;
-    
+
     setQuestion({ ...newQuestion, [name]: value });
   };
 
   const handleSubmit = () => {
     if (!editing) {
-      return dispatch(createQuestion(newQuestion));
+      dispatch(createQuestion(newQuestion));
     } else {
-      return dispatch(
+      dispatch(
         editQuestion({
           question_id: questionToEdit.question_id,
           data: newQuestion,
@@ -46,6 +51,7 @@ export default function AskQuestionCard({ pageTitle }) {
       );
     }
   };
+
   useEffect(() => {
     if (editing) {
       setQuestion({
@@ -55,6 +61,12 @@ export default function AskQuestionCard({ pageTitle }) {
       });
     }
   }, [questionToEdit]);
+
+  useEffect(() => {
+    if (feedBack) {
+      setQuestion({ title: "", question: "", tags: "" });
+    }
+  }, [feedBack, feedBackMsg]);
   return (
     <div>
       <div className="page_title">

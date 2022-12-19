@@ -6,9 +6,9 @@ function FeedbackModal({text}) {
   const dispatch = useDispatch()
 
   return (
-    <div className="alertModal">
+    <div className="feedbackModal">
       <span>{text}</span>
-      <span className="alertModalClose" onClick={()=> dispatch(closeFeedbackModal())}>X</span>
+      <span className="feedbackModalClose" onClick={()=> dispatch(closeFeedbackModal())}>X</span>
     </div>
   );
 }
