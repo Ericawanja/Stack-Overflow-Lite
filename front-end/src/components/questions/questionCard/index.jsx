@@ -28,6 +28,7 @@ function QuestionCard({ single_question, currentUser ={} }) {
 
   const navigate = useNavigate();
   const navigateToQuestion = () => {
+   
     navigate(`/questions/${question_id}`);
   };
 
