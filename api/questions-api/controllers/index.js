@@ -1,29 +1,39 @@
-const { exec } = require("../helpers/db_connect");
+const { exec, query } = require("../helpers/db_connect");
 const { v4: uuidv4 } = require("uuid");
 const { user } = require("../Config");
 
 const getAllQuestions = async (req, res) => {
+  const page = req.query.page ?? 1;
+  const limit = req.query.limit ?? 10;
   try {
-    const questions = await exec("getAllQuestions");
-    if (questions.length !== 0) {
-      return res.status(200).json({ questions });
-    } else {
+    const questions = await exec("getAllQuestions", { page, limit });
+    if (questions.length === 0) {
       return res
         .status(404)
         .json({ message: "There are no questions found", questions });
     }
+
+    const total = await query("select * from questions where isdeleted=0");
+
+    res.status(200).json({ questions, total: total.length });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 };
 
 const getUserQuestions = async (req, res) => {
-  
+  const page = req.query.page ?? 1;
+  const limit = req.query.limit ?? 10;
+
   let user = req.info;
-  
+
   try {
-    const questions = await exec("getAllQuestions", { user_id: user.id });
-   
+    const questions = await exec("getAllQuestions", {
+      user_id: user.id,
+      page,
+      limit,
+    });
+
     if (questions.length > 0) {
       res.status(200).json({ questions });
     } else {

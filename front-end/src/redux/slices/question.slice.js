@@ -17,7 +17,11 @@ import {
 } from "../thunks/question.thunks";
 
 const initialState = {
-  questions: { data: [], error: "" },
+  questions: { 
+    data: [], 
+    total: 0,
+    error: "" 
+  },
   question: {},
   searchedQuestions: [],
   searching: false,
@@ -86,6 +90,7 @@ const questionSlice = createSlice({
     });
     builder.addCase(fetchAllQuestions.fulfilled, (state, action) => {
       state.questions.data = action.payload.questions.questions;
+      state.questions.total = action.payload.questions.total;
       state.loading = false;
     });
     builder.addCase(fetchAllQuestions.rejected, (state, action) => {
@@ -141,6 +146,7 @@ const questionSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(getUsersQuestions.rejected, (state, action) => {
+      console.log(action);
       state.questions.error = action.payload.error;
       state.questions.data = [];
       state.loading = false;

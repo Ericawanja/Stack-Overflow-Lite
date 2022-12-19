@@ -4,10 +4,12 @@ import { QuestionService } from "../../services";
 // FETCH ALL QUESTIONS
 export const fetchAllQuestions = createAsyncThunk(
   "questions/fetch-all-questions",
-  async (_, thunkAPI) => {
-    const response = await QuestionService.GetAllQuestions();
+  async ({ limit=10, page=1 }, thunkAPI) => {
+    const response = await QuestionService.GetAllQuestions({ limit, page });
 
-    if (response.error) {
+    console.log("RESP", response);
+
+    if (response.error !== null) {
       thunkAPI.rejectWithValue({ error: response.error });
     }
 
@@ -45,13 +47,19 @@ export const searchQuestions = createAsyncThunk(
 //FETCH USER QUESTIONS
 export const getUsersQuestions = createAsyncThunk(
   "questions/user questions",
-  async (_, thunkAPI) => {
-    const response = await QuestionService.GetUserQuestions();
+  async ({ limit, page }, thunkAPI) => {
+    try {
+      const response = await QuestionService.GetUserQuestions({ limit, page });
 
-    if (response.error) {
-      return thunkAPI.rejectWithValue({ error: response.error });
+      console.log("RESP", response);
+
+      if (response.error !== null) {
+        return thunkAPI.rejectWithValue({ error: response.error });
+      }
+      return { question: response.data };
+    } catch (error) {
+      console.log(error);
     }
-    return { question: response.data };
   }
 );
 

@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useCallback } from "react";
+import _ from "lodash";
 import { Outlet } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaSearch } from "react-icons/fa";
@@ -38,12 +40,21 @@ function QuestionLayout() {
     }
   };
 
+  const debouncedSearch = useCallback(
+    _.debounce((value) => dispatch(searchQuestions(value)), 500),
+    []
+  );
+
   const [searchTerm, setSearchTerm] = useState("");
+
   const handleInput = (e) => {
-    setSearchTerm(e.target.value);
-    if (searchTerm.trim() === "") {
-      dispatch(fetchAllQuestions());
-    }
+    const search = e.target.value;
+    setSearchTerm(search);
+    // if (search.trim() === "") {
+    //   dispatch(fetchAllQuestions());
+    //   return;
+    // }
+    debouncedSearch(search.trim());
   };
   const handleSearch = () => {
     if (searchTerm.trim() === "") {

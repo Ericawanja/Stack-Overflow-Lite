@@ -13,9 +13,9 @@ class QuestionService {
     headers: { Authorization: `Bearer ${this.TOKEN}` },
   };
 
-  async GetAllQuestions() {
+  async GetAllQuestions({limit, page}) {
     try {
-      const response = await axios.get(this.BASE_URL, this.config);
+      const response = await axios.get(`${this.BASE_URL}?limit=${limit}&page=${page}`, this.config);
 
       return { data: response.data, error: null };
     } catch (error) {
@@ -50,10 +50,10 @@ class QuestionService {
     }
   }
 
-  async GetUserQuestions() {
+  async GetUserQuestions({limit, page}) {
     try {
       const response = await axios.get(
-        this.BASE_URL + "/user/created",
+        `${this.BASE_URL}/user/created?limit=${limit}&page=${page}`,
         this.config
       );
       

@@ -27,8 +27,15 @@ class Connection {
     const res= await (await request.execute(storedProcedure)).recordset
     return res
   };
+
+  executeQuery = async (query) => {
+    const request = await this.pool.request();
+    const res= await (await request.query(query)).recordset
+    return res
+  };
 }
 
 module.exports ={
-    exec: new Connection().executeRequest
+    exec: new Connection().executeRequest,
+    query: new Connection().executeQuery,
 }
