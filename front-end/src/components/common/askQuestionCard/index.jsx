@@ -71,8 +71,10 @@ export default function AskQuestionCard({ pageTitle }) {
     <div>
       <div className="page_title">
         <div className="question_title">{pageTitle}</div>
-        <div className="ask_btn" onClick={() => dispatch(openQUestionForm())}>
-          Ask <span>Question</span>
+        <div>
+          <div className="ask_btn" onClick={() => dispatch(openQUestionForm())}>
+            Ask <span>Question</span>
+          </div>
         </div>
       </div>
       {openQForm && (

@@ -33,14 +33,15 @@
 
   .layout_aside {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10;
+    left: 20;
     background-color: #100720;
     width: 200px;
     z-index: 1;
     display: none;
   }
-  .layout_aside_inner a, .logout {
+  .layout_aside_inner a,
+  .logout {
     color: white;
   }
 
@@ -82,10 +83,10 @@
   .quiz_list_details {
     flex-direction: column;
   }
-  .user_data{
+  .user_data {
     justify-content: center;
   }
-  .user_data div{
+  .user_data div {
     width: 70%;
     height: 200px;
     background: transparent;
@@ -94,6 +95,9 @@
   }
   .Q-form {
     width: 80%;
+  }
+  .ask_btn span {
+    display: none;
   }
 }
 @media only screen and (max-width: 425px) {
@@ -131,9 +135,7 @@
   .search_btn {
     padding: 3px;
   }
-  .ask_btn span {
-    display: none;
-  }
+
   .Q-form {
     width: 95%;
   }

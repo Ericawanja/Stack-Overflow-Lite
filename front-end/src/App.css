@@ -3,7 +3,7 @@ a {
   text-decoration: none;
 }
 .active {
-  background-color: rgb(31, 31, 32);
+  background-color: rgba(31, 31, 32, .4);
   color: whitesmoke;
   padding: 6px;
   border-radius: 5px;
@@ -319,10 +319,11 @@ a {
   padding-top: 30px;
   display: flex;
   justify-content: center;
+ 
 }
 .layout_aside_inner {
   position: sticky;
-  top: 0;
+  top: 5%;
   padding: 10px 5px;
   display: flex;
   gap: 18px;

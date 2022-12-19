@@ -11,6 +11,7 @@ export default function Profile() {
     (state) => state.questions
   );
   const dispatch = useDispatch();
+const user = JSON.parse(localStorage.getItem("user"))
 
  
   useEffect(() => {
@@ -23,12 +24,12 @@ export default function Profile() {
     <div className="profile_container">
       <div className="profile_header">
         <span className="profile_greetings">
-          <h2>Welcome back User</h2>
+          <h2>Welcome {user.username}</h2>
         </span>
       </div>
       <div className="user_data">
         <div className="questions_no">
-          <span className="stat">{questions.length}</span>
+          <span className="stat">{questions?.data.length}</span>
           <span className="stat_title">Questions</span>
         </div>
         <div className="user_answers">
@@ -41,22 +42,9 @@ export default function Profile() {
         </div>
       </div>
       <div className="my_questions">
-        {/* <div className="myquestions_header">
-          <span>
-            <h2>Your Questions</h2>
-          </span>
-          <span className="order_questions">
-            <select>
-              <option value="" selected disabled>
-                Order by
-              </option>
-              <option value="answer">Answers</option>
-              <option value="recent">Recent</option>
-            </select>
-          </span>
-        </div> */}
+      
         <AskQuestionCard pageTitle={"Your questions"}/>
-        {questions.map((question) => {
+        {questions?.data.map((question) => {
           
           return <QuestionCard single_question={question} />;
         })}
