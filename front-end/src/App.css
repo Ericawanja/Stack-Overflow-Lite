@@ -242,13 +242,13 @@ a {
   justify-content: center;
   align-items: center;
   color: rgb(255, 255, 255);
-  background-color: rgb(109,189,40);
+  background-color: rgb(109, 189, 40);
   border-bottom: 2px solid #100720;
   border-top: 2px solid #100720;
   position: sticky;
   top: 0;
 }
-.feedbackModal span{
+.feedbackModal span {
   font-size: 1.2rem;
 }
 .feedbackModalClose {
@@ -305,7 +305,6 @@ a {
   padding: 11px;
 }
 .logout {
-
   cursor: pointer;
 }
 
@@ -513,22 +512,48 @@ a {
 .comment_header:hover {
   border-bottom: 1px solid #100720;
   cursor: pointer;
+  color: #100720;
 }
 .add_comment input {
   padding: 10px;
   width: 350px;
 }
-.add_comment {
-  display: flex;
-  justify-content: flex-end;
 
-  align-items: center;
+.commentFormContainer {
+  background-color: rgba(64, 62, 67, 0.5);
+  min-height: 100%;
+ width: 100vw;
+  position: absolute;
 }
-.comment_btn {
-  color: white;
+.commentForm {
+  position: sticky;
+ display: flex;
+ justify-content: center;
+ top: 40%;
+}
+.CformHeader{
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.commentFormInputFields{
+
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 5px;
+}
+.comment_btns{
+  display: flex;
+  gap: 10px;
+}
+.comment_btns button{
+  outline: none;
+  border: none;
   background-color: #100720;
-  padding: 10px;
+  border-radius: 4px;
   cursor: pointer;
+  color: white;
+  padding: 7px;
 }
 .answer_comment {
   padding: 20px 60px;

@@ -24,17 +24,12 @@ function Answers({ single_answer }) {
   const { comment, question } = useSelector((state) => state.questions);
   const { id } = useParams();
   let { answer, comments, votes } = single_answer;
-  let [commentText, setComment] = useState("");
+
   // let [user, setUser] = useState({});
   const user = JSON.parse(localStorage.getItem("user"));
-  const handleCommentInput = (e) => {
-    setComment(e.target.value);
-  };
+ 
 
-  const handleSubmitComment = () => {
-    let comment = { answer_id: single_answer.id, comment: commentText };
-    dispatch(postComment({ comment, question_id: id }));
-  };
+  
 
   const handlePrefer = (status) => {
     dispatch(
@@ -45,7 +40,7 @@ function Answers({ single_answer }) {
       })
     );
   };
-  const handleVoting = (status)=>{
+  const handleVoting = (status) => {
     dispatch(
       voteAnswer({
         status,
@@ -53,8 +48,7 @@ function Answers({ single_answer }) {
         question_id: id,
       })
     );
-    
-  }
+  };
 
   return (
     <div className="answers_list">
@@ -64,13 +58,13 @@ function Answers({ single_answer }) {
             {single_answer.preferred && (
               <div className="preferred">preferred</div>
             )}
-            <div className="upvote" onClick={()=> handleVoting('upvote')}>
+            <div className="upvote" onClick={() => handleVoting("upvote")}>
               <IconContext.Provider value={{ color: "#c2bfba", size: "32px" }}>
                 <AiOutlineCaretUp />
               </IconContext.Provider>
             </div>
             <div className="votes">{votes}</div>
-            <div className="downvote" onClick={()=> handleVoting('downvote')}>
+            <div className="downvote" onClick={() => handleVoting("downvote")}>
               <IconContext.Provider value={{ color: "#c2bfba", size: "32px" }}>
                 <AiFillCaretDown />
               </IconContext.Provider>
@@ -108,25 +102,10 @@ function Answers({ single_answer }) {
               <div className="answer_comment_header">
                 <div
                   className="comment_header"
-                  onClick={() => dispatch(openCommentForm())}
+                  onClick={() => dispatch(openCommentForm({answer_id:single_answer.id, question_id:id}))}
                 >
-                  {comment ? "Close" : "Comment"}
+                 comment
                 </div>
-                {comment && (
-                  <div className="add_comment">
-                    <span className="comment_input">
-                      <input
-                        type="text"
-                        name="commentInput"
-                        value={commentText}
-                        onChange={handleCommentInput}
-                      />
-                    </span>
-                    <span className="comment_btn" onClick={handleSubmitComment}>
-                      Save
-                    </span>
-                  </div>
-                )}
               </div>
             </div>
           </div>

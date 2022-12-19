@@ -3,16 +3,18 @@ import { Outlet } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaSearch } from "react-icons/fa";
 import { AiOutlineMenuUnfold, AiOutlineClose } from "react-icons/ai";
-import { useDispatch,  useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllQuestions,
   searchQuestions,
 } from "../../redux/thunks/question.thunks";
-import { FeedbackModal, Navbar } from "../../components";
+import { CommentForm, FeedbackModal, Navbar } from "../../components";
 
 function QuestionLayout() {
   const dispatch = useDispatch();
-  const {feedBack, feedBackMsg}  = useSelector(state=>state.questions)
+  const { feedBack, feedBackMsg, comment } = useSelector(
+    (state) => state.questions
+  );
 
   const [openMenu, setOpenMenu] = useState(true);
 
@@ -48,7 +50,6 @@ function QuestionLayout() {
       return;
     }
     dispatch(searchQuestions(searchTerm));
-  
   };
 
   useEffect(() => {
@@ -58,7 +59,8 @@ function QuestionLayout() {
   return (
     <div className="layout-container">
       <div className="layout_wrapper">
-       {feedBack && <FeedbackModal text= {feedBackMsg}/>}
+        {feedBack && <FeedbackModal text={feedBackMsg} />}
+        {comment && <CommentForm />}
         <div className="layout_header">
           <div className="menu" ref={open_icon} onClick={open_menu}>
             <IconContext.Provider value={{ color: "black", size: "32px" }}>
