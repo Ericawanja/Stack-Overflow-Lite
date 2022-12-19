@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LogInUser, SignupUser } from "../thunks/user.thunks";
+import { GetLoggedUser, LogInUser, SignupUser } from "../thunks/user.thunks";
 
 const initialState = {
   user: {},
@@ -14,7 +14,6 @@ const userSlice = createSlice({
   reducers: {
     logout: (state, action) => {
       state.user = {};
-      localStorage.removeItem("user");
     },
   },
 
@@ -25,14 +24,26 @@ const userSlice = createSlice({
     });
     builder.addCase(LogInUser.fulfilled, (state, action) => {
       state.user = action.payload.data;
-      localStorage.setItem("user", JSON.stringify(action.payload.data));
-
       state.loading = false;
     });
     builder.addCase(LogInUser.rejected, (state, action) => {
       state.error = action.payload.error;
       state.loading = false;
     });
+
+    // GetLoggedUser
+    builder.addCase(GetLoggedUser.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(GetLoggedUser.fulfilled, (state, action) => {
+      state.user = action.payload.data;
+      state.loading = false;
+    });
+    builder.addCase(GetLoggedUser.rejected, (state, action) => {
+      state.loading = false;
+    });
+
     builder.addCase(SignupUser.pending, (state, action) => {
       state.loading = true;
       state.error = "";

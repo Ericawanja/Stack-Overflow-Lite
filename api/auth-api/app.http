@@ -16,3 +16,8 @@ Content-Type: application/json
      "email": "ericawanja@gmail.com",
     "password": "254ericawanja254"
 }
+
+###
+POST http://localhost:5001/user/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFiYjdhYjlhLTkzOGUtNDY4OS1hOThmLTY0OTM3OWE2MTQ2YiIsImVtYWlsIjoiZXJpY2F3YW5qYUBnbWFpbC5jb20iLCJpYXQiOjE2NzE0ODAzNTUsImV4cCI6MTY3MTU2Njc1NX0.p-u_QAIdsbYfR0UdbAt_-PbM-rIGgEFvBKXAldCtXGc
+Content-Type: application/json

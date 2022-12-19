@@ -28,7 +28,7 @@ const validateQuestion = require("../middlewares/validateQuestions");
 const validateAnswer = require("../middlewares/validateAnswer");
 const validateComment = require("../middlewares/validateComment");
 
-router.get("/", verifyUser, getAllQuestions);
+router.get("/", getAllQuestions);
 router.get("/user/created", verifyUser, getUserQuestions);
 router.get("/:id", verifyUser, getQuestion);
 

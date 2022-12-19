@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Alert } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,11 +8,11 @@ import { LogInUser } from "../../redux/thunks/user.thunks";
 function Login() {
   const { user, loading, error } = useSelector((state) => state.user);
 
-
   const [state, setState] = useState({ email: "", password: "" });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { search } = useLocation();
 
   //handle input change
   const handleInputChange = (event) => {
@@ -26,11 +26,10 @@ function Login() {
 
   useEffect(() => {
     if (user?.id) {
-      console.log();
-      navigate("/questions");
+      const redirect = search.split("=")[1];
+      navigate(redirect ? redirect : "/questions");
     }
   }, [user]);
-
 
   return (
     <div className="login-container">

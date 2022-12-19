@@ -17,10 +17,10 @@ import {
 } from "../thunks/question.thunks";
 
 const initialState = {
-  questions: { 
-    data: [], 
+  questions: {
+    data: [],
     total: 0,
-    error: "" 
+    error: "",
   },
   question: {},
   searchedQuestions: [],
@@ -44,8 +44,6 @@ const initialState = {
 const questionSlice = createSlice({
   name: "questions",
   initialState,
-  reducers: {},
-
   reducers: {
     closeFeedbackModal: (state, action) => {
       state.feedBack = false;
@@ -147,8 +145,8 @@ const questionSlice = createSlice({
     });
     builder.addCase(getUsersQuestions.rejected, (state, action) => {
       console.log(action);
-      state.questions.error = action.payload.error;
-      state.questions.data = [];
+      state.questions = { ...state.questions, error: action?.payload?.error };
+      state.questions = { ...state.questions, data: [] };
       state.loading = false;
     });
     //POST QUESTION

@@ -14,6 +14,17 @@ export const LogInUser = createAsyncThunk(
   }
 );
 
+export const GetLoggedUser = createAsyncThunk(
+  "users/me",
+  async (_, thunkAPI) => {
+    const response = await UserService.GetLoggedUser();
+    if (!!response.error) {
+      return thunkAPI.rejectWithValue({ error: response.error });
+    }
+    return { data: response.data };
+  }
+);
+
 export const SignupUser = createAsyncThunk(
   "users/signup",
   async (payload, thunkApi) => {

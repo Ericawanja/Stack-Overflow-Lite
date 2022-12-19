@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/slices/user.slice";
 import {
@@ -8,11 +8,13 @@ import {
 } from "../../redux/thunks/question.thunks";
 
 export default function Navbar({ close_menu }) {
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const handleLogout = () => {
+    localStorage.clear();
     dispatch(logout());
     navigate("/");
   };
@@ -40,7 +42,9 @@ export default function Navbar({ close_menu }) {
         <div onClick={() => dispatch(getUsersQuestions())}>
           <Link
             to="users-questions"
-            className={pathname === "/questions/users-questions" ? "active" : ""}
+            className={
+              pathname === "/questions/users-questions" ? "active" : ""
+            }
           >
             Asked
           </Link>
@@ -53,9 +57,18 @@ export default function Navbar({ close_menu }) {
       >
         <Link to="/questions/profile">Profile</Link>
       </div>
-      <div className="logout" onClick={handleLogout}>
-        <span>Log Out</span>
-      </div>
+      {user?.id ? (
+        <div className="logout" onClick={handleLogout}>
+          <span>Log Out</span>
+        </div>
+      ) : (
+        <div
+          onClick={close_menu}
+          className={pathname === "/login" ? "active" : ""}
+        >
+          <Link to="/login">Log In</Link>
+        </div>
+      )}
     </div>
   );
 }
