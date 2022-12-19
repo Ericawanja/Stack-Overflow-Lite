@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import UserService from "../../services/user.service";
+import { fetchAllQuestions } from "./question.thunks";
 
 export const LogInUser = createAsyncThunk(
   "users/login",
@@ -21,6 +22,8 @@ export const SignupUser = createAsyncThunk(
     if (!!response.error) {
       return thunkApi.rejectWithValue({ error: response.error });
     }
+
+    thunkApi.dispatch(fetchAllQuestions())
     return {data:response.data}
   }
 );

@@ -209,6 +209,7 @@ a {
   color: aliceblue;
   margin-top: 30px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .login_alert {
   animation: scaleup 2s;
@@ -328,9 +329,9 @@ a {
   padding-left: 10px;
   color: white;
 }
-.order{
+.order {
   cursor: pointer;
-  font-size: .8rem;
+  font-size: 0.8rem;
   padding: 4px;
 }
 
@@ -412,6 +413,16 @@ a {
 .author_btns span {
   cursor: pointer;
 }
+.listEmpty {
+  display: flex;
+  justify-content: center;
+  padding-top: 20%;
+  padding-bottom: 10%;
+}
+.listEmpty h2 {
+  font-weight: 500;
+  font-size: .9rem;
+}
 
 /******************QUESTION******************************/
 
@@ -463,14 +474,14 @@ a {
   cursor: pointer;
 }
 
-.preferred{
-  font-size: .7rem;
+.preferred {
+  font-size: 0.7rem;
   background-color: green;
   color: white;
   padding: 2px;
   border-radius: 3px;
 }
-.prefer{
+.prefer {
   cursor: pointer;
 }
 /******Answer comment*******/
@@ -629,7 +640,7 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  background-color: #100720;
+  background-color: #403e43;
   color: white;
   padding: 20px;
   margin: 20px;
@@ -663,4 +674,46 @@ select option {
 button:disabled {
   opacity: 20%;
   cursor: not-allowed;
+}
+
+.loading{
+  display: flex;
+  justify-content: center;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid rgb(7, 7, 7);
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: rgb(11, 11, 11) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

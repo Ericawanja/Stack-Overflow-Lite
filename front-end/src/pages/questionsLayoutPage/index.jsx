@@ -52,7 +52,7 @@ function QuestionLayout() {
   };
 
   useEffect(() => {
-    dispatch(fetchAllQuestions());
+    // dispatch(fetchAllQuestions());
   }, [dispatch]);
 
   return (
