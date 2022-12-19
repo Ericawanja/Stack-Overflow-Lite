@@ -1,27 +1,32 @@
 import React, { useMemo, useEffect, useState } from "react";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 
 import { QuestionCard, AskQuestionCard, Loading } from "../../components";
+import { fetchAllQuestions, getUsersQuestions } from "../../redux/thunks/question.thunks";
 
 function QuestionsPage({ list = "all" }) {
   let { questions, searching, searchedQuestions, loading } = useSelector(
     (state) => state.questions
   );
 
-  questions = searching ? searchedQuestions : questions;
+  questions = searching ? searchedQuestions : questions.data;
 
   let currentUser = JSON.parse(localStorage.getItem("user"));
   let [page, setPage] = useState("");
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (list === "all") {
       setPage("All Questions");
+      dispatch(fetchAllQuestions());
     } else {
       setPage("Your Questions");
+      dispatch(getUsersQuestions())
     }
-  }, [list, questions]);
-  console.log(questions);
+
+   
+  }, []);
 
   return (
     <div className="Qlist-container">

@@ -17,7 +17,7 @@ import {
 } from "../thunks/question.thunks";
 
 const initialState = {
-  questions: [],
+  questions: {data:[], error:''},
   question: {},
   searchedQuestions: [],
   searching: false,
@@ -77,16 +77,17 @@ const questionSlice = createSlice({
     // FETCH QUESTIONS CASES
     builder.addCase(fetchAllQuestions.pending, (state, action) => {
       state.loading = true;
-      state.error = "";
+      state.questions.error = "";
       state.searching = false;
     });
     builder.addCase(fetchAllQuestions.fulfilled, (state, action) => {
-      state.questions = action.payload.questions.questions;
+      state.questions.data = action.payload.questions.questions;
       state.loading = false;
     });
     builder.addCase(fetchAllQuestions.rejected, (state, action) => {
       console.log(action.payload.error);
-      state.error = action.payload.error;
+      state.questions.error = action.payload.error;
+      state.questions.data = []
       state.loading = false;
     });
 
@@ -127,16 +128,18 @@ const questionSlice = createSlice({
     builder.addCase(getUsersQuestions.pending, (state, action) => {
       state.searching = false;
       state.loading = true;
-      state.error = "";
+      state.questions.error = "";
     });
     builder.addCase(getUsersQuestions.fulfilled, (state, action) => {
       state.searching = false;
 
-      state.questions = action.payload.question.questions;
+      state.questions.data = action.payload.question.questions;
       state.loading = false;
     });
     builder.addCase(getUsersQuestions.rejected, (state, action) => {
-      state.error = action.payload.error;
+      
+      state.questions.error = action.payload.error;
+      state.questions.data = []
       state.loading = false;
     });
     //POST QUESTION
@@ -266,18 +269,19 @@ const questionSlice = createSlice({
     //order questions
     builder.addCase(orderByAnswers.pending, (state, action) => {
       state.loading = true;
-      state.error = "";
+      state.questions.error = "";
       state.searching = false;
     });
     builder.addCase(orderByAnswers.fulfilled, (state, action) => {
      
-      state.questions = action.payload.questions;
+      state.questions.data = action.payload.questions;
       state.loading = false;
     });
     builder.addCase(orderByAnswers.rejected, (state, action) => {
   
-      state.error = action.payload.error;
+      state.questions.error = action.payload.error;
       state.loading = false;
+      state.questions.data=[]
     });
 
     //user answers

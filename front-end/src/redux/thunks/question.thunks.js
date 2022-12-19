@@ -49,7 +49,7 @@ export const getUsersQuestions = createAsyncThunk(
     const response = await QuestionService.GetUserQuestions();
 
     if (response.error) {
-      thunkAPI.rejectWithValue({ error: response.error });
+      return thunkAPI.rejectWithValue({ error: response.error });
     }
     return { question: response.data };
   }

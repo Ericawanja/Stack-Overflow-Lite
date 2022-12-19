@@ -56,9 +56,11 @@ class QuestionService {
         this.BASE_URL + "/user/created",
         this.config
       );
+      
       return { data: response.data, error: null };
     } catch (error) {
-      return { data: null, error: error.message };
+      
+      return { data: null, error: error.response.data };
     }
   }
 

@@ -18,19 +18,21 @@ const getAllQuestions = async (req, res) => {
 };
 
 const getUserQuestions = async (req, res) => {
-  let { user_id } = req.params;
+  
   let user = req.info;
+  
   try {
     const questions = await exec("getAllQuestions", { user_id: user.id });
+   
     if (questions.length > 0) {
       res.status(200).json({ questions });
     } else {
       res
-        .status(200)
+        .status(404)
         .json({ message: "You haven't created any questions yet" });
     }
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 

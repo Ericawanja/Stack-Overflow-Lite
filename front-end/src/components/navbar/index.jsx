@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/slices/user.slice";
 import {
   fetchAllQuestions,
@@ -9,36 +9,49 @@ import {
 
 export default function Navbar({ close_menu }) {
   const dispatch = useDispatch();
-  const navigate =useNavigate()
-  const handleLogout=()=>{
-    dispatch(logout())
-    navigate('/')
-  }
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
 
   return (
     <div className="layout_aside_inner">
       <div className="top_nav_element">
         <span>
           {" "}
-          <NavLink to="/questions">Questions</NavLink>
+          <Link to="/questions">Questions</Link>
         </span>
       </div>
 
       <div className="quiz_links" onClick={close_menu}>
-        <div onClick={() => dispatch(fetchAllQuestions())}>
-          <NavLink to="/questions">All</NavLink>
+        <div
+          onClick={() => dispatch(fetchAllQuestions())}
+          className={pathname === "/questions" ? "active" : ""}
+        >
+          <Link to="/questions">All</Link>
         </div>
         <div className="order" onClick={() => dispatch(orderByAnswers())}>
-          <NavLink to="/questions">order By answers</NavLink>
+          <Link to="/questions">order By answers</Link>
         </div>
 
         <div onClick={() => dispatch(getUsersQuestions())}>
-          <NavLink to="users-questions">My questions</NavLink>
+          <Link
+            to="users-questions"
+            className={pathname === "/questions/users-questions" ? "active" : ""}
+          >
+            Asked
+          </Link>
         </div>
       </div>
 
-      <div onClick={close_menu}>
-        <NavLink to="/questions/profile">Profile</NavLink>
+      <div
+        onClick={close_menu}
+        className={pathname === "/questions/profile" ? "active" : ""}
+      >
+        <Link to="/questions/profile">Profile</Link>
       </div>
       <div className="logout" onClick={handleLogout}>
         <span>Log Out</span>
