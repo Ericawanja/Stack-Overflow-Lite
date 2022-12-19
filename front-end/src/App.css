@@ -294,8 +294,9 @@ a {
   background-color: #100720;
   padding: 11px;
 }
-.layout_logout {
-  text-align: right;
+.logout {
+color: white;
+cursor: pointer;
 }
 
 .layout_body {

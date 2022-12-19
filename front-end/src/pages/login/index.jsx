@@ -8,6 +8,7 @@ import { LogInUser } from "../../redux/thunks/user.thunks";
 function Login() {
   const { user, loading, error } = useSelector((state) => state.user);
 
+
   const [state, setState] = useState({ email: "", password: "" });
 
   const dispatch = useDispatch();
@@ -25,9 +26,11 @@ function Login() {
 
   useEffect(() => {
     if (user?.id) {
+      console.log();
       navigate("/questions");
     }
   }, [user]);
+
 
   return (
     <div className="login-container">

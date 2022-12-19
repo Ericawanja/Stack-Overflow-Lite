@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logout } from "../../redux/slices/user.slice";
 import {
   fetchAllQuestions,
   getUsersQuestions,
@@ -8,6 +9,11 @@ import {
 
 export default function Navbar({ close_menu }) {
   const dispatch = useDispatch();
+  const navigate =useNavigate()
+  const handleLogout=()=>{
+    dispatch(logout())
+    navigate('/')
+  }
 
   return (
     <div className="layout_aside_inner">
@@ -34,8 +40,8 @@ export default function Navbar({ close_menu }) {
       <div onClick={close_menu}>
         <NavLink to="/questions/profile">Profile</NavLink>
       </div>
-      <div className="layout_logout_side">
-        <NavLink to="/">Log Out</NavLink>
+      <div className="logout" onClick={handleLogout}>
+        <span>Log Out</span>
       </div>
     </div>
   );

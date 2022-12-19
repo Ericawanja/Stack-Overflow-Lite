@@ -9,7 +9,7 @@ export const LogInUser = createAsyncThunk(
     if (!!response.error) {
       return thunkAPI.rejectWithValue({ error: response.error });
     }
-
+    thunkAPI.dispatch(fetchAllQuestions())
     return { data: response.data };
   }
 );
@@ -23,7 +23,7 @@ export const SignupUser = createAsyncThunk(
       return thunkApi.rejectWithValue({ error: response.error });
     }
 
-    thunkApi.dispatch(fetchAllQuestions())
+    
     return {data:response.data}
   }
 );

@@ -20,7 +20,8 @@ function QuestionsPage({ list = "all" }) {
     } else {
       setPage("Your Questions");
     }
-  }, [list]);
+  }, [list, questions]);
+  console.log(questions);
 
   return (
     <div className="Qlist-container">
