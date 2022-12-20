@@ -71,7 +71,7 @@ export const createQuestion = createAsyncThunk(
     if (response.error) {
       return thunkAPI.rejectWithValue({ error: response.error });
     }
-    thunkAPI.dispatch(fetchAllQuestions({ limit:10, page:1 }));
+    thunkAPI.dispatch(fetchAllQuestions({ limit:5, page:1 }));
     return { message: response.message };
   }
 );
@@ -86,7 +86,7 @@ export const editQuestion = createAsyncThunk(
     if (response.error) {
       return thunkAPI.rejectWithValue({ error: response.error });
     }
-    thunkAPI.dispatch(fetchAllQuestions({ limit:10, page:1 }));
+    thunkAPI.dispatch(fetchAllQuestions({ limit:5, page:1 }));
     return { message: response.message };
   }
 );
@@ -101,7 +101,7 @@ export const deleteQuestion = createAsyncThunk(
       return thunkAPI.rejectWithValue({ error: response.error });
     }
 
-    thunkAPI.dispatch(fetchAllQuestions());
+    thunkAPI.dispatch(fetchAllQuestions({ limit:5, page:1 }));
     return { message: response.data };
   }
 );

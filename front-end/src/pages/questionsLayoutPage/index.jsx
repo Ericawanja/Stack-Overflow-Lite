@@ -96,7 +96,7 @@ function QuestionLayout() {
                 onChange={handleInput}
               />
             </span>
-            <span className="search_btn" onClick={handleSearch}>
+            <span className="search_btn" >
               <IconContext.Provider value={{ color: "white", size: "16px" }}>
                 <FaSearch />
               </IconContext.Provider>

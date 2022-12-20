@@ -136,6 +136,7 @@ const questionSlice = createSlice({
     builder.addCase(searchQuestions.rejected, (state, action) => {
       state.searchedQuestions.error = action.payload.error;
       state.loading = false;
+      state.searchedQuestions.total = 0
     });
 
     // USER QUESTIONS
@@ -151,8 +152,8 @@ const questionSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(getUsersQuestions.rejected, (state, action) => {
-      state.questions = { ...state.questions, error: action?.payload?.error };
-      state.questions = { ...state.questions, data: [] };
+      state.questions = { ...state.questions, error: action?.payload?.error };//error
+      state.questions = { ...state.questions, data: [], total:0 };
       state.loading = false;
     });
     //POST QUESTION

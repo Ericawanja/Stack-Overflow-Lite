@@ -27,10 +27,10 @@ export default function Profile() {
     setPage((prev) => prev + 1);
   };
 
+  console.log(questions);
   useEffect(() => {
     dispatch(getUserAnswers());
     dispatch(getUserComments());
-   
   }, []);
 
   useEffect(() => {
@@ -65,31 +65,35 @@ export default function Profile() {
       </div>
       <div className="my_questions">
         <AskQuestionCard pageTitle={"Your questions"} />
-        <div>
-          {questions?.data.map((question, index) => {
-            return <QuestionCard single_question={question} key={index} />;
-          })}
-          <div className="pagination">
-            <button
-              onClick={goToPrevious}
-              disabled={page === 1}
-              className="prev"
-            >
-              Prev
-            </button>
-            <span>
-              Page {page} - {limit} of {questions?.total}
-            </span>
-          
-            <button
-              disabled={page >= Math.ceil(questions?.total / limit)}
-              onClick={goToNext}
-              className="next"
-            >
-              Next
-            </button>
+        {questions?.data.length > 0 ? (
+          <div>
+            {questions?.data.map((question, index) => {
+              return <QuestionCard single_question={question} key={index} />;
+            })}
+            <div className="pagination">
+              <button
+                onClick={goToPrevious}
+                disabled={page === 1}
+                className="prev"
+              >
+                Prev
+              </button>
+              <span>
+                Page {page} - {limit} of {questions?.total}
+              </span>
+
+              <button
+                disabled={page >= Math.ceil(questions?.total / limit)}
+                onClick={goToNext}
+                className="next"
+              >
+                Next
+              </button>
+            </div>
           </div>
-        </div>
+        ) : (
+          <h4>You have no questions</h4>
+        )}
       </div>
     </div>
   );
