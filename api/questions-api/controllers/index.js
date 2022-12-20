@@ -26,7 +26,7 @@ const getUserQuestions = async (req, res) => {
   const limit = req.query.limit ?? 10;
 
   let user = req.info;
-
+ let user_id = user.id
   try {
     const questions = await exec("getAllQuestions", {
       user_id: user.id,
@@ -35,7 +35,9 @@ const getUserQuestions = async (req, res) => {
     });
 
     if (questions.length > 0) {
-      res.status(200).json({ questions });
+       const total = await query(`select * from questions where user_id = '${user.id}' AND isdeleted=0`);
+     
+      res.status(200).json({ questions,total:total.length });
     } else {
       res
         .status(404)

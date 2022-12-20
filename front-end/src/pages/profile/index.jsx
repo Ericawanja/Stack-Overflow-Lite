@@ -17,10 +17,11 @@ export default function Profile() {
   const navigate = useNavigate();
   const {pathname} = useLocation()
 
+ 
   useEffect(() => {
     dispatch(getUserAnswers());
     dispatch(getUserComments());
-    dispatch(getUsersQuestions());
+    dispatch(getUsersQuestions({limit:2, page:1}));
   }, []);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function Profile() {
       </div>
       <div className="user_data">
         <div className="questions_no">
-          <span className="stat">{questions?.data?.length}</span>
+          <span className="stat">{questions?.total}</span>
           <span className="stat_title">Questions</span>
         </div>
         <div className="user_answers">

@@ -51,7 +51,7 @@ export const getUsersQuestions = createAsyncThunk(
     try {
       const response = await QuestionService.GetUserQuestions({ limit, page });
 
-      console.log("RESP", response);
+   
 
       if (response.error !== null) {
         return thunkAPI.rejectWithValue({ error: response.error });

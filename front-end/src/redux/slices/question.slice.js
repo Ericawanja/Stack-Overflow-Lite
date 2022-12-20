@@ -93,7 +93,7 @@ const questionSlice = createSlice({
     });
     builder.addCase(fetchAllQuestions.rejected, (state, action) => {
       console.log(action);
-      state.questions.error = 'An error';
+      state.questions.error = "An error";
       state.questions.data = [];
       state.loading = false;
     });
@@ -139,12 +139,11 @@ const questionSlice = createSlice({
     });
     builder.addCase(getUsersQuestions.fulfilled, (state, action) => {
       state.searching = false;
-
+      state.questions.total = action.payload.question.total;
       state.questions.data = action.payload.question.questions;
       state.loading = false;
     });
     builder.addCase(getUsersQuestions.rejected, (state, action) => {
-      console.log(action);
       state.questions = { ...state.questions, error: action?.payload?.error };
       state.questions = { ...state.questions, data: [] };
       state.loading = false;

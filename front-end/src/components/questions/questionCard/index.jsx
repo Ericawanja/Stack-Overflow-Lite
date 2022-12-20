@@ -21,7 +21,7 @@ function QuestionCard({ single_question, currentUser = {} }) {
   let date = formatDistance(new Date(created_on), new Date(), {
     addSuffix: true,
   });
-  console.log(date);
+
   const navigate = useNavigate();
   const navigateToQuestion = () => {
     navigate(`/questions/${question_id}`);
@@ -32,7 +32,7 @@ function QuestionCard({ single_question, currentUser = {} }) {
       <div className="quiz_list_left">
         <span>{answers} Answers</span>
       </div>
-      <div className="list_middle" /*onClick={navigateToQuestion}*/>
+      <div className="list_middle" >
         <div className="quiz_title" onClick={navigateToQuestion}>
           <span>{title}</span>
         </div>
