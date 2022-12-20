@@ -92,8 +92,8 @@ const questionSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(fetchAllQuestions.rejected, (state, action) => {
-      console.log(action.payload.error);
-      state.questions.error = action.payload.error;
+      console.log(action);
+      state.questions.error = 'An error';
       state.questions.data = [];
       state.loading = false;
     });

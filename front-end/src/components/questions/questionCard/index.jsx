@@ -1,5 +1,5 @@
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setIsEditingTrue } from "../../../redux/slices/question.slice";
 
@@ -11,6 +11,9 @@ function QuestionCard({ single_question, currentUser = {} }) {
   const dispatch = useDispatch();
   let { question_id, user_id, title, question, tags, created_on, answers } =
     single_question;
+  let {user}= useSelector(state=>state.user)  
+
+
   let sub_string = question.slice(0, 130);
   let tagsArr = tags.split(",");
 
@@ -42,7 +45,7 @@ function QuestionCard({ single_question, currentUser = {} }) {
               return <span key={index}>{tag}</span>;
             })}
           </div>
-          {currentUser?.id !== user_id ? (
+          {user?.id !== user_id ? (
             <div className="quiz_creation_details">
               <span className="author">
                 {/* <AiOutlineUser style={{ fontSize: "16px" }} />

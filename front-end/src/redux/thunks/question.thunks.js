@@ -10,7 +10,7 @@ export const fetchAllQuestions = createAsyncThunk(
     console.log("RESP", response);
 
     if (response.error !== null) {
-      thunkAPI.rejectWithValue({ error: response.error });
+     return thunkAPI.rejectWithValue({ error: response.error });
     }
 
     return { questions: response.data };
@@ -71,7 +71,7 @@ export const createQuestion = createAsyncThunk(
     if (response.error) {
       return thunkAPI.rejectWithValue({ error: response.error });
     }
-    thunkAPI.dispatch(fetchAllQuestions());
+    thunkAPI.dispatch(fetchAllQuestions({ limit:10, page:1 }));
     return { message: response.message };
   }
 );
@@ -86,7 +86,7 @@ export const editQuestion = createAsyncThunk(
     if (response.error) {
       return thunkAPI.rejectWithValue({ error: response.error });
     }
-    thunkAPI.dispatch(fetchAllQuestions());
+    thunkAPI.dispatch(fetchAllQuestions({ limit:10, page:1 }));
     return { message: response.message };
   }
 );

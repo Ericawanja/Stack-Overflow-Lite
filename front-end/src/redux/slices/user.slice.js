@@ -37,6 +37,7 @@ const userSlice = createSlice({
       state.error = "";
     });
     builder.addCase(GetLoggedUser.fulfilled, (state, action) => {
+   
       state.user = action.payload.data;
       state.loading = false;
     });
