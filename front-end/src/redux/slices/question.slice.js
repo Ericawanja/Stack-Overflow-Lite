@@ -19,6 +19,7 @@ import {
 const initialState = {
   questions: {
     data: [],
+    all:[],
     total: 0,
     error: "",
   },
@@ -149,6 +150,7 @@ const questionSlice = createSlice({
       state.searching = false;
       state.questions.total = action.payload.question.total;
       state.questions.data = action.payload.question.questions;
+      state.questions.all = action.payload.question.all
       state.loading = false;
     });
     builder.addCase(getUsersQuestions.rejected, (state, action) => {

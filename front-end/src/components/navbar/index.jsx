@@ -30,21 +30,29 @@ export default function Navbar({ close_menu }) {
 
       <div className="quiz_links" onClick={close_menu}>
         <div
-          onClick={() => dispatch(fetchAllQuestions({limit:5, page:1}))}
+          // onClick={() => dispatch(fetchAllQuestions({ limit: 5, page: 1 }))}
           className={pathname === "/questions" ? "active" : ""}
         >
-          <Link to="/questions">All</Link>
+          <Link
+            to="/questions"
+            onClick={() => dispatch(fetchAllQuestions({ limit: 5, page: 1 }))}
+          >
+            All
+          </Link>
         </div>
         <div className="order" onClick={() => dispatch(orderByAnswers())}>
-          <Link to="/questions">order By answers</Link>
+          <Link to="/questions" onClick={() => dispatch(orderByAnswers())}>
+            order By answers
+          </Link>
         </div>
 
-        <div onClick={() => dispatch(getUsersQuestions({limit:5, page:1}))}>
+        <div onClick={() => dispatch(getUsersQuestions({ limit: 5, page: 1 }))}>
           <Link
             to="users-questions"
             className={
               pathname === "/questions/users-questions" ? "active" : ""
             }
+            onClick={() => dispatch(getUsersQuestions({ limit: 5, page: 1 }))}
           >
             Asked
           </Link>

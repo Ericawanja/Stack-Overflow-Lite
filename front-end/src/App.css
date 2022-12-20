@@ -523,7 +523,7 @@ a {
 .commentFormContainer {
   background-color: rgba(64, 62, 67, 0.5);
   min-height: 100%;
- width: 100vw;
+ width: 80vw;
   position: absolute;
 }
 .commentForm {
@@ -755,4 +755,16 @@ button:disabled {
   100% {
     transform: rotate(360deg);
   }
+}
+.filters{
+  display: flex;
+  gap: 10px;
+  font-size: .8rem;
+  flex-wrap: wrap;
+}
+.filters div{
+  background-color: #181818;
+  color: white;
+  padding: 4px;
+  cursor: pointer;
 }

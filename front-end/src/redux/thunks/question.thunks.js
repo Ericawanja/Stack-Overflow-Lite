@@ -7,7 +7,7 @@ export const fetchAllQuestions = createAsyncThunk(
   async ({ limit=10, page=1 }, thunkAPI) => {
     const response = await QuestionService.GetAllQuestions({ limit, page });
 
-    console.log("RESP", response);
+   
 
     if (response.error !== null) {
      return thunkAPI.rejectWithValue({ error: response.error });
@@ -82,7 +82,7 @@ export const editQuestion = createAsyncThunk(
 
   async (details, thunkAPI) => {
     const response = await QuestionService.EditQuestion(details);
-
+    console.log("RESP", response);
     if (response.error) {
       return thunkAPI.rejectWithValue({ error: response.error });
     }

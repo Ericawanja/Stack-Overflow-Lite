@@ -15,7 +15,7 @@ const getAllQuestions = async (req, res) => {
 
     const total = await query("select * from questions where isdeleted=0");
 
-    res.status(200).json({ questions, total: total.length });
+    res.status(200).json({ questions, total: total.length,all:total });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -33,13 +33,13 @@ const getUserQuestions = async (req, res) => {
       page,
       limit,
     });
-
+const allQuestions = await exec("allUserQuestions", {user_id:user.id});
     if (questions.length > 0) {
       const total = await query(
         `select * from questions where user_id = '${user.id}' AND isdeleted=0`
       );
 
-      res.status(200).json({ questions, total: total.length });
+      res.status(200).json({ questions, total: total.length, all:allQuestions });
     } else {
       res
         .status(404)
@@ -89,6 +89,10 @@ const getQuestion = async (req, res) => {
 
   res.status(200).json({ question: data });
 };
+
+
+
+
 
 const postQuestion = async (req, res) => {
   const question = req.body;
