@@ -21,10 +21,11 @@ function QuestionCard({ single_question, currentUser = {} }) {
   let date = formatDistance(new Date(created_on), new Date(), {
     addSuffix: true,
   });
+  date = date.includes('hours') ? 'Today': date
 
   const navigate = useNavigate();
   const navigateToQuestion = () => {
-    navigate(`/questions/${question_id}`);
+    navigate(`/questions/${question_id||single_question.id}`);
   };
 
   return (
@@ -66,7 +67,7 @@ function QuestionCard({ single_question, currentUser = {} }) {
                   </span>
                   <span
                     className="delete"
-                    onClick={() => dispatch(deleteQuestion(question_id))}
+                    onClick={() => dispatch(deleteQuestion(question_id || single_question.id))}
                   >
                     <AiFillDelete style={{ fontSize: "16px" }} />
                   </span>

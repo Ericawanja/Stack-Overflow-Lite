@@ -33,8 +33,8 @@ export const fetchOneQuestions = createAsyncThunk(
 
 export const searchQuestions = createAsyncThunk(
   "questions/search",
-  async (searchTerm, thunkAPI) => {
-    const response = await QuestionService.GetsearchedQuestions(searchTerm);
+  async ({searchTerm, limit, page}, thunkAPI) => {
+    const response = await QuestionService.GetsearchedQuestions({searchTerm, limit, page});
 
     if (response.error) {
       thunkAPI.rejectWithValue({ error: response.error });

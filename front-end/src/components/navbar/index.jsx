@@ -30,7 +30,7 @@ export default function Navbar({ close_menu }) {
 
       <div className="quiz_links" onClick={close_menu}>
         <div
-          onClick={() => dispatch(fetchAllQuestions())}
+          onClick={() => dispatch(fetchAllQuestions({limit:5, page:1}))}
           className={pathname === "/questions" ? "active" : ""}
         >
           <Link to="/questions">All</Link>
@@ -39,7 +39,7 @@ export default function Navbar({ close_menu }) {
           <Link to="/questions">order By answers</Link>
         </div>
 
-        <div onClick={() => dispatch(getUsersQuestions())}>
+        <div onClick={() => dispatch(getUsersQuestions({limit:5, page:1}))}>
           <Link
             to="users-questions"
             className={

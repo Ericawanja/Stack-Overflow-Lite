@@ -21,15 +21,11 @@ import Comment from "../comment";
 
 function Answers({ single_answer }) {
   const dispatch = useDispatch();
-  const { comment, question } = useSelector((state) => state.questions);
+  const { question } = useSelector((state) => state.questions);
+  const {user} = useSelector(state=>state.user)
   const { id } = useParams();
   let { answer, comments, votes } = single_answer;
 
-  // let [user, setUser] = useState({});
-  const user = JSON.parse(localStorage.getItem("user"));
- 
-
-  
 
   const handlePrefer = (status) => {
     dispatch(

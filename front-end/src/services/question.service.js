@@ -13,9 +13,12 @@ class QuestionService {
     headers: { Authorization: `Bearer ${this.TOKEN}` },
   };
 
-  async GetAllQuestions({limit, page}) {
+  async GetAllQuestions({ limit=1, page=5 }) {
     try {
-      const response = await axios.get(`${this.BASE_URL}?limit=${limit}&page=${page}`, this.config);
+      const response = await axios.get(
+        `${this.BASE_URL}?limit=${limit}&page=${page}`,
+        this.config
+      );
 
       return { data: response.data, error: null };
     } catch (error) {
@@ -36,11 +39,11 @@ class QuestionService {
     }
   }
 
-  async GetsearchedQuestions(searchTerm) {
+  async GetsearchedQuestions({ searchTerm, limit, page }) {
     try {
       const response = await axios.post(
-        this.BASE_URL + "/list/search",
-        { searchTerm },
+       `${this.BASE_URL}/list/search?limit=${limit}&page=${page}`,
+        { searchTerm, page, limit },
         this.config
       );
 
@@ -50,16 +53,15 @@ class QuestionService {
     }
   }
 
-  async GetUserQuestions({limit, page}) {
+  async GetUserQuestions({ limit=5, page=1 }) {
     try {
       const response = await axios.get(
         `${this.BASE_URL}/user/created?limit=${limit}&page=${page}`,
         this.config
       );
-      
+
       return { data: response.data, error: null };
     } catch (error) {
-      
       return { data: null, error: error.response.data };
     }
   }

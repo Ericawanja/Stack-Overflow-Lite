@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AskQuestionCard, QuestionCard } from "../../components";
@@ -15,13 +15,22 @@ export default function Profile() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {pathname} = useLocation()
+  const { pathname } = useLocation();
 
- 
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
+
+  const goToPrevious = () => {
+    setPage((prev) => (prev === 1 ? 1 : prev - 1));
+  };
+  const goToNext = () => {
+    setPage((prev) => prev + 1);
+  };
+
   useEffect(() => {
     dispatch(getUserAnswers());
     dispatch(getUserComments());
-    dispatch(getUsersQuestions({limit:2, page:1}));
+   
   }, []);
 
   useEffect(() => {
@@ -30,6 +39,9 @@ export default function Profile() {
     }
   }, [user, loading]);
 
+  useEffect(() => {
+    dispatch(getUsersQuestions({ limit, page }));
+  }, [page, limit]);
   return (
     <div className="profile_container">
       <div className="profile_header">
@@ -53,9 +65,31 @@ export default function Profile() {
       </div>
       <div className="my_questions">
         <AskQuestionCard pageTitle={"Your questions"} />
-        {questions?.data.map((question) => {
-          return <QuestionCard single_question={question} />;
-        })}
+        <div>
+          {questions?.data.map((question, index) => {
+            return <QuestionCard single_question={question} key={index} />;
+          })}
+          <div className="pagination">
+            <button
+              onClick={goToPrevious}
+              disabled={page === 1}
+              className="prev"
+            >
+              Prev
+            </button>
+            <span>
+              Page {page} - {limit} of {questions?.total}
+            </span>
+          
+            <button
+              disabled={page >= Math.ceil(questions?.total / limit)}
+              onClick={goToNext}
+              className="next"
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

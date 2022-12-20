@@ -1,20 +1,20 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { QuestionCard, AskQuestionCard, Loading } from "../../components";
 import {
   fetchAllQuestions,
   getUsersQuestions,
+  searchQuestions,
 } from "../../redux/thunks/question.thunks";
 
 function QuestionsPage({ list = "all" }) {
-  let { questions, searching, searchedQuestions, loading } = useSelector(
+  let { questions, searching, searchedQuestions,searchTerm, loading } = useSelector(
     (state) => state.questions
   );
-  const total = questions?.total;
-
-  questions = searching ? searchedQuestions : questions.data;
-
+  const total = searching ? searchedQuestions.total : questions.total;
+  questions = searching ? searchedQuestions.data : questions.data;
+  
   let currentUser = JSON.parse(localStorage.getItem("user"));
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
@@ -29,10 +29,13 @@ function QuestionsPage({ list = "all" }) {
   };
 
   useEffect(() => {
-    if (list === "all") {
-      dispatch(fetchAllQuestions({ limit, page, list:"all" }));
+    if(searching){
+      dispatch(searchQuestions({searchTerm, limit, page, }))
+    }
+    else if (list === "all") {
+      dispatch(fetchAllQuestions({ limit, page, list: "all" }));
     } else {
-      dispatch(getUsersQuestions({ limit, page, list:"mine"  }));
+      dispatch(getUsersQuestions({ limit, page, list: "mine" }));
     }
   }, [limit, page, list]);
 
@@ -67,7 +70,7 @@ function QuestionsPage({ list = "all" }) {
               <span>
                 Page {page} - {limit} of {total}
               </span>
-              {console.log(Math.ceil(total / limit), page)}
+
               <button
                 disabled={page >= Math.ceil(total / limit)}
                 onClick={goToNext}

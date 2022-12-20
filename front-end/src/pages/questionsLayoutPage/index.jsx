@@ -11,6 +11,7 @@ import {
   searchQuestions,
 } from "../../redux/thunks/question.thunks";
 import { CommentForm, FeedbackModal, Navbar } from "../../components";
+import { setSearchTerm } from "../../redux/slices/question.slice";
 
 function QuestionLayout() {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ function QuestionLayout() {
   );
 
   const [openMenu, setOpenMenu] = useState(true);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
 
   let open_icon = useRef();
   let close_icon = useRef();
@@ -41,19 +44,17 @@ function QuestionLayout() {
   };
 
   const debouncedSearch = useCallback(
-    _.debounce((value) => dispatch(searchQuestions(value)), 500),
+    _.debounce((value) => dispatch(searchQuestions({searchTerm:value, limit, page})), 500),
     []
   );
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setTerm] = useState("");
 
   const handleInput = (e) => {
     const search = e.target.value;
-    setSearchTerm(search);
-    // if (search.trim() === "") {
-    //   dispatch(fetchAllQuestions());
-    //   return;
-    // }
+    setTerm(search);
+    dispatch(setSearchTerm(search))
+    
     debouncedSearch(search.trim());
   };
   const handleSearch = () => {

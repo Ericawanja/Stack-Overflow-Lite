@@ -23,8 +23,9 @@ const initialState = {
     error: "",
   },
   question: {},
-  searchedQuestions: [],
+  searchedQuestions: {data:[], total:0, error:""},
   searching: false,
+  searchTerm:"",
   loading: false,
   error: "",
   feedBack: false,
@@ -78,6 +79,9 @@ const questionSlice = createSlice({
       state.comment = false;
       state.commentDetails = {};
     },
+    setSearchTerm:(state, action)=>{
+      state.searchTerm = action.payload
+    }
   },
   extraReducers: (builder) => {
     // FETCH QUESTIONS CASES
@@ -123,11 +127,14 @@ const questionSlice = createSlice({
       state.error = "";
     });
     builder.addCase(searchQuestions.fulfilled, (state, action) => {
-      state.searchedQuestions = action.payload.question.questions;
+   
+      state.searchedQuestions.total = action.payload.question.total;
+      state.searchedQuestions.data = action.payload.question.questions;
       state.loading = false;
+      
     });
     builder.addCase(searchQuestions.rejected, (state, action) => {
-      state.error = action.payload.error;
+      state.searchedQuestions.error = action.payload.error;
       state.loading = false;
     });
 
@@ -338,5 +345,6 @@ export const {
   closeAnsForm,
   openCommentForm,
   closeCommentForm,
+  setSearchTerm
 } = questionSlice.actions;
 export default questionSlice.reducer;

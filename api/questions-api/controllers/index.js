@@ -26,7 +26,7 @@ const getUserQuestions = async (req, res) => {
   const limit = req.query.limit ?? 10;
 
   let user = req.info;
- let user_id = user.id
+  let user_id = user.id;
   try {
     const questions = await exec("getAllQuestions", {
       user_id: user.id,
@@ -35,9 +35,11 @@ const getUserQuestions = async (req, res) => {
     });
 
     if (questions.length > 0) {
-       const total = await query(`select * from questions where user_id = '${user.id}' AND isdeleted=0`);
-     
-      res.status(200).json({ questions,total:total.length });
+      const total = await query(
+        `select * from questions where user_id = '${user.id}' AND isdeleted=0`
+      );
+
+      res.status(200).json({ questions, total: total.length });
     } else {
       res
         .status(404)
@@ -424,11 +426,24 @@ const getQuestionWithMostAnswers = async (req, res) => {
 
 const search = async (req, res) => {
   const { searchTerm } = req.body;
+
+  const page = req.query.page ?? 1;
+  const limit = req.query.limit ?? 2;
+
   try {
-    let questions = await exec("search", { searchTerm });
+    let questions = await exec("search", { searchTerm, page, limit });
 
     if (questions.length !== 0) {
-      return res.status(200).json({ questions });
+      let total = await query(`
+      select * from questions
+       where
+    question Like '%' + '${searchTerm}' + '%'
+    OR tags Like '%' + '${searchTerm}' + '%'
+    OR title Like '%' + '${searchTerm}' + '%'
+	AND isdeleted = 0
+      `);
+    
+      return res.status(200).json({ questions, total:total.length });
     } else {
       return res
         .status(200)
