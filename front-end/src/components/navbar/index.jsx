@@ -1,51 +1,82 @@
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { logout } from "../../redux/slices/user.slice";
+import {
+  fetchAllQuestions,
+  getUsersQuestions,
+  orderByAnswers,
+} from "../../redux/thunks/question.thunks";
 
+export default function Navbar({ close_menu }) {
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-export default function Navbar({ close_icon, close_menu }) {
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch(logout());
+    navigate("/");
+  };
+
   return (
-    <div className="layout_aside_inner" onClick={close_menu}>
+    <div className="layout_aside_inner">
       <div className="top_nav_element">
         <span>
           {" "}
-          <NavLink to="/questions">Questions</NavLink>
+          <Link to="/questions">Questions</Link>
         </span>
       </div>
-      <div className="quiz_links">
-        <div>
-          <NavLink
+
+      <div className="quiz_links" onClick={close_menu}>
+        <div
+          // onClick={() => dispatch(fetchAllQuestions({ limit: 5, page: 1 }))}
+          className={pathname === "/questions" ? "active" : ""}
+        >
+          <Link
             to="/questions"
-           
+            onClick={() => dispatch(fetchAllQuestions({ limit: 5, page: 1 }))}
           >
             All
-          </NavLink>
+          </Link>
+        </div>
+        <div className="order" onClick={() => dispatch(orderByAnswers())}>
+          <Link to="/questions" onClick={() => dispatch(orderByAnswers())}>
+            order By answers
+          </Link>
         </div>
 
-        <div>
-          <NavLink
+        <div onClick={() => dispatch(getUsersQuestions({ limit: 5, page: 1 }))}>
+          <Link
             to="users-questions"
-          
+            className={
+              pathname === "/questions/users-questions" ? "active" : ""
+            }
+            onClick={() => dispatch(getUsersQuestions({ limit: 5, page: 1 }))}
           >
-            My questions
-          </NavLink>
+            Asked
+          </Link>
         </div>
       </div>
 
-      <div>
-        <NavLink
-          to="/questions/profile"
-          // className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Profile
-        </NavLink>
+      <div
+        onClick={close_menu}
+        className={pathname === "/questions/profile" ? "active" : ""}
+      >
+        <Link to="/questions/profile">Profile</Link>
       </div>
-      <div className="layout_logout_side">
-        <NavLink
-          to="/"
-          // className={({ isActive }) => (isActive ? "active" : "")}
+      {user?.id ? (
+        <div className="logout" onClick={handleLogout}>
+          <span>Log Out</span>
+        </div>
+      ) : (
+        <div
+          onClick={close_menu}
+          className={pathname === "/login" ? "active" : ""}
         >
-          Log Out
-        </NavLink>
-      </div>
+          <Link to="/login">Log In</Link>
+        </div>
+      )}
     </div>
   );
 }

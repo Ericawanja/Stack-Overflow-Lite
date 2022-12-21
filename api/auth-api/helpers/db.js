@@ -24,7 +24,7 @@ class Connection {
   executeRequest = async (storedProcedure, data = {}) => {
     const requestObj = await this.pool.request();
     const request = await this.createRequestObj(requestObj, data);
-    const res= await (await request.execute(storedProcedure)).recordset
+    const res = await (await request.execute(storedProcedure)).recordset
     return res
   };
 }

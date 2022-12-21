@@ -1,24 +1,63 @@
-class UserService {
-  BASE_URL =  process.env.NODE_ENV === "production" ?"https://my-json-server.typicode.com/Ericawanja/jsonserver/users":"http://localhost:9090/users";
-  async LogInUser({ email, password }) {
-    // Make API Call
-    //Return logged in user or error
-    try {
-      const response = await fetch(this.BASE_URL);
-      const data = await response.json();
+import axios from "axios";
 
-      const user = data.filter((user) => user.email === email);
-      // console.log(user);
-      if (user.length > 0) return { message: null, data: { ...user[0] } };
-      return { message: "User does not exist", data: null };
+class UserService {
+  BASE_URL =
+    process.env.NODE_ENV === "production"
+      ? "https://my-json-server.typicode.com/Ericawanja/jsonserver/users"
+      : "http://localhost:9090/users";
+  async LogInUser(details) {
+    try {
+      let url = "http://localhost:5001/user/login";
+      const { data } = await axios.post(url, details);
+
+      localStorage.setItem("token", data?.token);
+      return { data: data?.user, error: null };
     } catch (error) {
-      return { data: null, error: error.message };
+      const message =
+        error?.response?.data?.message ||
+        "An error occurred. Please try again later";
+
+      return { data: null, error: message };
     }
   }
 
-  async RegisterUser() {}
+  async GetLoggedUser() {
+    try {
+      const token = localStorage.getItem("token");
+      if (token) {
+        let url = "http://localhost:5001/user/me";
+        const { data } = await axios.post(url, {}, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-  async GetAllUsers() {}
+        localStorage.setItem("token", data?.token);
+        
+        return { data: data?.user, error: null };
+      }
+
+      return { data: null, error: "No Token" };
+    } catch (error) {
+      localStorage.clear();
+      return { data: null, error: "Invalid Token" };
+    }
+  }
+
+  async SignupUser(details) {
+    try {
+      let url = "http://localhost:5001/user/signup";
+      const response = await axios.post(url, details);
+
+      return response;
+    } catch (error) {
+      const message =
+        error?.response?.data?.message ||
+        "Invalid details. Please try again later";
+
+      return { data: null, error: message };
+    }
+  }
 }
 
 export default new UserService();

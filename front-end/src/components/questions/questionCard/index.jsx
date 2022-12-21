@@ -1,51 +1,78 @@
-import { Link } from "react-router-dom";
-import { IconContext } from "react-icons";
-import { AiFillEdit, AiFillDelete,AiOutlineUser } from "react-icons/ai";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setIsEditingTrue } from "../../../redux/slices/question.slice";
 
-function QuestionCard({ single_question }) {
-  let { id, username, title, question, tags, created_on, votes } =
+import { formatDistance, subDays } from "date-fns";
+
+import { deleteQuestion } from "../../../redux/thunks/question.thunks";
+
+function QuestionCard({ single_question, currentUser = {} }) {
+  const dispatch = useDispatch();
+  let { question_id, user_id, title, question, tags, created_on, answers } =
     single_question;
-  let sub_string = question.slice(0, 130);
+  let {user}= useSelector(state=>state.user)  
 
-  //dummy user
-  let user_name = "User Two";
+
+  let sub_string = question.slice(0, 130);
+  let tagsArr = tags.split(",");
+
+  
+  let date = formatDistance(new Date(created_on), new Date(), {
+    addSuffix: true,
+  });
+  date = date.includes('hours') ? 'Today': date
+
+  const navigate = useNavigate();
+  const navigateToQuestion = () => {
+    navigate(`/questions/${question_id||single_question.id}`);
+  };
+
   return (
     <div className="quiz_list">
       <div className="quiz_list_left">
-        <span>{votes} votes</span>
-        <span>0 Answers</span>
+        <span>{answers} Answers</span>
       </div>
-      <div className="list_middle">
-        <div className="quiz_title">
-          <Link to={`/questions/${id}`}>{title}</Link>
+      <div className="list_middle" >
+        <div className="quiz_title" onClick={navigateToQuestion}>
+          <span>{title}</span>
         </div>
-        <div className="quiz_description">{sub_string}...</div>
+        <div className="quiz_description" onClick={navigateToQuestion}>
+          {sub_string}...
+        </div>
         <div className="quiz_list_details">
           <div className="tags">
-            {tags.map((tag) => {
-              return <span  >{tag}</span>;
+            {tagsArr.map((tag, index) => {
+              return <span key={index}>{tag}</span>;
             })}
           </div>
-          {user_name !== username ? (
+          {user?.id !== user_id ? (
             <div className="quiz_creation_details">
               <span className="author">
-                  <AiOutlineUser style={{fontSize:"16px"}} />
-                {username}
+                {/* <AiOutlineUser style={{ fontSize: "16px" }} />
+                {username} */}
+                Posted
               </span>
-              <span className="date_created">{created_on}</span>
+              <span className="date_created">{date}</span>
             </div>
           ) : (
             <div>
               <div className="quiz_creation_details">
                 <span className="author_btns">
-                  <span className="edit">
-                      <AiFillEdit  style={{fontSize:"16px"}} />
+                  <span
+                    className="edit"
+                    onClick={() => dispatch(setIsEditingTrue(single_question))}
+                  >
+                    <AiFillEdit style={{ fontSize: "16px" }} />
                   </span>
-                  <span className="delete">
-                      <AiFillDelete  style={{fontSize:"16px"}} />
+                  <span
+                    className="delete"
+                    onClick={() => dispatch(deleteQuestion(question_id || single_question.id))}
+                  >
+                    <AiFillDelete style={{ fontSize: "16px" }} />
                   </span>
                 </span>
-                <span className="date_created">{created_on}</span>
+                <span className="date_created">{date}</span>
               </div>
             </div>
           )}

@@ -16,36 +16,41 @@ const {
   addComment,
   deleteComment,
   upvote,
-  downVote,
+
   getQuestionWithMostAnswers,
-  search
+  search,
+
+  downvote,
+  getUserComments,
+  getUserAnswers,
 } = require("../controllers");
 const validateQuestion = require("../middlewares/validateQuestions");
 const validateAnswer = require("../middlewares/validateAnswer");
 const validateComment = require("../middlewares/validateComment");
 
+router.get("/", verifyUser,getAllQuestions);
+router.get("/user/created", verifyUser, getUserQuestions);
+router.get("/:id", verifyUser, getQuestion);
 
-
-router.get("/", verifyUser,  getAllQuestions);
-router.get("/author/:user_id", verifyUser, getUserQuestions);
-router.get("/:id",verifyUser, getQuestion);
-
-router.post("/",verifyUser, validateQuestion, postQuestion);
-router.put("/:id",verifyUser, validateQuestion, updateQuestion);
+router.post("/", verifyUser, validateQuestion, postQuestion);
+router.put("/:id", verifyUser, validateQuestion, updateQuestion);
 router.delete("/:id", verifyUser, deleteQuestion);
 
 router.post("/answer/add", verifyUser, validateAnswer, postAnswer);
-router.put("/answer/preffered", verifyUser, setPrefferedAnswer);
+router.put("/answer/preffer", verifyUser, setPrefferedAnswer);
 router.put("/answer/unprefer", verifyUser, undoPrefferedAnswer);
-router.delete("/answer/:id", deleteAnswer)
+router.delete("/answer/delete/:id", verifyUser, deleteAnswer);
 
-router.post("/answer/comment",verifyUser, validateComment, addComment)
-router.delete("/comment/:id", verifyUser, deleteComment)
+router.post("/answer/comment", verifyUser, validateComment, addComment);
+router.delete("/comment/:id", verifyUser, deleteComment);
 
-router.post("/answer/upvote", verifyUser, upvote)
-router.post("/answer/downvote", verifyUser, downVote)
+router.get("/ordered/top", verifyUser, getQuestionWithMostAnswers);
+router.post("/list/search", verifyUser, search);
 
-router.get("/ordered/top", verifyUser, getQuestionWithMostAnswers)
-router.post("/list/search", verifyUser, search)
+router.post("/answer/upvote", verifyUser, upvote);
+router.post("/answer/downvote", verifyUser, downvote);
+
+router.get("/user/answers", verifyUser, getUserAnswers);
+router.get("/user/comments", verifyUser, getUserComments);
 
 module.exports = router;

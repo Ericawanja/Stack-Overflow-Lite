@@ -15,3 +15,28 @@ code {
   margin: 0;
   box-sizing: border-box;
 }
+
+.pagination{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+.pagination button{
+  padding: 8px 15px;
+  border: none;
+  outline: none;
+  background-color: #1b1b20;
+  cursor: pointer;
+  color: white;
+  font-size: 12px;
+  border-radius: 5px;
+}
+.pagination button:disabled{
+  cursor: not-allowed;
+}
+
+.pagination span{
+  font-size: 14px;
+}

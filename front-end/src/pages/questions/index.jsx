@@ -1,31 +1,90 @@
-import React, { useMemo } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { useSelector } from "react-redux";
-import { QuestionCard, AskQuestionCard } from "../../components";
+import { QuestionCard, AskQuestionCard, Loading } from "../../components";
+import {
+  fetchAllQuestions,
+  getUsersQuestions,
+  searchQuestions,
+} from "../../redux/thunks/question.thunks";
 
 function QuestionsPage({ list = "all" }) {
-  let { questions } = useSelector((state) => state.questions);
-  let user_name = "User Two";
-  let [page, setPage] = useState("");
-  const filteredQuestions = useMemo(() => {
-    if (list === "all") {
-      setPage("All Questions");
-      return questions;
-    }
+  let { questions, searching, searchedQuestions,searchTerm, loading } = useSelector(
+    (state) => state.questions
+  );
+  const total = searching ? searchedQuestions.total : questions.total;
+  questions = searching ? searchedQuestions.data : questions.data;
+  
+  let currentUser = JSON.parse(localStorage.getItem("user"));
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
 
-    //filter here and return
-    setPage("Your Questions");
-    return questions.filter((question) => question.username === user_name);
-  }, [list, questions, user_name]);
+  const dispatch = useDispatch();
+
+  const goToPrevious = () => {
+    setPage((prev) => (prev === 1 ? 1 : prev - 1));
+  };
+  const goToNext = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    if(searching){
+      dispatch(searchQuestions({searchTerm, limit, page, }))
+    }
+    else if (list === "all") {
+      dispatch(fetchAllQuestions({ limit, page, list: "all" }));
+    } else {
+      dispatch(getUsersQuestions({ limit, page, list: "mine" }));
+    }
+  }, [limit, page, list]);
 
   return (
     <div className="Qlist-container">
       <div className="list_wrapper">
-        <AskQuestionCard pageTitle={page} />
-        {filteredQuestions?.map((single_question) => {
-          return <QuestionCard single_question={single_question} />;
-        })}
+        <AskQuestionCard
+          pageTitle={list === "all" ? "All Questions" : "Your Questions"}
+        />
+
+        {loading ? (
+          <Loading />
+        ) : questions?.length > 0 ? (
+          <>
+            {questions?.map((single_question) => {
+              return (
+                <QuestionCard
+                  key={single_question.question_id}
+                  single_question={single_question}
+                  currentUser={currentUser}
+                />
+              );
+            })}
+            <div className="pagination">
+              <button
+                onClick={goToPrevious}
+                disabled={page === 1}
+                className="prev"
+              >
+                Prev
+              </button>
+              <span>
+                Page {page} - {limit} of {total}
+              </span>
+
+              <button
+                disabled={page >= Math.ceil(total / limit)}
+                onClick={goToNext}
+                className="next"
+              >
+                Next
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="listEmpty">
+            <h2>No questions found</h2>
+          </div>
+        )}
       </div>
     </div>
   );

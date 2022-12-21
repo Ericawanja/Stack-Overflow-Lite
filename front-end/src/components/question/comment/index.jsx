@@ -2,11 +2,11 @@ function Comment({ single_comment}) {
  let {comment} =single_comment
   return (
     <div className="commentsList">
-      <ol>
+      <ul>
         <li>
          {comment}
         </li>
-      </ol>
+      </ul>
     </div>
   );
 }
