@@ -10,18 +10,21 @@ class QuestionService {
 
   TOKEN = localStorage.getItem("token");
   config = {
-    headers: { Authorization: `Bearer ${this.TOKEN}` },
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   };
 
-  async GetAllQuestions({ limit=1, page=5 }) {
+  async GetAllQuestions({ limit = 1, page = 1 }) {
+    console.log(this.TOKEN);
+    console.log(this.config, 'log');
     try {
       const response = await axios.get(
         `${this.BASE_URL}?limit=${limit}&page=${page}`,
         this.config
       );
-
+      console.log(response);
       return { data: response.data, error: null };
     } catch (error) {
+      console.log({error});
       return { data: null, error: error.message };
     }
   }
@@ -42,7 +45,7 @@ class QuestionService {
   async GetsearchedQuestions({ searchTerm, limit, page }) {
     try {
       const response = await axios.post(
-       `${this.BASE_URL}/list/search?limit=${limit}&page=${page}`,
+        `${this.BASE_URL}/list/search?limit=${limit}&page=${page}`,
         { searchTerm, page, limit },
         this.config
       );
@@ -53,7 +56,7 @@ class QuestionService {
     }
   }
 
-  async GetUserQuestions({ limit=5, page=1 }) {
+  async GetUserQuestions({ limit = 5, page = 1 }) {
     try {
       const response = await axios.get(
         `${this.BASE_URL}/user/created?limit=${limit}&page=${page}`,

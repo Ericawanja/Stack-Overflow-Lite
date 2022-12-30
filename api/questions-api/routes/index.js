@@ -2,7 +2,7 @@ const express = require("express");
 const { verifyUser } = require("../middlewares/verify");
 const router = express.Router();
 
-const {
+/*const {
   getAllQuestions,
   getUserQuestions,
   getQuestion,
@@ -23,12 +23,37 @@ const {
   downvote,
   getUserComments,
   getUserAnswers,
-} = require("../controllers");
+} = require("../controllers");*/
 const validateQuestion = require("../middlewares/validateQuestions");
 const validateAnswer = require("../middlewares/validateAnswer");
 const validateComment = require("../middlewares/validateComment");
 
-router.get("/", verifyUser,getAllQuestions);
+const {
+  getAllQuestions,
+  getUserQuestions,
+  getQuestion,
+  postQuestion,
+  updateQuestion,
+  deleteQuestion,
+  getQuestionWithMostAnswers,
+  search,
+} = require("../controllers/questions");
+const {
+  postAnswer,
+  setPrefferedAnswer,
+  undoPrefferedAnswer,
+  deleteAnswer,
+  upvote,
+  downvote,
+  getUserAnswers,
+} = require("../controllers/answers");
+const {
+  addComment,
+  deleteComment,
+  getUserComments,
+} = require("../controllers/comments");
+
+router.get("/", verifyUser, getAllQuestions);
 router.get("/user/created", verifyUser, getUserQuestions);
 router.get("/:id", verifyUser, getQuestion);
 

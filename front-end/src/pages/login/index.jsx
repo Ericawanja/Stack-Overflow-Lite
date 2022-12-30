@@ -26,6 +26,7 @@ function Login() {
 
   useEffect(() => {
     if (user?.id) {
+      console.log(user);
       const redirect = search.split("=")[1];
       navigate(redirect ? redirect : "/questions");
     }
