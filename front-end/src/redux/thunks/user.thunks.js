@@ -9,7 +9,9 @@ export const LogInUser = createAsyncThunk(
     if (!!response.error) {
       return thunkAPI.rejectWithValue({ error: response.error });
     }
-    thunkAPI.dispatch(fetchAllQuestions())
+   
+    thunkAPI.dispatch(fetchAllQuestions({limit:5, page:1}))
+   
     return { data: response.data };
   }
 );
